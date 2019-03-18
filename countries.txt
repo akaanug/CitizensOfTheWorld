@@ -178,13 +178,13 @@ Cedric Bakambu
 Jonas Savimbi
 2
 Which famous place is NOT in Angola
-QuiÁama National Park
+Qui√ßama National Park
 Kalandula Falls
 Mannini Beach
 2
 What is the currency of Angola?
 Angolan Kwanza
-Kwanza Tatl˝tua
+Kwanza Tatl√Ωtua
 Angolan Musakka
 0
 Which one is the official language of Angola?
@@ -232,7 +232,7 @@ Jamal Khashoggi
 2
 Which famous place is NOT in Libya
 Gaberoun Desert and Lake
-Sule˛man Monument
+Sule√æman Monument
 Red Castle Museum
 1
 What is the currency of Libya?
@@ -301,7 +301,7 @@ Mount Agri
 Which one is NOT a traditional food from Nepal?
 Momo
 Pilaf
-Cac˝k
+Cac√Ωk
 2
 Which country is NOT a neighbour of Nepal?
 India
@@ -332,7 +332,7 @@ Random2
 Random3
 1
 Which football player is NOT from Serbia?
-Sergej Milinkovic ñ Savic
+Sergej Milinkovic ‚Äì Savic
 Zlatan Ibrahimovic
 Dusan Tadic
 1
@@ -480,7 +480,7 @@ Budapest
 Prague
 Vienna
 1
-Which countryís national football team beat Czech Republic national team with a comeback from 2 ñ 0 to 3 ñ 2 in UEFA Euro 2008 Tournament?
+Which country‚Äôs national football team beat Czech Republic national team with a comeback from 2 ‚Äì 0 to 3 ‚Äì 2 in UEFA Euro 2008 Tournament?
 Turkey
 Spain
 Croatia
@@ -513,7 +513,7 @@ Serbian
 Which one is NOT a traditional food from Czech Republic?
 Mincemeat
 Forloren hare
-Demle meÁae
+Demle me√ßae
 2
 Which country is NOT a neighbour of Czech Republic?
 Germany
@@ -719,7 +719,7 @@ Ivorian Ariary
 1
 Which one is one of the official language of Ivory Coast?
 French
-BaoulÈ
+Baoul√©
 Dioula
 0
 Which one is NOT a traditional food from Ivory Coast?
@@ -863,7 +863,7 @@ random3
 1
 Who is the world's best goalkeeper ever?
 Kameni
-Ramazan Kˆse
+Ramazan K√∂se
 Volkan Demirel
 0
 Which famous place is NOT in Cameroon?
@@ -1083,7 +1083,7 @@ Tourism
 Agriculture
 Fishing
 0
-ìCatedral de Santa Maria La Menorî is the oldest Cathedral in America. Which city is this cathedral located in?
+‚ÄúCatedral de Santa Maria La Menor‚Äù is the oldest Cathedral in America. Which city is this cathedral located in?
 La Romano
 Sao Paulo
 Santo Domingo
@@ -1113,7 +1113,7 @@ Dominican Republic
 10
 What is the capital of Brasil?
 Brazilian 
-S„o Paulo
+S√£o Paulo
 Rio de Janeiro
 0
 Which one is the flag of Brasil?
@@ -1127,9 +1127,9 @@ Portuguese
 Nheengatu
 1
 Which one is not an brazilian football player?
-Neymar da Silva Santos J˙nior
+Neymar da Silva Santos J√∫nior
 Lionel Messi
-Ronaldinho Ga˙cho
+Ronaldinho Ga√∫cho
 1
 The biggest carnival around the world is in Brazil, Which of these carnivals in Brazil is the biggest in the world?
 Carnival in Salvador
@@ -1166,7 +1166,7 @@ Brazil
 10
 What is the capital of Argentina?
 Buenos Aires
-CÛrdoba
+C√≥rdoba
 Santa Joan
 0
 Which one is the flag of Argentina?
@@ -1206,7 +1206,7 @@ Golden Retriever
 1
 Argentina hosted the 2018 Summer Youth Olympics. In which city, The Olimpic games were held?
 Rosarios
-CÛrdoba
+C√≥rdoba
 Bueno Aires
 2
 What is the currency of Argentina
@@ -1224,8 +1224,8 @@ Great Basin
 1
 What is the capital of Chile?
 Santiago
-ValparaÌso
-ViÒa del Mar
+Valpara√≠so
+Vi√±a del Mar
 0
 Which one is the flag of Chile?
 random1
@@ -1270,7 +1270,7 @@ Seal
 Chile
 100
 10
-What is the national jewel, which is called national because of having %60 of world that jewelís reserve in Colombia?
+What is the national jewel, which is called national because of having %60 of world that jewel‚Äôs reserve in Colombia?
 Diamond
 Emerald
 Ruby
@@ -1278,7 +1278,7 @@ Ruby
 What is the capital of Chile?
 Cali
 Medellin
-Bogot·
+Bogot√°
 2
 Which one is the flag of Chile?
 random1
@@ -1394,34 +1394,34 @@ random3
 What is the official language in Uruguay?
 Spanish
 Portuguese 
-PortuÒol
+Portu√±ol
 0
 The name of the Uruguay comes from the Uruguay River and it has a special meaning. What is the meaning of Uruguay River?
 River of the shining fishes
 River of the crocodiles
 River of the painted birds
 2
-Most of the countryís 3.4 million people live in the capital, Montevideo. How many people live in capital?
+Most of the country‚Äôs 3.4 million people live in the capital, Montevideo. How many people live in capital?
 1.1 million
 1.4 million
 2.5 million
 1
-Which one is not an Uruguayís special foods or drinks?
+Which one is not an Uruguay‚Äôs special foods or drinks?
 Mate
 Feijoada
 Chivito
 2
-Uruguayís national anthem is the longest one around the world, but it is very catchy. How many minutes is this anthem?
+Uruguay‚Äôs national anthem is the longest one around the world, but it is very catchy. How many minutes is this anthem?
 4 minutes 30 seconds
 5 minutes 50 seconds
 2 minutes 30 seconds
 0
-What is the Uruguayís motto?
+What is the Uruguay‚Äôs motto?
 Liberty or Death
 Peace, Unity, Freedom
 Forward, Upward, Onward Together
 0
-What is Uruguayís president famous for?
+What is Uruguay‚Äôs president famous for?
 The most powerful dictator
 The poorest president 
 The most overweight president 
@@ -1454,7 +1454,7 @@ In which century Christopher Columbus discover and landed to Haiti?
 16th
 17th
 0
-The name of Haiti comes from an Indian name ìHaytiî. What is the mean of it?
+The name of Haiti comes from an Indian name ‚ÄúHayti‚Äù. What is the mean of it?
 Way of Nomads
 Land of the mountains
 Home of Birds
@@ -1519,7 +1519,7 @@ Australia is one of the countries with the most islands. How many islands Austra
 1
 Which interesting information is not true for Australia?
 Cars drive on the left.
-Aussies generally donít tip.
+Aussies generally don‚Äôt tip.
 Internet connection speed is the fastest around the world.
 2
 Which one not an popular sport in Australia? 
@@ -1556,9 +1556,9 @@ Maori
 Sign Language	
 0
 New Zealanders are also called Kiwis but kiwi is not a fruit. Why are New Zealanders called as Kiwis?
-Kiwi is New Zealandís official religion.
-Kiwi is a type of whale specific to New Zealandís.
-Kiwi is New Zealandís native flightless bird.
+Kiwi is New Zealand‚Äôs official religion.
+Kiwi is a type of whale specific to New Zealand‚Äôs.
+Kiwi is New Zealand‚Äôs native flightless bird.
 2
 Which popular person is not from New Zealand?
 Hugh Jackman
@@ -1575,12 +1575,12 @@ What is the population of New Zealand?
 10.5 million
 18.9 millon
 2
-Auckland is the largest Polynesian city in the world and is also known as ìthe city of sailsî. Why is Auckland known as ìthe city of sailsî?
+Auckland is the largest Polynesian city in the world and is also known as ‚Äúthe city of sails‚Äù. Why is Auckland known as ‚Äúthe city of sails‚Äù?
 It has more boats per capita than anywhere else in the world.
 It has more ships per capita than anywhere else in the world.
 It has more sailors per capita than anywhere else in the world.
 0
-Which one true about New Zealandís wild animals?
+Which one true about New Zealand‚Äôs wild animals?
 It is very common to see kangaroos.
 The wildest animals in New Zealand are the crocodiles.
 There are no snakes in the country
@@ -1646,7 +1646,7 @@ Asghabat
 Dusanbe
 Hucend
 0
-When did Turkmenistan gain itís independence?
+When did Turkmenistan gain it‚Äôs independence?
 1995
 1991
 1875
@@ -1734,7 +1734,7 @@ Belief in the One and Only God
 Democracy
 Worshipping rice products
 2
-Where is Borobudur, the worldís largest Buddhist temple?
+Where is Borobudur, the world‚Äôs largest Buddhist temple?
 Yogyakarta
 Jakarta
 Bandung
@@ -1811,13 +1811,13 @@ What is the population of North Korea?
 43 million
 0
 What is the official language of North Korea?
-Kim Jong-uníian
+Kim Jong-un‚Äôian
 Korean
 Klingon
 1
 When did the supreme leader of North Korea Kim Jong-il died?
 2011
-Kalbimizde ya˛˝yor.
+Kalbimizde ya√æ√Ωyor.
 1999
 0
 Which country below does not share land border with North Korea?
@@ -1846,7 +1846,7 @@ random2
 random3
 1
 Which is not a fact of North Korea?
-North Korea is one of the worldís leading exporters of seafood.
+North Korea is one of the world‚Äôs leading exporters of seafood.
 North Korea has mandatory military service for both men and women.
 North Koreans have taxes
 2
@@ -1922,7 +1922,7 @@ Fr-Sp
 Eng-Sp
 0
 Who is the prime minister of Canada?
-Kahtal˝ M˝Á˝
+Kahtal√Ω M√Ω√ß√Ω
 Justin Trudeau
 Elizabeth II
 1
@@ -1987,7 +1987,7 @@ random3
 Most common religion in Cuba?
 Christian
 Muslim
-Atheist(yanacaks˝n˝z)
+Atheist(yanacaks√Ωn√Ωz)
 0
 Which is the largest city in Cuba?
 Santiago de Cuba
@@ -2044,13 +2044,13 @@ Gayme
 0
 Who is the president of Mexico?
 Pablo Emilio Escobar Gaviria
-AndrÈs Manuel LÛpez Obrador
+Andr√©s Manuel L√≥pez Obrador
 El Chapo
 1
 Who is the richest drug lord in Mexico?
-Joaquin "El Chapo" Guzm·n
+Joaquin "El Chapo" Guzm√°n
 Frank Lucas
-JosÈ David Figueroa Agosto
+Jos√© David Figueroa Agosto
 0
 Mexico ranks ____ in the world in biodiversity.
 Fifth
@@ -2189,7 +2189,7 @@ Big Ben
 Which footballer is Spanish?
 Lionel Messi
 Cristiano Ronaldo
-AndrÈs Iniesta
+Andr√©s Iniesta
 2
 What is the population of Spain?
 47 million
@@ -2261,7 +2261,7 @@ Dutch
 1
 Which food is not traditional Netherlands food?
 Erwtensoep
-Gesztenyep¸rÈ
+Gesztenyep√ºr√©
 Stamppot
 1
 How many times did Netherlands reach the final in World Football Championships ?
@@ -2272,7 +2272,7 @@ How many times did Netherlands reach the final in World Football Championships ?
 Which artist is not Dutch?
 Karel Appel
 Hans van Manen
-J·nos Kulka
+J√°nos Kulka
 2
 Netherlands
 100
@@ -2366,12 +2366,12 @@ Dino Merlin
 Tony Cetinski
 2
 Which one is the national symbol of Bosnia?
-Wh˝te carn˝fe
+Wh√Ωte carn√Ωfe
 Silver rose
-Golden l˝ly
+Golden l√Ωly
 2
 Which film made by Bosnia won the Oscar Award?
-No Manís Land
+No Man‚Äôs Land
 Savrseni Krug
 Grbavica: The Land of My DreamsGrbavica
 0
@@ -2411,12 +2411,12 @@ Slovakia
 Which food is not traditional Ukrainian food?
 Borsch
 Zavyvantsi
-Piro˛ki
+Piro√æki
 2
 Which footballer is not Ukrainian?
-Andriy ﬁevÁenko
+Andriy √ûev√ßenko
 Andriy Yarmolenko
-Georgi ﬁennikov
+Georgi √ûennikov
 2
 Which one is the official language of Ukrainie?
 English
@@ -2447,8 +2447,8 @@ Random2
 Random3
 1
 Which place in NOT in Luxembourg? 
-CathÈdrale Notre-Dame
-GÎlle Fra
+Cath√©drale Notre-Dame
+G√´lle Fra
 Grand Palas
 2
 What is the population of Luxembourg?
@@ -2469,7 +2469,7 @@ Konjin met pruimen
 Which one is not the citizen of Luxembourg?
 Andy Schleck
 Rafael Nadal
-Gilles M¸ller
+Gilles M√ºller
 1
 Which one is not the official language of Luxembourg?
 Luxembourgish
@@ -2543,9 +2543,9 @@ England
 100
 10
 What is the capital city of Iceland?
-Hafnarfjˆr?ur
-KÛpavogur
-ReykjavÌk
+Hafnarfj√∂r?ur
+K√≥pavogur
+Reykjav√≠k
 2
 Which one is the flag of Icelan?
 Random1
@@ -2554,7 +2554,7 @@ Random3
 1
 Which place is not located in Iceland?
 Preikestolen
-Jˆkuls·rlÛn
+J√∂kuls√°rl√≥n
 Gullfoss
 0
 What is the population of Iceland?
@@ -2828,13 +2828,13 @@ Cedric Bakambu
 Jonas Savimbi
 2
 Which famous place is NOT in Angola
-QuiÁama National Park
+Qui√ßama National Park
 Kalandula Falls
 Mannini Beach
 2
 What is the currency of Angola?
 Angolan Kwanza
-Kwanza Tatl˝tua
+Kwanza Tatl√Ωtua
 Angolan Musakka
 0
 Which one is the official language of Angola?
@@ -2882,7 +2882,7 @@ Jamal Khashoggi
 2
 Which famous place is NOT in Libya
 Gaberoun Desert and Lake
-Sule˛man Monument
+Sule√æman Monument
 Red Castle Museum
 1
 What is the currency of Libya?
@@ -2951,7 +2951,7 @@ Mount Agri
 Which one is NOT a traditional food from Nepal?
 Momo
 Pilaf
-Cac˝k
+Cac√Ωk
 2
 Which country is NOT a neighbour of Nepal?
 India
@@ -2982,7 +2982,7 @@ Random2
 Random3
 1
 Which football player is NOT from Serbia?
-Sergej Milinkovic ñ Savic
+Sergej Milinkovic ‚Äì Savic
 Zlatan Ibrahimovic
 Dusan Tadic
 1
@@ -3130,7 +3130,7 @@ Budapest
 Prague
 Vienna
 1
-Which countryís national football team beat Czech Republic national team with a comeback from 2 ñ 0 to 3 ñ 2 in UEFA Euro 2008 Tournament?
+Which country‚Äôs national football team beat Czech Republic national team with a comeback from 2 ‚Äì 0 to 3 ‚Äì 2 in UEFA Euro 2008 Tournament?
 Turkey
 Spain
 Croatia
@@ -3163,7 +3163,7 @@ Serbian
 Which one is NOT a traditional food from Czech Republic?
 Mincemeat
 Forloren hare
-Demle meÁae
+Demle me√ßae
 2
 Which country is NOT a neighbour of Czech Republic?
 Germany
