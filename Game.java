@@ -2,7 +2,9 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Scanner;
-
+/**
+ * Header
+ */
 public class Game
 {   
    Scanner scan = new Scanner( System.in);
