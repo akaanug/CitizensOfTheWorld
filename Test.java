@@ -3,7 +3,7 @@ import java.io.FileNotFoundException;
 
 /**
  * __program description___ 
- * @author Burak ÖÇALAN
+ * @author Burak Ã–Ã‡ALAN
  * @version 3.12.2018
  */ 
 public class Test 
@@ -39,7 +39,7 @@ public class Test
       p3 = players[ 2 ];
       p4 = players[ 3 ];
       // initialize the game
-      game = new Game( "H:\\private\\cs102\\proje\\ülkeler2.txt", players );
+      game = new Game( "H:\\private\\cs102\\proje\\countries.txt", players );
           
       // play game
       for( int m = 0; m < 5; m++ )
