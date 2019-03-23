@@ -1,6 +1,8 @@
+package mainCode;
+
 import java.util.Scanner;
 
-// buraya bi comment atıver
+// buraya bi comment atÄ±ver
 public class Player
 {
    Scanner scan = new Scanner( System.in);
@@ -9,14 +11,27 @@ public class Player
    public static final int STARTING_MONEY = 1000;
    public static final int TRAVEL_CHARGE = 5;
    int money;
-   Countries countries; // vatandaşı olduğumuz ülkeler
-   int numberOfCountries; // bu da onların sayısı
+   Countries countries; // vatandaÅŸÄ± olduÄŸumuz Ã¼lkeler
+   int numberOfCountries; // bu da onlarÄ±n sayÄ±sÄ±
    String name;
    int location;
    int playerNo;
    int revenue;
    
    // constructors
+   
+   // bu guide biyerde lazÄ±m onun iÃ§Ã¼n yazÄ±yorum.
+   public Player()
+   {
+      countries = new Countries();
+      numberOfCountries = 0;
+      money = STARTING_MONEY;
+      name = "";
+      location = 0;
+      playerNo = 0;
+      revenue = 0;
+   }
+   
    public Player( String name, int location, int playerNo )
    {
       countries = new Countries();
@@ -28,7 +43,7 @@ public class Player
       revenue = 0;
    }
    
-   // methods ( javadocları yazınız lütfen )
+   // methods ( javadoclarÄ± yazÄ±nÄ±z lÃ¼tfen )
    public int getPlayerNo()
    {
       return playerNo;
@@ -78,7 +93,7 @@ public class Player
       return this.getPlayerNo() == p.getPlayerNo();
    }
    
-   // zar sallama olayı, locationunu değiştiriyosun ( burda geçen yazdığımız dice şeysini kullanabilirsin )
+   // zar sallama olayÄ±, locationunu deÄŸiÅŸtiriyosun ( burda geÃ§en yazdÄ±ÄŸÄ±mÄ±z dice ÅŸeysini kullanabilirsin )
    public void rollDice()
    {
       int dice1;
@@ -88,16 +103,14 @@ public class Player
       dice2 = (int)( Math.random() * 6 ) + 1;     
       money = money - ( dice1 + dice2 ) * TRAVEL_CHARGE;
       location = ( location + dice1 + dice2 ) % 60;
-      
-      System.out.println( "You went " + ( dice1 + dice2 ) + " way and your current position is " + location );
    }
    
-   public void payAccomodationFee( Country country )
+   public void payAccomodationFee( Country c )
    {
-      money = money - country.getAccomodationFee();
+      money = money - c.getAccomodationFee();
    }
    
-   // burda player eğer vatandaşsa tüm soruları cevaplarıyla birlikte görebiliyor. Onu string olarak atıcaksın. Countrieste metodu var zaten onun kolay iş.
+   // burda player eÄŸer vatandaÅŸsa tÃ¼m sorularÄ± cevaplarÄ±yla birlikte gÃ¶rebiliyor. Onu string olarak atÄ±caksÄ±n. Countrieste metodu var zaten onun kolay iÅŸ.
    public String getAllQuestions( Country country )
    {
       if ( country.isACitizen( this ) )
@@ -110,7 +123,7 @@ public class Player
       }
    }
    
-   // bu da eğer ülkenin ilk vatandaşıysa başka bir oyuncu için 3 tane soru seçiyor. Tabi seçmesi için önce tüm soruları cevaplarıyla görmesi lazım. 
+   // bu da eÄŸer Ã¼lkenin ilk vatandaÅŸÄ±ysa baÅŸka bir oyuncu iÃ§in 3 tane soru seÃ§iyor. Tabi seÃ§mesi iÃ§in Ã¶nce tÃ¼m sorularÄ± cevaplarÄ±yla gÃ¶rmesi lazÄ±m. 
    public Questions chooseQuestionsForOtherPlayer( Country country )
    {
       Questions questionsChosen;
@@ -147,7 +160,7 @@ public class Player
       }
    }
    
-   // citizenship kazanırsa citizen arrayine ekle
+   // citizenship kazanÄ±rsa citizen arrayine ekle
    public void addCitizenship( Country c )
    {
       countries.add( c );
@@ -171,6 +184,3 @@ public class Player
       money = money + revenue;
    }
 }
-   
-   
-   
