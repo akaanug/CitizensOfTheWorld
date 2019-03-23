@@ -1,4 +1,6 @@
-// buraya bi comment atıver
+package mainCode;
+
+// buraya bi comment atÄ±ver
 public class Country
 {
    // properties
@@ -18,6 +20,7 @@ public class Country
       this.questions = questions;
       citizens = new Player[ NUMBER_OF_PLAYERS ];
       numberOfCitizens = 0;
+      this.tax = tax;
    }
       
    // methods 
@@ -57,7 +60,7 @@ public class Country
       return questions;
    }
    
-   // burayı kendine göre güzelce düzenlersin 
+   // burayÄ± kendine gÃ¶re gÃ¼zelce dÃ¼zenlersin 
    public String toString()
    {
       String s;
@@ -75,7 +78,7 @@ public class Country
       return s;
    }
    
-   // questionların içinden 3 tane random seçip atıyorsun 
+   // questionlarÄ±n iÃ§inden 3 tane random seÃ§ip atÄ±yorsun 
    public Questions determineThreeRandomQuestions()
    {
       Questions randomQuestions;
