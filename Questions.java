@@ -1,3 +1,5 @@
+package mainCode;
+
 // Represents package of questions.
 public class Questions
 {
@@ -69,5 +71,3 @@ public class Questions
       questions[ index ] = question;
    }
 }
-   
-   
