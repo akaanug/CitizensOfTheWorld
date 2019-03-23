@@ -1,4 +1,6 @@
-// buraya bi comment atıver
+package mainCode;
+
+// buraya bi comment atÄ±ver
 public class Countries
 {
    // properties
@@ -15,6 +17,7 @@ public class Countries
       {
          this.countries[ n ] = countries[ n ];
       }
+
    }
    
    public Countries()
@@ -32,5 +35,10 @@ public class Countries
    {
       countries[ numberOfCountries ] = country;
       numberOfCountries++;
+   }
+   
+   public int getNumberOfCountries()
+   {
+      return numberOfCountries;
    }
 }
