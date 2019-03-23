@@ -1,3 +1,5 @@
+package mainCode;
+
 // Represents a single question, with choices and the answer, that will be asked to players
 public class Question
 {
@@ -16,7 +18,7 @@ public class Question
       
    }
    
-   // clone constructoru üşendim yazıver
+   // clone constructoru Ã¼ÅŸendim yazÄ±ver
    public Question( Question x )
    {
       this.question = x.getQuestion();
@@ -26,7 +28,7 @@ public class Question
    
    // methods
    
-   // javadocları hallediver sana zahmet
+   // javadoclarÄ± hallediver sana zahmet
    public String getQuestion()
    {
       return question;
@@ -42,7 +44,7 @@ public class Question
       return answer;
    }
    
-   // toStringi biliyosun zaten soru cümlesi ve cevaplarını düzgün bir şekilde print etsin. Cevapları hizalı yapsan iyi olur. 
+   // toStringi biliyosun zaten soru cÃ¼mlesi ve cevaplarÄ±nÄ± dÃ¼zgÃ¼n bir ÅŸekilde print etsin. CevaplarÄ± hizalÄ± yapsan iyi olur. 
    public String toString()
    {
       String[] choices;
