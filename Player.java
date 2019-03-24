@@ -2,7 +2,7 @@ package mainCode;
 
 import java.util.Scanner;
 
-// buraya bi comment atÄ±ver
+// buraya bi comment atıver
 public class Player
 {
    Scanner scan = new Scanner( System.in);
@@ -11,8 +11,8 @@ public class Player
    public static final int STARTING_MONEY = 1000;
    public static final int TRAVEL_CHARGE = 5;
    int money;
-   Countries countries; // vatandaÅŸÄ± olduÄŸumuz Ã¼lkeler
-   int numberOfCountries; // bu da onlarÄ±n sayÄ±sÄ±
+   Countries countries; // vatandaşı olduğumuz ülkeler
+   int numberOfCountries; // bu da onların sayısı
    String name;
    int location;
    int playerNo;
@@ -20,7 +20,7 @@ public class Player
    
    // constructors
    
-   // bu guide biyerde lazÄ±m onun iÃ§Ã¼n yazÄ±yorum.
+   // bu guide biyerde lazım onun içün yazıyorum.
    public Player()
    {
       countries = new Countries();
@@ -43,7 +43,7 @@ public class Player
       revenue = 0;
    }
    
-   // methods ( javadoclarÄ± yazÄ±nÄ±z lÃ¼tfen )
+   // methods ( javadocları yazınız lütfen )
    public int getPlayerNo()
    {
       return playerNo;
@@ -74,26 +74,12 @@ public class Player
       return revenue;
    }
    
-   public String getCountries()
-   {
-      String s;
-      int n;
-      
-      s = "The countries that " + name + " is a citizenship: \n";
-      for ( n = 0; n < numberOfCountries; n++ )
-      {
-         s = s + countries.getCountry( n ).getName() + "\n";
-      }
-      
-      return s;
-   }
-   
    public boolean equals( Player p )
    {
       return this.getPlayerNo() == p.getPlayerNo();
    }
    
-   // zar sallama olayÄ±, locationunu deÄŸiÅŸtiriyosun ( burda geÃ§en yazdÄ±ÄŸÄ±mÄ±z dice ÅŸeysini kullanabilirsin )
+   // zar sallama olayı, locationunu değiştiriyosun ( burda geçen yazdığımız dice şeysini kullanabilirsin )
    public void rollDice()
    {
       int dice1;
@@ -110,7 +96,7 @@ public class Player
       money = money - c.getAccomodationFee();
    }
    
-   // burda player eÄŸer vatandaÅŸsa tÃ¼m sorularÄ± cevaplarÄ±yla birlikte gÃ¶rebiliyor. Onu string olarak atÄ±caksÄ±n. Countrieste metodu var zaten onun kolay iÅŸ.
+   // burda player eğer vatandaşsa tüm soruları cevaplarıyla birlikte görebiliyor. Onu string olarak atıcaksın. Countrieste metodu var zaten onun kolay iş.
    public String getAllQuestions( Country country )
    {
       if ( country.isACitizen( this ) )
@@ -123,7 +109,7 @@ public class Player
       }
    }
    
-   // bu da eÄŸer Ã¼lkenin ilk vatandaÅŸÄ±ysa baÅŸka bir oyuncu iÃ§in 3 tane soru seÃ§iyor. Tabi seÃ§mesi iÃ§in Ã¶nce tÃ¼m sorularÄ± cevaplarÄ±yla gÃ¶rmesi lazÄ±m. 
+   // bu da eğer ülkenin ilk vatandaşıysa başka bir oyuncu için 3 tane soru seçiyor. Tabi seçmesi için önce tüm soruları cevaplarıyla görmesi lazım. 
    public Questions chooseQuestionsForOtherPlayer( Country country )
    {
       Questions questionsChosen;
@@ -148,7 +134,7 @@ public class Player
    
    public Questions getQuiz( Country c )
    {
-      money = money - Question.QUESTION_FEE * 3;
+      payQuestionFee();
       
       if ( c.hasACitizen() )
       {
@@ -160,7 +146,7 @@ public class Player
       }
    }
    
-   // citizenship kazanÄ±rsa citizen arrayine ekle
+   // citizenship kazanırsa citizen arrayine ekle
    public void addCitizenship( Country c )
    {
       countries.add( c );
@@ -169,18 +155,43 @@ public class Player
       revenue = revenue + c.getTax();
    }
    
-   public int giveAnswer()
-   {
-      int answer;
-      
-      System.out.println( "Please give your answer to this question: " );
-      answer = scan.nextInt();
-      
-      return answer;
-   }
-   
    public void addRevenue()
    {
       money = money + revenue;
    }
+   
+   public void payQuestionFee()
+   {
+      money = money - Question.QUESTION_FEE * 3;
+   }
+   
+   public int compareTo( Player p )
+   {
+      if ( this.numberOfCountries > p.numberOfCountries )
+      {
+         return 1;
+      }
+      else if ( this.numberOfCountries < p.numberOfCountries )
+      {
+         return -1;
+      }
+      else
+      {
+         if ( this.money > p.money )
+         {
+            return 1;
+         }
+         else if ( this.money < p.money )
+         {
+            return -1;
+         }
+         else 
+         {
+            return 0;
+         }
+      }
+   }
 }
+   
+   
+   

@@ -1,6 +1,6 @@
 package mainCode;
 
-// buraya bi comment atÄ±ver
+// buraya bi comment atıver
 public class Country
 {
    // properties
@@ -60,7 +60,7 @@ public class Country
       return questions;
    }
    
-   // burayÄ± kendine gÃ¶re gÃ¼zelce dÃ¼zenlersin 
+   // burayı kendine göre güzelce düzenlersin 
    public String toString()
    {
       String s;
@@ -78,7 +78,7 @@ public class Country
       return s;
    }
    
-   // questionlarÄ±n iÃ§inden 3 tane random seÃ§ip atÄ±yorsun 
+   // questionların içinden 3 tane random seçip atıyorsun 
    public Questions determineThreeRandomQuestions()
    {
       Questions randomQuestions;

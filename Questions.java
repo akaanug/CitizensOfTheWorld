@@ -41,20 +41,6 @@ public class Questions
       return s;
    }
    
-   public String toStringWithAnswer()
-   {
-      String s;
-      int n;
-         
-      s = "";
-      for ( n = 0; n < 10; n++ )
-      {
-         s = s + questions[ n ].toStringWithAnswer();
-      }
-      
-      return s;
-   }
-   
    public Question getQuestion( int questionNo )
    {
       return questions[ questionNo ];
@@ -71,3 +57,5 @@ public class Questions
       questions[ index ] = question;
    }
 }
+   
+   

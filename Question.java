@@ -18,18 +18,18 @@ public class Question
       
    }
    
-   // clone constructoru Ã¼ÅŸendim yazÄ±ver
+   // clone constructoru üþendim yazýver
    public Question( Question x )
    {
-      this.question = x.getQuestion();
+      this.question = x.getQuestionSentence();
       this.choices = x.getChoices();
       this.answer = x.getAnswer();
    }
    
    // methods
    
-   // javadoclarÄ± hallediver sana zahmet
-   public String getQuestion()
+   // javadoclarý hallediver sana zahmet
+   public String getQuestionSentence()
    {
       return question;
    }
@@ -39,28 +39,24 @@ public class Question
       return choices;
    }
    
+   public String getChoice( int choiceNo )
+   {
+      return choices[ choiceNo ];
+   }
+   
    public int getAnswer()
    {
       return answer;
    }
    
-   // toStringi biliyosun zaten soru cÃ¼mlesi ve cevaplarÄ±nÄ± dÃ¼zgÃ¼n bir ÅŸekilde print etsin. CevaplarÄ± hizalÄ± yapsan iyi olur. 
+   // toStringi biliyosun zaten soru cümlesi ve cevaplarýný düzgün bir þekilde print etsin. Cevaplarý hizalý yapsan iyi olur. 
    public String toString()
    {
       String[] choices;
       choices = getChoices();
       
-      return getQuestion() + "\n" + "A) " + choices[ 0 ] + "\n"  + "B) " + choices[ 1 ] 
+      return getQuestionSentence() + "\n" + "A) " + choices[ 0 ] + "\n"  + "B) " + choices[ 1 ] 
              + "\n" + "C) " + choices[ 2 ] + "\n";
-   }
-   
-   public String toStringWithAnswer()
-   {
-      String[] choices;
-      choices = getChoices();
-      
-      return getQuestion() + "\n" + "A) " + choices[ 0 ] + "\n"  + "B) " + choices[ 1 ] 
-             + "\n" + "C) " + choices[ 2 ] + "\n" + "Answer: " + answer + "\n";
    }
    
    public boolean isAnswerCorrect( int answer )

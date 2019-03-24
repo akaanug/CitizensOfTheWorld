@@ -1,6 +1,6 @@
 package mainCode;
 
-// buraya bi comment atÄ±ver
+// buraya bi comment atıver
 public class Countries
 {
    // properties

@@ -62,7 +62,8 @@ public class Game
        turnOfPlayer = 0;       
        this.players = players;
    }
-   // method
+   
+   // methods
    public int getTurnOfPlayer()
    {
       return turnOfPlayer;
@@ -70,24 +71,12 @@ public class Game
    
    public Player getPlayer( int playerNo )
    {
-      if ( playerNo >= 0 && playerNo < numberOfPlayers )
-      {
-         return players[ playerNo ];
-      }
-      else 
-      {
-         return null;
-      }
+      return players[ playerNo ];
    }
    
    public Player getCurrentPlayer()
    {
       return getPlayer( turnOfPlayer );
-   }
-   
-   public Player getPlayerOfTurn()
-   {
-      return players[ turnOfPlayer ];
    }
    
    public int getNumberOfPlayers()
@@ -105,48 +94,76 @@ public class Game
       return countries;
    }
    
+//   public Player[] getLeadershipTable()
+//   {
+//      ArrayList<Player> templatePlayers;
+//      Player[] leadershipTable;
+//      ArrayList<Integer> countryNumbersOfPlayers;
+//      int max;
+//      int maxLocation;
+//      int n;
+//      boolean found;
+//      int m;
+//      
+//      templatePlayers = new ArrayList<Player>();
+//      countryNumbersOfPlayers = new ArrayList<Integer>();
+//      for( n = 0; n < numberOfPlayers; n++ )
+//      {
+//         countryNumbersOfPlayers.add( players[n].getNumberOfCountries() );
+//         templatePlayers.add( players[n] );
+//      }
+//      Collections.sort( countryNumbersOfPlayers );
+//         
+//      leadershipTable = new Player[ numberOfPlayers ];
+//      for( n = 0; n < numberOfPlayers; n++ )
+//      {
+//         m = numberOfPlayers - n - 1;
+//         found = false;
+//         while( !found )
+//         {
+//            if( countryNumbersOfPlayers.get( n ) == templatePlayers.get( m ).getNumberOfCountries() )
+//            {
+//               leadershipTable[ numberOfPlayers - n - 1 ] = templatePlayers.get( m );
+//               templatePlayers.remove( m );
+//               found = true;
+//            }
+//            
+//            m--;
+//         }
+//      }
+//      
+//      return leadershipTable;
+//   } 
+      
    public Player[] getLeadershipTable()
    {
-      ArrayList<Player> templatePlayers;
       Player[] leadershipTable;
-      ArrayList<Integer> countryNumbersOfPlayers;
-      int max;
-      int maxLocation;
       Player temp;
       int n;
-      boolean found;
       int m;
       
-      templatePlayers = new ArrayList<Player>();
-      countryNumbersOfPlayers = new ArrayList<Integer>();
-      for( n = 0; n < numberOfPlayers; n++ )
-      {
-         countryNumbersOfPlayers.add( players[n].getNumberOfCountries() );
-         templatePlayers.add( players[n] );
-      }
-      Collections.sort( countryNumbersOfPlayers );
-         
       leadershipTable = new Player[ numberOfPlayers ];
-      for( n = 0; n < numberOfPlayers; n++ )
+      for ( n = 0; n < numberOfPlayers; n++ )
       {
-         m = numberOfPlayers - n - 1;
-         found = false;
-         while( !found )
+         leadershipTable[ n ] = players[ n ];
+      }
+      
+      for ( n = 0; n < numberOfPlayers; n++ )
+      {
+         for ( m = 0; m < numberOfPlayers - n - 1; m++ )
          {
-            if( countryNumbersOfPlayers.get( n ) == templatePlayers.get( m ).getNumberOfCountries() )
+            if ( leadershipTable[ m ].compareTo( leadershipTable[ m + 1 ] ) < 0 )
             {
-               leadershipTable[ numberOfPlayers - n - 1 ] = templatePlayers.get( m );
-               templatePlayers.remove( m );
-               found = true;
+               temp = leadershipTable[ m ];
+               leadershipTable[ m ] = leadershipTable[ m + 1 ];
+               leadershipTable[ m + 1 ] = temp;
             }
-            
-            m--;
          }
       }
       
       return leadershipTable;
-   } 
-      
+   }
+   
    public void addTurnOfPlayer()
    {
       turnOfPlayer = ( turnOfPlayer + 1 ) % numberOfPlayers;
@@ -161,105 +178,10 @@ public class Game
    {
       return countries.getCountry( p.getLocation() );
    }
-   public boolean playTurn( Player p )
-   {
-      Country c;
-      boolean getQuestion;
-      char yn;
-      boolean getCitizenship;
-      
-      if ( isTurnOf( p ) )
-      {
-         System.out.println( p.getName() + ", it is your turn." );
-         p.rollDice();
-         System.out.println( "Your current money: " + p.getMoney() );
-         c = countries.getCountry( p.getLocation() );
-         System.out.println( "Welcome to " + c.getName() );
-         
-         if ( c.isACitizen( p ) )
-         {
-            System.out.println( "You are already a citizen of the country." );
-         }
-         else 
-         {
-            System.out.println( "Do you want to try citizenship? ( y for yes ) " );
-            yn = scan.next().charAt( 0 );
-            
-            if ( yn == 'y' )
-            {
-               getCitizenship = doTheQuiz( p, c );
-               
-               if ( getCitizenship )
-               {
-                  System.out.println( "Congratulations, you are a citizen of this country." );
-                  p.addCitizenship( c );
-                  c.addToCitizenship( p );
-               }
-               else 
-               {
-                  System.out.println( "Sorry but you have no knowledge to become a citizen." );
-               }
-            }
-            else
-            {
-               System.out.println( "Then you are paying the accomodation fee." );
-               p.payAccomodationFee( c );
-            }
-         }
-         
-         p.addRevenue();
-         turnOfPlayer = ( turnOfPlayer + 1 ) % numberOfPlayers;
-         System.out.println();
-         System.out.println( "Your current money is: " + p.getMoney() );
-         
-         return true;
-      }
-      else 
-      {
-         System.out.println( "It is not your turn. \n" );
-         return false;
-      }  
-   }
    
    public boolean isTurnOf( Player p)
    {
       return p.getPlayerNo() == turnOfPlayer;
-   }
-   
-   public boolean doTheQuiz( Player p, Country c )
-   {
-      Questions quiz;
-      int n;
-      boolean isAllAnswersTrue;
-      int answer;
-      Question question;
-      
-      quiz = p.getQuiz( c );
-      
-      n = 0;
-      isAllAnswersTrue = true;
-      while ( n < NUMBER_OF_QUIZ_QUESTIONS && isAllAnswersTrue == true )
-      {
-         question = quiz.getQuestion( n );
-         System.out.println( question );
-         
-         answer = scan.nextInt();
-         scan.nextLine();
-         
-         if ( question.isAnswerCorrect( answer ) )
-         {
-            System.out.println( "Congratulations." );
-         }
-         else 
-         {
-            System.out.println( "Wrong answer. The true answer is: " + question.getStringAnswer() );
-            isAllAnswersTrue = false;
-         }
-         
-         n++;
-      }
-      
-      return isAllAnswersTrue;
    }
    
    public void fileInfo( String fileName ) 
@@ -328,5 +250,5 @@ public class Game
       {
       }
       
-   }   
+   }     
 }
