@@ -27,7 +27,7 @@ public class HowToPlay extends JPanel {
          @Override
          public void actionPerformed( ActionEvent evt )
          {
-            app.howToPlay.setVisible( false );
+            setVisible( false );
             app.mainMenu.setVisible( true );
          }
       } );

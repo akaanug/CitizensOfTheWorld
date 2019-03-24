@@ -65,7 +65,7 @@ public class MainMenu extends JPanel {
       @Override
       public void actionPerformed( ActionEvent evt )
       {
-         app.mainMenu.setVisible( false );
+         setVisible( false );
          
          if( evt.getSource() == newGame )
          {

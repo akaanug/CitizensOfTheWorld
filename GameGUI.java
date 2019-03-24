@@ -32,10 +32,13 @@ public class GameGUI extends JPanel {
    PlayerInfo currentPlayersInfo; // to change player infos easily.
    LeadershipTable leadershipTable;
    ArrayList<JPanel> westPanelInfos;
-   JPanel southPanel; // includes two hardest button. Im still working on it.
-   JButton rollDice; // rolls dice, moves current player, gets travel money, arranges north panel and player info accordingly, TODO: open the country info page
-   JButton nextTurn; // TODO: changes the current player, uploads its informations into the related panels.
-   CountryInfo countryInfo;
+   JPanel southPanel; // includes two hardest button. 
+   JButton rollDice; // rolls dice, moves current player, gets travel money, arranges north panel and player info accordingly, open the country info page
+   JButton nextTurn; // changes the current player, uploads its informations into the related panels.
+   JPanel centerPanel;
+   CountryInfo countryInfo; 
+   QuestionPage questionPage;
+   ThreeSimplePages simplePages;
    Application app;
    int n; // used in for loops
    
@@ -48,11 +51,21 @@ public class GameGUI extends JPanel {
          
          this.game = game;
          this.app = app;
-         this.currentPlayer = game.getPlayerOfTurn();
+         this.currentPlayer = game.getCurrentPlayer();
          this.numberOfPlayers = game.getNumberOfPlayers();
          
-         this.countryInfo = new CountryInfo( game.getCountries().getCountry( 0 ), currentPlayer, this ); // this guy was needed to be initialized.
-         add( countryInfo, BorderLayout.CENTER );
+         // Center Panel
+         centerPanel = new JPanel();
+         add( centerPanel );
+         
+         countryInfo = new CountryInfo( game.getCountries().getCountry( 0 ), currentPlayer, this ); // this guy was needed to be initialized.
+         centerPanel.add( countryInfo );
+         
+         simplePages = new ThreeSimplePages( this );
+         centerPanel.add( simplePages );
+         
+         questionPage = new QuestionPage( this );
+         centerPanel.add( questionPage );
          
          // North panel
          northPanel = new JPanel( new FlowLayout() );
@@ -289,14 +302,10 @@ public class GameGUI extends JPanel {
          
          northPanelRefresher();  
          
-         currentPlayersInfo = getPlayerInfo( currentPlayer.getPlayerNo() );
-         currentPlayersInfo.handleChanges( currentPlayer );
-         
          countryInfo.uploadNewCountry( game.getLocationOfPlayer( currentPlayer ), currentPlayer );
          countryInfo.setVisible( true );
          
          rollDice.setVisible( false );
-         nextTurn.setVisible( true );
       }
    }
    
@@ -306,11 +315,14 @@ public class GameGUI extends JPanel {
       @Override
       public void actionPerformed( ActionEvent evt )
       {        
+         currentPlayersInfo = getPlayerInfo( currentPlayer.getPlayerNo() );
+         currentPlayersInfo.handleChanges( currentPlayer );
+         leadershipTable.refresh( game.getLeadershipTable() );
+         
          game.addTurnOfPlayer();
          currentPlayer = game.getCurrentPlayer();
          
          northPanelRefresher();
-         leadershipTable.refresh( game.getLeadershipTable() );
          
          nextTurn.setVisible( false );
          rollDice.setVisible( true );

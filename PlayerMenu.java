@@ -76,7 +76,7 @@ public class PlayerMenu extends JPanel {
          @Override
          public void actionPerformed( ActionEvent evt )
          {
-            app.playerMenu.setVisible( false );
+            setVisible( false );
             app.mainMenu.setVisible( true );
          }
       } );
@@ -135,7 +135,7 @@ public class PlayerMenu extends JPanel {
          
          app.gameGui = new GameGUI( app, new Game( numberOfPlayers, locationsOfPlayers, namesOfPlayers ) ); 
          app.add( app.gameGui );
-         app.playerMenu.setVisible( false );
+         setVisible( false );
       }
    }
    

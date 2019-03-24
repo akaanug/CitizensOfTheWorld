@@ -27,7 +27,7 @@ public class Credits extends JPanel {
          @Override
          public void actionPerformed( ActionEvent evt )
          {
-            app.credits.setVisible( false );
+            setVisible( false );
             app.mainMenu.setVisible( true );
          }
       } );

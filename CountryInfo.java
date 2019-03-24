@@ -19,6 +19,7 @@ public class CountryInfo extends JPanel {
    JButton payAccomodationFee;
    JButton getCitizenship;
    Player p; // We will have only one country info panel in gamegui, and we need this for accomodation fee payment, so we need to keep this.
+   Country c;
    
    // Constructor to setup the GUI components
    public CountryInfo( Country c, Player p, GameGUI parent ) 
@@ -27,6 +28,7 @@ public class CountryInfo extends JPanel {
       
       this.parent = parent;
       this.p = p; 
+      this.c = c;
       
       // Information of Country
       infoPanel = new JPanel();
@@ -51,15 +53,7 @@ public class CountryInfo extends JPanel {
          // Pay Accomodation Fee Button
       payAccomodationFee = new JButton( "Pay Accomodation Fee" );
       buttonPanel.add( payAccomodationFee );
-      payAccomodationFee.addActionListener( new ActionListener() { 
-         @Override
-         public void actionPerformed( ActionEvent evt )
-         {
-            CountryInfo.this.p.payAccomodationFee( c ); // This might not work, we will see. ( Note: the money change cant be seen for now ).
-            parent.northPanelRefresher();
-            CountryInfo.this.setVisible( false );
-         }
-      } );
+      payAccomodationFee.addActionListener( new PayAccomodationFeeBtnListener() );
          
          // Get Citizenship Button
       getCitizenship = new JButton( "Get Citizenship" );
@@ -74,12 +68,33 @@ public class CountryInfo extends JPanel {
    
    // Listener Classes 
    
-   // Get Citizenship Button Listener TODO: ( Baþlanmadý Daha )
+   // Pay Accomodation Fee Button Listener 
+   public class PayAccomodationFeeBtnListener implements ActionListener
+   { 
+      @Override
+      public void actionPerformed( ActionEvent evt )
+      {
+         p.payAccomodationFee( c );  
+         parent.northPanelRefresher();
+         
+         setVisible( false );
+         parent.simplePages.accomodationFee( c.getAccomodationFee() ); 
+      }
+   }
+   
+   // Get Citizenship Button Listener 
    public class GetCitizenshipBtnListener implements ActionListener
    { 
       @Override
       public void actionPerformed( ActionEvent evt )
       {
+         p.payQuestionFee();
+         parent.northPanelMoneyRefresher();
+         
+         parent.questionPage.totallyNewQuestions( c.determineThreeRandomQuestions(), c.getTax() );
+         
+         setVisible( false );
+         parent.questionPage.setVisible( true );  
       }
    }
 
@@ -106,12 +121,14 @@ public class CountryInfo extends JPanel {
    
    public void uploadNewCountry( Country c, Player p )
    {
+      this.c = c;
+      this.p = p;
+
       setCountryName( c.getName() );
       setAccomodationFee( c.getAccomodationFee() );
       setCitizenshipFee( 30 );
       setIncome( c.getTax() );
-      this.p = p;
-      
+
       setVisible( true );
    }   
 }

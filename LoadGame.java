@@ -23,7 +23,7 @@ public class LoadGame extends JPanel {
          @Override
          public void actionPerformed( ActionEvent evt )
          {
-            app.loadGame.setVisible( false );
+            setVisible( false );
             app.mainMenu.setVisible( true );
          }
       } );
