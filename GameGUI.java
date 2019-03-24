@@ -315,6 +315,8 @@ public class GameGUI extends JPanel {
       @Override
       public void actionPerformed( ActionEvent evt )
       {        
+         currentPlayer.addRevenue();
+       
          currentPlayersInfo = getPlayerInfo( currentPlayer.getPlayerNo() );
          currentPlayersInfo.handleChanges( currentPlayer );
          leadershipTable.refresh( game.getLeadershipTable() );
