@@ -53,16 +53,6 @@ public class Game
        }
    }      
    
-   public Game( String fileName, Player[] players ) 
-   { 
-       fileInfo( fileName );
-       
-       this.numberOfPlayers = players.length;
-       roundNo = 0;
-       turnOfPlayer = 0;       
-       this.players = players;
-   }
-   
    // methods
    public int getTurnOfPlayer()
    {
