@@ -139,115 +139,26 @@ public class GameGUI extends JPanel {
          {
             eastPanel.add( eastPanelButtons.get( n ) );
             westPanel.add( westPanelInfos.get( n ) );
-         }
-         
-            // Connecting each button with related player info panel
-         for( n = 0; n < eastPanelButtons.size(); n++ )
-         {
             int m = n; // cool, I wasnt expecting this works. ( if we directly put n instead of m's, it didnt work )
             
-            eastPanelButtons.get( m ).addActionListener( new ActionListener() { 
-               @Override
-               public void actionPerformed( ActionEvent evt )
-               {
-                  if( eastPanelButtons.get( m ).isOpened() )
-                  {
-                     westPanelInfos.get( m ).setVisible( false );
-                  }
-                  else
-                  {
-                     closeOpenedWestPanelInfo();
-                     westPanelInfos.get( m ).setVisible( true );
-                  }
-                  eastPanelButtons.get( m ).changeOpened();
-               }
-            } );
+            eastPanelButtons.get( m ).addActionListener( new PlayerInfoBtnListener() );
+//            eastPanelButtons.get( m ).addActionListener( new ActionListener() { 
+//               @Override
+//               public void actionPerformed( ActionEvent evt )
+//               {
+//                  if( eastPanelButtons.get( m ).isOpened() )
+//                  {
+//                     westPanelInfos.get( m ).setVisible( false );
+//                  }
+//                  else
+//                  {
+//                     closeOpenedWestPanelInfo();
+//                     westPanelInfos.get( m ).setVisible( true );
+//                  }
+//                  eastPanelButtons.get( m ).changeOpened();
+//               }
+//            } );
          }
-//            // Player One
-//         playerOneInfo = new PlayerInfo( game.getPlayer( 0 ), game.getLocationOfPlayer( game.getPlayer( 0 ) ) );
-//         westPanel.add( playerOneInfo );
-//         playerOneButton = new OpenCloseJButton( game.getPlayer( 0 ).getName() );
-//         eastPanel.add( playerOneButton );
-//         playerOneButton.addActionListener( new ActionListener() { 
-//            @Override
-//            public void actionPerformed( ActionEvent evt )
-//            {
-//               if( playerOneButton.isOpened() )
-//               {
-//                  playerOneInfo.setVisible( false );
-//               }
-//               else
-//               {
-//                  playerOneInfo.setVisible( true );
-//               }
-//               playerOneButton.changeOpened();
-//            }
-//         } );  
-//         
-//            // Player two
-//         if ( game.getNumberOfPlayers() >= 2 )
-//         {
-//            playerTwoInfo = new PlayerInfo( game.getPlayer( 1 ), game.getLocationOfPlayer( game.getPlayer( 1 ) ) );
-//            westPanel.add( playerTwoInfo );
-//            playerTwoButton = new OpenCloseJButton( game.getPlayer( 1 ).getName() );
-//            eastPanel.add( playerTwoButton );
-//            playerTwoButton.addActionListener( new ActionListener() { 
-//               @Override
-//               public void actionPerformed( ActionEvent evt )
-//               {
-//                  playerTwoInfo.setVisible( !playerTwoButton.isOpened() );
-//                  playerTwoButton.changeOpened();
-//               }
-//            } );            
-//         }
-//         
-//            // Player three
-//         if ( game.getNumberOfPlayers() >= 3 )
-//         {
-//            playerThreeInfo = new PlayerInfo( game.getPlayer( 2 ), game.getLocationOfPlayer( game.getPlayer( 2 ) ) );
-//            westPanel.add( playerThreeInfo );
-//            playerThreeButton = new OpenCloseJButton( game.getPlayer( 2 ).getName() );
-//            eastPanel.add( playerThreeButton );
-//            playerThreeButton.addActionListener( new ActionListener() { 
-//               @Override
-//               public void actionPerformed( ActionEvent evt )
-//               {
-//                  playerThreeInfo.setVisible( !playerThreeButton.isOpened() );
-//                  playerThreeButton.changeOpened();
-//               }
-//            } );            
-//         }
-//         
-//            // Player four
-//         if ( game.getNumberOfPlayers() >= 4 )
-//         {
-//            playerFourInfo = new PlayerInfo( game.getPlayer( 3 ), game.getLocationOfPlayer( game.getPlayer( 3 ) ) );
-//            westPanel.add( playerFourInfo );
-//            playerFourButton = new OpenCloseJButton( game.getPlayer( 3 ).getName() );
-//            eastPanel.add( playerFourButton );
-//            playerFourButton.addActionListener( new ActionListener() { 
-//               @Override
-//               public void actionPerformed( ActionEvent evt )
-//               {
-//                  playerFourInfo.setVisible( !playerFourButton.isOpened() );
-//                  playerFourButton.changeOpened();
-//               }
-//            } );            
-//         }
-//         
-//            // Leadership Table
-//         leadershipTable = new LeadershipTable( game.getLeadershipTable() );
-//         westPanel.add( leadershipTable );
-//         leadershipTableButton = new OpenCloseJButton( "Leadership Table" );
-//         eastPanel.add( leadershipTableButton );
-//         leadershipTableButton.addActionListener( new ActionListener() { 
-//            @Override
-//            public void actionPerformed( ActionEvent evt )
-//            {
-//               leadershipTable.setVisible( !leadershipTableButton.isOpened() );
-//               leadershipTableButton.changeOpened();
-//            }
-//         } ); 
          
             // TODO: Save Game
          save = new JButton( "Save" );
@@ -292,6 +203,31 @@ public class GameGUI extends JPanel {
    
    // Methods
    
+   // Player Info Buttons Listener
+   public class PlayerInfoBtnListener implements ActionListener
+   {
+      @Override
+      public void actionPerformed( ActionEvent evt )
+      {
+         for ( int n = 0; n < eastPanelButtons.size(); n++ )
+         {
+            if ( evt.getSource() == eastPanelButtons.get( n ) )
+            {
+               if( eastPanelButtons.get( n ).isOpened() )
+               {
+                  westPanelInfos.get( n ).setVisible( false );
+               }
+               else
+               {
+                  closeOpenedWestPanelInfo();
+                  westPanelInfos.get( n ).setVisible( true );
+               }
+               eastPanelButtons.get( n ).changeOpened();
+            }
+         }
+      }
+   }
+ 
    // Roll Dice Button Listener ( TODO: must be clickable only one time for each player )
    public class RollDiceBtnListener implements ActionListener
    {      
