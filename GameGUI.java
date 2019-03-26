@@ -203,7 +203,7 @@ public class GameGUI extends JPanel {
    
    // Methods
    
-   // Player Info Buttons Listener
+   // Player Info Buttons Listener 
    public class PlayerInfoBtnListener implements ActionListener
    {
       @Override
