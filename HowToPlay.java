@@ -24,7 +24,6 @@ public class HowToPlay extends JPanel {
       
       back = new JButton( "Back" );
       add( back, BorderLayout.SOUTH ); 
-      System.out.println( app.mainMenu );
       back.addActionListener( new BackBtnListener() );
       
       setVisible( false );
