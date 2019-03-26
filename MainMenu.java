@@ -29,19 +29,19 @@ public class MainMenu extends JPanel {
       
       newGame = new JButton( "New Game" );
       add( newGame );
-      newGame.addActionListener( new MainMenuBtnListener() );
+      newGame.addActionListener( new PanelChanger( app.playerMenu, this ) );
       
       loadGame = new JButton( "Load Game" );
       add( loadGame );
-      loadGame.addActionListener( new MainMenuBtnListener() );
+      loadGame.addActionListener( new PanelChanger( app.loadGame, this ) );
       
       howToPlay = new JButton( "How To Play" );
       add( howToPlay );
-      howToPlay.addActionListener( new MainMenuBtnListener() );
+      howToPlay.addActionListener( new PanelChanger( app.howToPlay, this ) );
       
       credits = new JButton( "Credits" );
       add( credits );
-      credits.addActionListener( new MainMenuBtnListener() );
+      credits.addActionListener( new PanelChanger( app.credits, this ) );
       
       exit = new JButton( "Exit" );
       add( exit );
@@ -54,35 +54,5 @@ public class MainMenu extends JPanel {
       } );  
       
       setSize(700, 660);      
-   }
-   
-   // Methods
-   
-   // A listener for all buttons in Main Menu except exit button. 
-   // Basicly closes the main menu panel and opens the new panel according to the clicked button
-   public class MainMenuBtnListener implements ActionListener
-   {
-      @Override
-      public void actionPerformed( ActionEvent evt )
-      {
-         setVisible( false );
-         
-         if( evt.getSource() == newGame )
-         {
-            app.playerMenu.setVisible( true );
-         }
-         else if( evt.getSource() == loadGame )
-         {
-            app.loadGame.setVisible( true );
-         }
-         else if( evt.getSource() == howToPlay )
-         {
-            app.howToPlay.setVisible( true );
-         }
-         else 
-         {
-            app.credits.setVisible( true );
-         }
-      }
    }
 }
