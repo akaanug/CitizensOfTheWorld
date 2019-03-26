@@ -47,7 +47,16 @@ public class MainMenu extends JPanel {
       for( int n = 0; n < buttons.size(); n++ )
       {
          add( buttons.get( n ) );
-         buttons.get( n ).addActionListener( new MainMenuBtnListener() );
+         buttons.get( n ).addActionListener( new MainMenuBtnListener() );         
+//         int m = n;
+//         buttons.get( m ).addActionListener( new ActionListener() { 
+//            @Override
+//            public void actionPerformed( ActionEvent evt )
+//            {
+//               setVisible( false );
+//               app.panels.get( m + 1 ).setVisible( true );
+//            }
+//         } );
       }
       
       exit = new JButton( "Exit" );
