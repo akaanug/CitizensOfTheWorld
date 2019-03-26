@@ -1,6 +1,7 @@
 import java.awt.*;  
 import java.awt.event.*;
 import javax.swing.*;
+import util.*;
 
 // A GUI program is written as a subclass of Frame - the top-level container
 // This subclass inherits all properties from Frame, e.g., title, icon, buttons, content-pane
@@ -18,21 +19,28 @@ public class HowToPlay extends JPanel {
       
       this.app = app;
       
-      text = new JLabel( "Bak kardeþim buraya how to play atýyoruzzzz" );      
+      text = new JLabel( "Bak kardeÅŸim buraya how to play atÄ±yoruzzzz" );      
       add( text );
       
       back = new JButton( "Back" );
       add( back, BorderLayout.SOUTH ); 
-      back.addActionListener( new ActionListener() { 
-         @Override
-         public void actionPerformed( ActionEvent evt )
-         {
-            setVisible( false );
-            app.mainMenu.setVisible( true );
-         }
-      } );
+      System.out.println( app.mainMenu );
+      back.addActionListener( new BackBtnListener() );
       
       setVisible( false );
       setSize(700, 660);
+   }
+   
+   // methods
+   
+   // Back Button Listener
+   public class BackBtnListener implements ActionListener
+   {
+      @Override
+      public void actionPerformed( ActionEvent evt )
+      {
+         setVisible( false );
+         app.mainMenu.setVisible( true );
+      }
    }
 }
