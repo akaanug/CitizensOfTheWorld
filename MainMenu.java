@@ -2,6 +2,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.io.IOException;
+import util.*;
+import java.util.ArrayList;
 
 // A GUI program is written as a subclass of Frame - the top-level container
 // This subclass inherits all properties from Frame, e.g., title, icon, buttons, content-pane
@@ -13,6 +15,7 @@ public class MainMenu extends JPanel {
    JButton loadGame;
    JButton howToPlay;
    JButton exit;
+   ArrayList<JButton> buttons;
    JLabel name;
    Application app;
    
@@ -27,21 +30,25 @@ public class MainMenu extends JPanel {
       name.setLocation( 400,250 );
       add( name );     
       
+      buttons = new ArrayList<JButton>();
+      
       newGame = new JButton( "New Game" );
-      add( newGame );
-      newGame.addActionListener( new PanelChanger( app.playerMenu, this ) );
+      buttons.add( newGame );
       
       loadGame = new JButton( "Load Game" );
-      add( loadGame );
-      loadGame.addActionListener( new PanelChanger( app.loadGame, this ) );
+      buttons.add( loadGame );
       
       howToPlay = new JButton( "How To Play" );
-      add( howToPlay );
-      howToPlay.addActionListener( new PanelChanger( app.howToPlay, this ) );
+      buttons.add( howToPlay );
       
       credits = new JButton( "Credits" );
-      add( credits );
-      credits.addActionListener( new PanelChanger( app.credits, this ) );
+      buttons.add( credits );
+      
+      for( int n = 0; n < buttons.size(); n++ )
+      {
+         add( buttons.get( n ) );
+         buttons.get( n ).addActionListener( new MainMenuBtnListener() );
+      }
       
       exit = new JButton( "Exit" );
       add( exit );
@@ -53,6 +60,25 @@ public class MainMenu extends JPanel {
          }
       } );  
       
-      setSize(700, 660);      
+      setSize(700, 660);  
+   }
+   
+   // methods
+   
+   // Main Menu Button Listener 
+   public class MainMenuBtnListener implements ActionListener
+   {
+      @Override
+      public void actionPerformed( ActionEvent evt )
+      {
+         for ( int n = 0; n < buttons.size(); n++ )
+         {
+            if ( evt.getSource() == buttons.get( n ) )
+            {
+               setVisible( false );
+               app.panels.get( n + 1 ).setVisible( true );
+            }
+         }
+      }
    }
 }
