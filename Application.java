@@ -19,9 +19,6 @@ public class Application extends JFrame {
    public Application() 
    {
       setLayout( new BorderLayout() );
-           
-      mainMenu = new MainMenu( this );
-      add( mainMenu );
       
       playerMenu = new PlayerMenu( this );
       add( playerMenu );
@@ -34,6 +31,9 @@ public class Application extends JFrame {
       
       howToPlay = new HowToPlay( this );
       add( howToPlay );
+    
+      mainMenu = new MainMenu( this );
+      add( mainMenu );
       
       setTitle("Citizens Of The World");  // "super" JFrame sets title
       setSize(700, 700);   // "super" JFrame sets initial size
