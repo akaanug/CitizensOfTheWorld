@@ -21,7 +21,9 @@ public class Application extends JFrame {
    public Application() 
    {
       setLayout( new BorderLayout() );
-           
+      setExtendedState(JFrame.MAXIMIZED_BOTH); 
+      setUndecorated(true);
+
       panels = new ArrayList<JPanel>();
       
       mainMenu = new MainMenu( this );
