@@ -23,7 +23,7 @@ public class LoadGame extends JPanel {
       back.addActionListener( new BackBtnListener() );
       
       setVisible( false );
-      setSize(700, 660);
+      setSize( 1366, 768 );
    }
    
    // methods

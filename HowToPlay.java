@@ -19,7 +19,7 @@ public class HowToPlay extends JPanel {
       
       this.app = app;
       
-      text = new JLabel( "Bak kardeÅŸim buraya how to play atÄ±yoruzzzz" );      
+      text = new JLabel( "Bak kardeþim buraya how to play atýyoruzzzz" );      
       add( text );
       
       back = new JButton( "Back" );
@@ -27,7 +27,7 @@ public class HowToPlay extends JPanel {
       back.addActionListener( new BackBtnListener() );
       
       setVisible( false );
-      setSize(700, 660);
+      setSize( 1366, 768 );
    }
    
    // methods

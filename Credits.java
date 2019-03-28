@@ -19,7 +19,7 @@ public class Credits extends JPanel {
       
       this.app = app;
       
-      text = new JLabel( "Bak kardeÅŸim buraya credits atÄ±yoruzzzz" );      
+      text = new JLabel( "Bak kardeþim buraya credits atýyoruzzzz" );      
       add( text );
       
       back = new JButton( "Back" );
@@ -27,7 +27,7 @@ public class Credits extends JPanel {
       back.addActionListener( new BackBtnListener() );
       
       setVisible( false );
-      setSize(700, 660);
+      setSize( 1366, 768 );
    }
    
    // methods

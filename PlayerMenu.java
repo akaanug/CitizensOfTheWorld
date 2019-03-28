@@ -34,8 +34,7 @@ public class PlayerMenu extends JPanel {
    // Constructor to setup the GUI components and event handlers
    public PlayerMenu( Application app ) 
    {
-      setLayout(new BorderLayout());
- 
+      setLayout( new BorderLayout() );
       this.app = app;
       
       // Number Of Players
@@ -72,14 +71,7 @@ public class PlayerMenu extends JPanel {
    
       back = new JButton( "Back" );
       backAndStartPanel.add( back ); 
-      back.addActionListener( new ActionListener() { 
-         @Override
-         public void actionPerformed( ActionEvent evt )
-         {
-            setVisible( false );
-            app.mainMenu.setVisible( true );
-         }
-      } );
+      back.addActionListener( new BackBtnListener() );
       
       listedCountries = getListedCountries(); // will be needed when the game is starting
       start = new JButton( "Start" );
@@ -88,7 +80,7 @@ public class PlayerMenu extends JPanel {
  
       add( backAndStartPanel, BorderLayout.SOUTH );
       
-      setSize(700, 660);   // "super" JFrame sets initial size
+      setSize( 1366, 768 );   // "super" JFrame sets initial size
       setVisible( false );    // "super" JFrame shows
    }
    
@@ -112,6 +104,17 @@ public class PlayerMenu extends JPanel {
          {
             playerChoosePanel.getComponent( n ).setVisible( false );
          }
+      }
+   }
+   
+   // Back Button Listener
+   public class BackBtnListener implements ActionListener
+   {
+      @Override
+      public void actionPerformed( ActionEvent evt )
+      {
+         setVisible( false );
+         app.mainMenu.setVisible( true );
       }
    }
    
@@ -191,7 +194,7 @@ public class PlayerMenu extends JPanel {
          BufferedReader br;
          
          countries = new ArrayList<String>();
-         fr = new FileReader( "countries alphabetical.txt" );
+         fr = new FileReader( "Country Info\\countries alphabetical.txt" );
          br = new BufferedReader( fr );
          for( int n = 0; n < 60; n++ )
          {
@@ -232,7 +235,7 @@ public class PlayerMenu extends JPanel {
          BufferedReader br;
          
          countries = new ArrayList<String>();
-         fr = new FileReader( "countries listed.txt" );
+         fr = new FileReader( "Country Info\\countries listed.txt" );
          br = new BufferedReader( fr );
          for( int n = 0; n < 60; n++ )
          {
