@@ -26,7 +26,7 @@ public class Game
    // constructors
    public Game()
    { 
-       fileInfo( "mainCode\\countries CSV.txt" );
+       fileInfo( "mainCode\\countries.txt" );
        
        numberOfPlayers = 4;
        roundNo = 0;
@@ -41,7 +41,7 @@ public class Game
       
    public Game( int numberOfPlayers, int[] locationsOfPlayers, String[] namesOfPlayers ) 
    { 
-       fileInfo( "mainCode\\countries CSV.txt" );
+       fileInfo( "mainCode\\countries.txt" );
        
        this.numberOfPlayers = numberOfPlayers;
        roundNo = 0;
