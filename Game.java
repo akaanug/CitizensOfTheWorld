@@ -22,22 +22,7 @@ public class Game
    int roundNo;
    int turnOfPlayer;
    
-   // constructors
-   public Game()
-   { 
-       fileInfo( "mainCode\\countries.txt" );
-       
-       numberOfPlayers = 4;
-       roundNo = 0;
-       turnOfPlayer = 0;
-       
-       players = new Player[ 4 ];
-       for ( int n = 0; n < 4; n++ )
-       {
-          players[ n ] = new Player( "Player" + ( n + 1 ), 0, n );
-       }
-   }      
-      
+   // constructors         
    public Game( int numberOfPlayers, int[] locationsOfPlayers, String[] namesOfPlayers ) 
    { 
        fileInfo( "mainCode\\countries.txt" );
