@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Collections;
+import util.*;
 
 public class Game
 {   
@@ -25,7 +26,7 @@ public class Game
    // constructors
    public Game()
    { 
-       fileInfo( "mainCode\\countries.txt" );
+       fileInfo( "mainCode\\countries CSV.txt" );
        
        numberOfPlayers = 4;
        roundNo = 0;
@@ -40,7 +41,7 @@ public class Game
       
    public Game( int numberOfPlayers, int[] locationsOfPlayers, String[] namesOfPlayers ) 
    { 
-       fileInfo( "mainCode\\countries.txt" );
+       fileInfo( "mainCode\\countries CSV.txt" );
        
        this.numberOfPlayers = numberOfPlayers;
        roundNo = 0;
@@ -52,6 +53,16 @@ public class Game
           players[ n ] = new Player( namesOfPlayers[ n ], locationsOfPlayers[ n ], n );
        }
    }      
+   
+   public Game( String fileName, Player[] players ) 
+   { 
+       fileInfo( fileName );
+       
+       this.numberOfPlayers = players.length;
+       roundNo = 0;
+       turnOfPlayer = 0;       
+       this.players = players;
+   }
    
    // methods
    public int getTurnOfPlayer()
@@ -83,6 +94,47 @@ public class Game
    {
       return countries;
    }
+   
+//   public Player[] getLeadershipTable()
+//   {
+//      ArrayList<Player> templatePlayers;
+//      Player[] leadershipTable;
+//      ArrayList<Integer> countryNumbersOfPlayers;
+//      int max;
+//      int maxLocation;
+//      int n;
+//      boolean found;
+//      int m;
+//      
+//      templatePlayers = new ArrayList<Player>();
+//      countryNumbersOfPlayers = new ArrayList<Integer>();
+//      for( n = 0; n < numberOfPlayers; n++ )
+//      {
+//         countryNumbersOfPlayers.add( players[n].getNumberOfCountries() );
+//         templatePlayers.add( players[n] );
+//      }
+//      Collections.sort( countryNumbersOfPlayers );
+//         
+//      leadershipTable = new Player[ numberOfPlayers ];
+//      for( n = 0; n < numberOfPlayers; n++ )
+//      {
+//         m = numberOfPlayers - n - 1;
+//         found = false;
+//         while( !found )
+//         {
+//            if( countryNumbersOfPlayers.get( n ) == templatePlayers.get( m ).getNumberOfCountries() )
+//            {
+//               leadershipTable[ numberOfPlayers - n - 1 ] = templatePlayers.get( m );
+//               templatePlayers.remove( m );
+//               found = true;
+//            }
+//            
+//            m--;
+//         }
+//      }
+//      
+//      return leadershipTable;
+//   } 
       
    public Player[] getLeadershipTable()
    {
@@ -137,9 +189,9 @@ public class Game
    {     
       try
       {
-         FileReader fileReader;
+         FileReader fr;
          String line;         
-         BufferedReader br;
+         CSVReader cr;
          int infoCount;
          int questionCount;
          int countryCount;
@@ -153,8 +205,8 @@ public class Game
          questionSentence = "";
          this.countries = new Countries();
          choices = new String[ 3 ];
-         fileReader = new FileReader( fileName );
-         br = new BufferedReader( fileReader );
+         fr = new FileReader( fileName );
+         cr = new CSVReader( fr );
          infoCount = 0;
          questionCount = 0;
          countryCount = 0;
@@ -164,15 +216,15 @@ public class Game
             {
                if ( infoCount == 0 )
                {
-                  questionSentence = br.readLine();
+                  questionSentence = cr.next();
                }
                else if ( infoCount == 4 )
                {
-                  answer = Integer.parseInt( br.readLine() );             
+                  answer = Integer.parseInt( cr.next() );             
                }
                else
                {
-                  choices[ infoCount - 1 ] = br.readLine();
+                  choices[ infoCount - 1 ] = cr.next();
                }
                infoCount = ( infoCount + 1 ) % 5;
                
@@ -185,7 +237,7 @@ public class Game
                }
             }
             
-            this.countries.add( new Country( br.readLine(), Integer.parseInt( br.readLine() ), Integer.parseInt( br.readLine() ), questions ) );
+            this.countries.add( new Country( cr.next(), Integer.parseInt( cr.next() ), Integer.parseInt( cr.next() ), questions ) );
             
             countryCount++;
             
@@ -193,7 +245,7 @@ public class Game
             questionCount = 0;
          }
          
-         br.close();
+         cr.close();
       }
       catch (IOException e)
       {
