@@ -78,7 +78,7 @@ public class CountryInfo extends JPanel {
          parent.northPanelRefresher();
          
          setVisible( false );
-         parent.simplePages.accomodationFee( c.getAccomodationFee() ); 
+         parent.accomodationFeePage.refresh( c.getAccomodationFee() ); 
       }
    }
    
@@ -91,7 +91,7 @@ public class CountryInfo extends JPanel {
          p.payQuestionFee();
          parent.northPanelMoneyRefresher();
          
-         parent.questionPage.totallyNewQuestions( c.determineThreeRandomQuestions(), c.getTax() );
+         parent.questionPage.totallyNewQuestions( p, c );
          
          setVisible( false );
          parent.questionPage.setVisible( true );  

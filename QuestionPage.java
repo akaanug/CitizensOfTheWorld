@@ -12,7 +12,8 @@ public class QuestionPage extends JPanel {
    public static final int MAX_QUESTION_NUMBER = 3;
    public static final int CHOICE_NUMBER = 3;
    public static final int ONE_SECOND = 1000;
-   public int questionTime = 15;
+   public static final int QUESTION_TIME = 15;
+   public int remainingTime;  
    Questions questions;
    Question currentQuestion;
    JLabel header;
@@ -23,10 +24,11 @@ public class QuestionPage extends JPanel {
    JButton choiceTwo;
    JButton choiceThree;
    ArrayList<JButton> choiceButtons;
-   int countryIncome; // this is needed when player answers all questions correctly
    int questionNumber; // Bununla sorunun kaçýncý soru olduðunu bilicez. ( ingilizcem yetmedi ) 
    int n; // for loops
    GameGUI parent;
+   Country c;
+   Player p;
    
    // Constructor to setup the GUI components
    public QuestionPage( GameGUI parent )
@@ -40,7 +42,7 @@ public class QuestionPage extends JPanel {
       header = new JLabel();
       add( header );
       
-      timeLabel = new JLabel( questionTime + "" );
+      timeLabel = new JLabel( remainingTime + "" );
       add( timeLabel );
       
       questionSentence = new JLabel();
@@ -67,7 +69,6 @@ public class QuestionPage extends JPanel {
       
       // Time Arranger
       timer = new Timer(ONE_SECOND, new QuestionTimeListener() );
-      timer.start();
    }
    
 //   public QuestionPage( Questions questions, int countryIncome, GameGUI parent ) 
@@ -123,16 +124,15 @@ public class QuestionPage extends JPanel {
       @Override
       public void actionPerformed( ActionEvent evt )
       {
-         questionTime--;
+         remainingTime--;
          
-         timeLabel.setText( questionTime + "" );
+         timeLabel.setText( remainingTime + "" );
          
-         if ( questionTime == 0 ) 
+         if ( remainingTime == 0 ) 
          {
             timer.stop();
-            parent.simplePages.youLose( );
+            parent.simplePages.youLose( questionNumber );
             setVisible( false );
-            questionTime = 15;
          }
       }
    }
@@ -145,21 +145,27 @@ public class QuestionPage extends JPanel {
       {                  
          timer.stop();
          
-         if ( choiceButtons.indexOf( evt.getSource() ) == currentQuestion.getAnswer() )
+         if ( currentQuestion.isAnswerCorrect( choiceButtons.indexOf( evt.getSource() ) ) )
          {
             if ( questionNumber < MAX_QUESTION_NUMBER - 1 )
             {
                newQuestion( questionNumber + 1 );
+               
+               p.payQuestionFee();
+               parent.northPanelMoneyRefresher();
             }
             else 
-            {
-               parent.simplePages.youWin( countryIncome );
+            {               
+               p.addCitizenship( c );
+               c.addToCitizenship( p );
+               
+               parent.youWinPage.refresh( c.getTax() );
                setVisible( false );
             }
          }
          else
          {
-            parent.simplePages.youLose( );
+            parent.youLosePage.refresh( questionNumber );
             setVisible( false );
          }
       }
@@ -169,9 +175,9 @@ public class QuestionPage extends JPanel {
    {
       this.questionNumber = questionNumber;
       currentQuestion = questions.getQuestion( questionNumber );
-      questionTime = 15;
+      remainingTime = QUESTION_TIME;
               
-      timeLabel.setText( questionTime + "" );      
+      timeLabel.setText( remainingTime + "" );      
       header.setText( "QUESTION   " + ( questionNumber + 1 ) );
       questionSentence.setText( currentQuestion.getQuestionSentence() );
       for ( n = 0; n < CHOICE_NUMBER; n++ )
@@ -182,17 +188,18 @@ public class QuestionPage extends JPanel {
       timer.start();
    }
    
-   public void totallyNewQuestions( Questions questions, int countryIncome )
+   public void totallyNewQuestions( Player p, Country c )
    {
       // Defining some variables
-      this.questions = questions;
+      this.c = c;
+      this.p = p;
+      this.questions = c.determineThreeRandomQuestions();
       questionNumber = 0;
       currentQuestion = questions.getQuestion( questionNumber );
-      this.countryIncome = countryIncome;
-      questionTime = 15;
+      remainingTime = QUESTION_TIME;
       
       // Arranging some panels and buttons 
-      timeLabel.setText( questionTime + "" ); 
+      timeLabel.setText( remainingTime + "" ); 
       header.setText( "QUESTION   1" ); 
       questionSentence.setText( currentQuestion.getQuestionSentence() );
       for ( n = 0; n < CHOICE_NUMBER; n++ )

@@ -1,6 +1,8 @@
-import java.awt.*;  
-import java.awt.event.*;
-import javax.swing.*;
+package util;
+
+import java.awt.*;        // Using AWT layouts
+import java.awt.event.*;  // Using AWT event classes and listener interfaces
+import javax.swing.*;     // Using Swing components and containers
 
 // This class has been created to add buttons some functionality 
 // For example: Player info button can close the player info if you click it when player info is open.

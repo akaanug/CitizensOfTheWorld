@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Collections;
+import util.*;
 
 public class Game
 {   
@@ -25,7 +26,7 @@ public class Game
    // constructors         
    public Game( int numberOfPlayers, int[] locationsOfPlayers, String[] namesOfPlayers ) 
    { 
-       fileInfo( "mainCode\\countries.txt" );
+       fileInfo( "Country Info\\countries.txt" );
        
        this.numberOfPlayers = numberOfPlayers;
        roundNo = 0;
@@ -36,11 +37,13 @@ public class Game
        {
           players[ n ] = new Player( namesOfPlayers[ n ], locationsOfPlayers[ n ], n );
        }
+       
+       shufflePlayers();
    }      
    
    public Game( String fileName, Player[] players ) 
    { 
-       fileInfo( fileName );
+       fileInfo( "Country Info\\countries.txt" );
        
        this.numberOfPlayers = players.length;
        roundNo = 0;
@@ -78,47 +81,25 @@ public class Game
    {
       return countries;
    }
-   
-//   public Player[] getLeadershipTable()
-//   {
-//      ArrayList<Player> templatePlayers;
-//      Player[] leadershipTable;
-//      ArrayList<Integer> countryNumbersOfPlayers;
-//      int max;
-//      int maxLocation;
-//      int n;
-//      boolean found;
-//      int m;
-//      
-//      templatePlayers = new ArrayList<Player>();
-//      countryNumbersOfPlayers = new ArrayList<Integer>();
-//      for( n = 0; n < numberOfPlayers; n++ )
-//      {
-//         countryNumbersOfPlayers.add( players[n].getNumberOfCountries() );
-//         templatePlayers.add( players[n] );
-//      }
-//      Collections.sort( countryNumbersOfPlayers );
-//         
-//      leadershipTable = new Player[ numberOfPlayers ];
-//      for( n = 0; n < numberOfPlayers; n++ )
-//      {
-//         m = numberOfPlayers - n - 1;
-//         found = false;
-//         while( !found )
-//         {
-//            if( countryNumbersOfPlayers.get( n ) == templatePlayers.get( m ).getNumberOfCountries() )
-//            {
-//               leadershipTable[ numberOfPlayers - n - 1 ] = templatePlayers.get( m );
-//               templatePlayers.remove( m );
-//               found = true;
-//            }
-//            
-//            m--;
-//         }
-//      }
-//      
-//      return leadershipTable;
-//   } 
+      
+   public void shufflePlayers()
+   {
+      Player[] playersTemp;
+      int location;
+      
+      playersTemp = new Player[ numberOfPlayers ];
+      for ( int n = 0; n < numberOfPlayers; n++ )
+      {
+         playersTemp[ n ] = players[ n ];
+      }
+      
+      for ( int n = 0; n < numberOfPlayers; n++ )
+      {
+         location = (int)( Math.random() * ( numberOfPlayers - n ) );
+         players[ n ] = playersTemp[ location ];
+         playersTemp[ location ] = playersTemp[ numberOfPlayers - n - 1 ];
+      }
+   }
       
    public Player[] getLeadershipTable()
    {

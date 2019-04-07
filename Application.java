@@ -3,7 +3,6 @@ import java.awt.event.*;  // Using AWT event classes and listener interfaces
 import javax.swing.*;     // Using Swing components and containers
 import mainCode.*;
 import java.util.ArrayList;
-import java.io.IOException;
 
 // A Swing GUI application inherits from top-level container javax.swing.JFrame
 public class Application extends JFrame {
@@ -21,10 +20,14 @@ public class Application extends JFrame {
    // Constructor to setup the GUI components and event handlers
    public Application() 
    {
+      // Set the frame size and vs vs..
       setLayout( new BorderLayout() );           
       setExtendedState( JFrame.MAXIMIZED_BOTH ); 
       setUndecorated( true );
+      setVisible(true);    // "super" JFrame shows
+      setLocation( 0, 0 );
       
+      // Add main panels to the frame.
       panels = new ArrayList<JPanel>();
       
       mainMenu = new MainMenu( this );
@@ -45,13 +48,10 @@ public class Application extends JFrame {
       for ( int n = 0; n < panels.size(); n++ )
       {
          add( panels.get( n ) );
-      }
-      
-      setTitle("Citizens Of The World");  // "super" JFrame sets title
-      setSize(1366, 768);   // "super" JFrame sets initial size
-      setVisible(true);    // "super" JFrame shows
-      setLocation( 0, 0 );
+      }      
    }
+   
+   // Methods
    
    // The entry main() method
    public static void main(String[] args) {
@@ -63,4 +63,6 @@ public class Application extends JFrame {
          }
       });
    }
+   
+   // 
 }

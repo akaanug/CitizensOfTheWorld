@@ -162,7 +162,7 @@ public class Player
    
    public void payQuestionFee()
    {
-      money = money - Question.QUESTION_FEE * 3;
+      money = money - Question.QUESTION_FEE;
    }
    
    public int compareTo( Player p )

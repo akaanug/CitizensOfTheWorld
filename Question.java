@@ -5,14 +5,14 @@ public class Question
 {
    // properties
    public static final int QUESTION_FEE = 10;
-   String question;
+   String questionSentence;
    String[] choices;
    int answer;
    
    // constructors
-   public Question( String question, String[] choices, int answer )
+   public Question( String questionSentence, String[] choices, int answer )
    {
-      this.question = question;
+      this.questionSentence = questionSentence;
       this.choices = choices;
       this.answer = answer;
       
@@ -21,9 +21,9 @@ public class Question
    // clone constructoru üþendim yazýver
    public Question( Question x )
    {
-      this.question = x.getQuestionSentence();
-      this.choices = x.getChoices();
-      this.answer = x.getAnswer();
+      this.questionSentence = x.questionSentence;
+      this.choices = x.choices;
+      this.answer = x.answer;
    }
    
    // methods
@@ -31,7 +31,7 @@ public class Question
    // javadoclarý hallediver sana zahmet
    public String getQuestionSentence()
    {
-      return question;
+      return questionSentence;
    }
    
    public String[] getChoices()
@@ -44,11 +44,6 @@ public class Question
       return choices[ choiceNo ];
    }
    
-   public int getAnswer()
-   {
-      return answer;
-   }
-   
    // toStringi biliyosun zaten soru cümlesi ve cevaplarýný düzgün bir þekilde print etsin. Cevaplarý hizalý yapsan iyi olur. 
    public String toString()
    {
@@ -59,14 +54,8 @@ public class Question
              + "\n" + "C) " + choices[ 2 ] + "\n";
    }
    
-   public boolean isAnswerCorrect( int answer )
+   public final boolean isAnswerCorrect( int answer )
    {
       return this.answer == answer;
    }
-   
-   public String getStringAnswer()
-   {
-      return choices[ answer ];
-   }
-   
 }

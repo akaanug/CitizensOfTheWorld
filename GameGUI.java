@@ -3,6 +3,7 @@ import java.awt.event.*;  // Using AWT event classes and listener interfaces
 import javax.swing.*;     // Using Swing components and containers
 import mainCode.*;
 import java.util.ArrayList;
+import util.*;
 
 // A Swing GUI application inherits from top-level container javax.swing.JFrame
 public class GameGUI extends JPanel {
@@ -38,6 +39,9 @@ public class GameGUI extends JPanel {
    JPanel centerPanel;
    CountryInfo countryInfo; 
    QuestionPage questionPage;
+   YouWinPage youWinPage;
+   YouLosePage youLosePage;
+   AccomodationFeePage accomodationFeePage;
    ThreeSimplePages simplePages;
    Application app;
    int n; // used in for loops
@@ -60,6 +64,15 @@ public class GameGUI extends JPanel {
          
          countryInfo = new CountryInfo( game.getCountries().getCountry( 0 ), currentPlayer, this ); // this guy was needed to be initialized.
          centerPanel.add( countryInfo );
+         
+         youWinPage = new YouWinPage( this );
+         centerPanel.add( youWinPage );
+         
+         youLosePage = new YouLosePage( this );
+         centerPanel.add( youLosePage );
+         
+         accomodationFeePage = new AccomodationFeePage( this );
+         centerPanel.add( accomodationFeePage );
          
          simplePages = new ThreeSimplePages( this );
          centerPanel.add( simplePages );
@@ -139,25 +152,25 @@ public class GameGUI extends JPanel {
          {
             eastPanel.add( eastPanelButtons.get( n ) );
             westPanel.add( westPanelInfos.get( n ) );
+            
             int m = n; // cool, I wasnt expecting this works. ( if we directly put n instead of m's, it didnt work )
             
-            eastPanelButtons.get( m ).addActionListener( new PlayerInfoBtnListener() );
-//            eastPanelButtons.get( m ).addActionListener( new ActionListener() { 
-//               @Override
-//               public void actionPerformed( ActionEvent evt )
-//               {
-//                  if( eastPanelButtons.get( m ).isOpened() )
-//                  {
-//                     westPanelInfos.get( m ).setVisible( false );
-//                  }
-//                  else
-//                  {
-//                     closeOpenedWestPanelInfo();
-//                     westPanelInfos.get( m ).setVisible( true );
-//                  }
-//                  eastPanelButtons.get( m ).changeOpened();
-//               }
-//            } );
+            eastPanelButtons.get( m ).addActionListener( new ActionListener() { 
+               @Override
+               public void actionPerformed( ActionEvent evt )
+               {
+                  if( eastPanelButtons.get( m ).isOpened() )
+                  {
+                     westPanelInfos.get( m ).setVisible( false );
+                  }
+                  else
+                  {
+                     closeOpenedWestPanelInfo();
+                     westPanelInfos.get( m ).setVisible( true );
+                  }
+                  eastPanelButtons.get( m ).changeOpened();
+               }
+            } );
          }
          
             // TODO: Save Game
@@ -197,37 +210,12 @@ public class GameGUI extends JPanel {
          add( southPanel, BorderLayout.SOUTH );
          
          setVisible( true );
-         setSize(700, 660);
+         setSize( app.getSize() );
       }
    }
    
    // Methods
    
-   // Player Info Buttons Listener 
-   public class PlayerInfoBtnListener implements ActionListener
-   {
-      @Override
-      public void actionPerformed( ActionEvent evt )
-      {
-         for ( int n = 0; n < eastPanelButtons.size(); n++ )
-         {
-            if ( evt.getSource() == eastPanelButtons.get( n ) )
-            {
-               if( eastPanelButtons.get( n ).isOpened() )
-               {
-                  westPanelInfos.get( n ).setVisible( false );
-               }
-               else
-               {
-                  closeOpenedWestPanelInfo();
-                  westPanelInfos.get( n ).setVisible( true );
-               }
-               eastPanelButtons.get( n ).changeOpened();
-            }
-         }
-      }
-   }
- 
    // Roll Dice Button Listener ( TODO: must be clickable only one time for each player )
    public class RollDiceBtnListener implements ActionListener
    {      
@@ -252,7 +240,7 @@ public class GameGUI extends JPanel {
       public void actionPerformed( ActionEvent evt )
       {        
          currentPlayer.addRevenue();
-       
+         
          currentPlayersInfo = getPlayerInfo( currentPlayer.getPlayerNo() );
          currentPlayersInfo.handleChanges( currentPlayer );
          leadershipTable.refresh( game.getLeadershipTable() );

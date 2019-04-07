@@ -80,7 +80,7 @@ public class PlayerMenu extends JPanel {
  
       add( backAndStartPanel, BorderLayout.SOUTH );
       
-      setSize( 1366, 768 );   // "super" JFrame sets initial size
+      setSize( app.getSize() );   // "super" JFrame sets initial size
       setVisible( false );    // "super" JFrame shows
    }
    

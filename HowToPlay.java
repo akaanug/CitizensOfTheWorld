@@ -27,7 +27,7 @@ public class HowToPlay extends JPanel {
       back.addActionListener( new BackBtnListener() );
       
       setVisible( false );
-      setSize( 1366, 768 );
+      setSize( app.getSize() );
    }
    
    // methods
