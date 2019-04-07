@@ -26,15 +26,15 @@ public class MainMenu extends JPanel {
    Application app;
    
    // Constructor to setup the GUI components
-   public MainMenu( Application app ) 
+   public MainMenu( Application application ) 
    {            
-      setSize( app.getSize() );
+      setSize( application.getSize() );
       xSize = (double)getWidth() / DEFAULT_X_SIZE;
       System.out.println( getX() );
       ySize = (double)getHeight() / DEFAULT_Y_SIZE;
       System.out.println( xSize );
       
-      this.app = app; 
+      this.app = application; 
       buttons = new ArrayList<JButton>();
       
       GridBagConstraints c;
@@ -66,7 +66,7 @@ public class MainMenu extends JPanel {
       // Add listeners to the buttons
       for( int n = 0; n < buttons.size(); n++ )
       {
-         int m = n;
+         final int m = n;
          
          // Add action listeners
          if ( m < buttons.size() - 1 )

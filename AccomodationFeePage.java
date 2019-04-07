@@ -11,14 +11,14 @@ public class AccomodationFeePage extends JPanel {
    JLabel header;
    JLabel money;
    JButton exit;
-   GameGUI parent;
+   GameGUI p;
    
    // Constructor to setup the GUI components
    public AccomodationFeePage( GameGUI parent ) 
    {
       setLayout( new BorderLayout() );
       
-      this.parent = parent;
+      this.p = parent;
       
       header = new JLabel( "Accomodation Fee: " );
       add( header, BorderLayout.NORTH );
@@ -33,7 +33,7 @@ public class AccomodationFeePage extends JPanel {
          public void actionPerformed( ActionEvent evt )
          {
             setVisible( false );
-            parent.nextTurn.setVisible( true );
+            p.nextTurn.setVisible( true );
          }
       } );
       

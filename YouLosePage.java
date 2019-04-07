@@ -14,11 +14,11 @@ public class YouLosePage extends JPanel {
    GameGUI parent;
    
    // Constructor to setup the GUI components
-   public YouLosePage( GameGUI parent ) 
+   public YouLosePage( GameGUI p ) 
    {
       setLayout( new BorderLayout() );
       
-      this.parent = parent;
+      this.parent = p;
       
       header = new JLabel( "You Lose" );
       add( header, BorderLayout.NORTH );

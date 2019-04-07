@@ -14,11 +14,11 @@ public class ThreeSimplePages extends JPanel {
    GameGUI parent;
    
    // Constructor to setup the GUI components
-   public ThreeSimplePages( GameGUI parent ) 
+   public ThreeSimplePages( GameGUI p ) 
    {
       setLayout( new BorderLayout() );
       
-      this.parent = parent;
+      this.parent = p;
       
       header = new JLabel();
       add( header, BorderLayout.NORTH );
@@ -53,10 +53,10 @@ public class ThreeSimplePages extends JPanel {
       setVisible( true );
    }
    
-   public void youLose()
+   public void youLose( int questionNumber )
    {
       header.setText( "You Lose" );
-      money.setText( "- 30" );
+      money.setText( "- " + ( 10 * ( questionNumber + 1 ) ) );
       
       setVisible( true );
    }

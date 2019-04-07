@@ -14,11 +14,11 @@ public class YouWinPage extends JPanel {
    GameGUI parent;
    
    // Constructor to setup the GUI components
-   public YouWinPage( GameGUI parent ) 
+   public YouWinPage( GameGUI p ) 
    {
       setLayout( new BorderLayout() );
       
-      this.parent = parent;
+      this.parent = p;
       
       header = new JLabel( "Congratulations" );
       add( header, BorderLayout.NORTH );

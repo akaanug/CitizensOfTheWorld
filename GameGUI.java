@@ -45,16 +45,17 @@ public class GameGUI extends JPanel {
    ThreeSimplePages simplePages;
    Application app;
    int n; // used in for loops
+   int m;
    
    // Constructor to setup the GUI components and event handlers
-   public GameGUI( Application app, Game game ) 
+   public GameGUI( Application application, Game game ) 
    {  
       if ( game != null ) // For null pointer exception.
       {
          setLayout( new BorderLayout() );
          
          this.game = game;
-         this.app = app;
+         this.app = application;
          this.currentPlayer = game.getCurrentPlayer();
          this.numberOfPlayers = game.getNumberOfPlayers();
          
@@ -153,7 +154,7 @@ public class GameGUI extends JPanel {
             eastPanel.add( eastPanelButtons.get( n ) );
             westPanel.add( westPanelInfos.get( n ) );
             
-            int m = n; // cool, I wasnt expecting this works. ( if we directly put n instead of m's, it didnt work )
+            m = n; // cool, I wasnt expecting this works. ( if we directly put n instead of m's, it didnt work )
             
             eastPanelButtons.get( m ).addActionListener( new ActionListener() { 
                @Override
