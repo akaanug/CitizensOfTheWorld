@@ -21,7 +21,7 @@ public class AccomodationFeePage extends JPanel {
       
       all.setLayout(null);
       
-      //this.parent = p;
+      this.parent = p;
       all.setPreferredSize( new Dimension(  481, 567 ) );
       money = new JLabel( "money" );
       
@@ -38,7 +38,7 @@ public class AccomodationFeePage extends JPanel {
          public void actionPerformed( ActionEvent evt )
          {
             setVisible( false );
-            p.nextTurn.setVisible( true );
+            parent.nextTurn.setVisible( true );
          }
       } );
       
