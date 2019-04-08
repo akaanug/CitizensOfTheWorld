@@ -28,14 +28,14 @@ public class YouLosePage extends JPanel {
       all.setPreferredSize( new Dimension(  481, 567 ) );
       money = new JLabel( "money" );
       
-      money.setBounds( 138, 370, 198, 78 );
+      money.setBounds( 138, 370, 195, 73 );
       money.setFont( new Font("Arial", Font.BOLD, 48) );
       money.setOpaque(true);
       money.setBackground(Color.white);
       all.add( money );
       
       exit = new JButton( "Exit" );
-      exit.setBounds( 0, 0, 450, 30 );
+      exit.setBounds( 10, 0, 450, 30 );
       exit.addActionListener( new ActionListener() { 
          @Override
          public void actionPerformed( ActionEvent evt )
