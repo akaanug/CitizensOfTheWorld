@@ -23,7 +23,7 @@ public class YouWinPage extends JPanel {
       
       this.parent = p;
       
-      all.setPreferredSize( new Dimension(  481, 567 ) );
+      all.setPreferredSize( new Dimension(  481, 585 ) );
       money = new JLabel( "money" );
       
       money.setBounds( 150, 470, 170, 69 );
@@ -33,7 +33,7 @@ public class YouWinPage extends JPanel {
       all.add( money );
       
       exit = new JButton( "Exit" );
-      add( exit, BorderLayout.SOUTH );
+      exit.setBounds( 10, 0, 450, 30 );
       exit.addActionListener( new ActionListener() { 
          @Override
          public void actionPerformed( ActionEvent evt )
@@ -64,14 +64,14 @@ public class YouWinPage extends JPanel {
       image.paintIcon (this, page, 0, 0);
    }
    
-   //test için belki sonra kullanılır baboş
+//   test iÃ§in belki sonra kullanÄ±lÄ±r baboÅŸ
 //   public static void main (String[] args)
 //   {
 //      JFrame f = new JFrame();
 //      YouWinPage p = new YouWinPage();
 //      f.add(p);
 //      f.setResizable(false);
-//      f.setSize( 481, 567 );
+//      f.setSize( 481, 585 );
 //      f.setVisible( true );
 //   }
 }
