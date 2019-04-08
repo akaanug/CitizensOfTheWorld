@@ -8,23 +8,29 @@ import mainCode.*;
 public class YouWinPage extends JPanel {
 
    // private variables
-   JLabel header;
    JLabel money;
+   JLabel all;
    JButton exit;
    GameGUI parent;
+   ImageIcon image;
    
    // Constructor to setup the GUI components
    public YouWinPage( GameGUI p ) 
    {
-      setLayout( new BorderLayout() );
+      all = new JLabel();
+      
+      all.setLayout(null);
       
       this.parent = p;
       
-      header = new JLabel( "Congratulations" );
-      add( header, BorderLayout.NORTH );
+      all.setPreferredSize( new Dimension(  481, 567 ) );
+      money = new JLabel( "money" );
       
-      money = new JLabel( );
-      add( money );
+      money.setBounds( 150, 470, 170, 69 );
+      money.setFont( new Font("Arial", Font.BOLD, 48) );
+      money.setOpaque(true);
+      money.setBackground(Color.white);
+      all.add( money );
       
       exit = new JButton( "Exit" );
       add( exit, BorderLayout.SOUTH );
@@ -37,6 +43,8 @@ public class YouWinPage extends JPanel {
          }
       } );
       
+      all.add(exit);
+      add(all);
       setVisible( false );
    }
 
@@ -47,4 +55,23 @@ public class YouWinPage extends JPanel {
       
       setVisible( true );
    }
+   
+   public void paintComponent(Graphics page)
+   {
+      super.paintComponent (page);
+         
+      image = new ImageIcon ("Background Photos\\WinFrame.gif");
+      image.paintIcon (this, page, 0, 0);
+   }
+   
+   //test için belki sonra kullanılır baboş
+//   public static void main (String[] args)
+//   {
+//      JFrame f = new JFrame();
+//      YouWinPage p = new YouWinPage();
+//      f.add(p);
+//      f.setResizable(false);
+//      f.setSize( 481, 567 );
+//      f.setVisible( true );
+//   }
 }
