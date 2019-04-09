@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import mainCode.*;
+import util.*;
 
 // A GUI program is written as a subclass of Frame - the top-level container
 // This subclass inherits all properties from Frame, e.g., title, icon, buttons, content-pane
@@ -20,6 +21,7 @@ public class CountryInfo extends JPanel {
    JButton getCitizenship;
    Player p; // We will have only one country info panel in gamegui, and we need this for accomodation fee payment, so we need to keep this.
    Country c;
+   ResizablePicture countryPicture;
    
    // Constructor to setup the GUI components
    public CountryInfo( Country c, Player p, GameGUI parent ) 
@@ -29,6 +31,10 @@ public class CountryInfo extends JPanel {
       this.parent = parent;
       this.p = p; 
       this.c = c;
+      
+      // Country Picture
+      countryPicture = new ResizablePicture( c.getFlag() );
+      add( countryPicture, BorderLayout.NORTH );
       
       // Information of Country
       infoPanel = new JPanel();
@@ -118,6 +124,10 @@ public class CountryInfo extends JPanel {
    {
       this.income.setText( "Income: " + income );
    }
+   public void setCountryPicture( String filename )
+   {
+      countryPicture.setPicture( filename );
+   }
    
    public void uploadNewCountry( Country c, Player p )
    {
@@ -128,7 +138,8 @@ public class CountryInfo extends JPanel {
       setAccomodationFee( c.getAccomodationFee() );
       setCitizenshipFee( 30 );
       setIncome( c.getTax() );
-
+      setCountryPicture( c.getFlag() );
+      
       setVisible( true );
    }   
 }
