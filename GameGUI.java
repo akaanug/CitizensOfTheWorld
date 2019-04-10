@@ -15,24 +15,9 @@ public class GameGUI extends JPanel {
    JPanel northPanel; // includes all variables until east panel
    JLabel playerOfTurn; // normally we will put an icon of current player but it is name for now
    JLabel playersMoney; // current player's money 
-   JPanel fiveCountryList; // player's location and the four country after this.
-   JPanel eastPanel; // includes all variables until west panel
-   OpenCloseJButton playerOneButton; // when clicked, the information of player appears or disappears 
-   OpenCloseJButton playerTwoButton;
-   OpenCloseJButton playerThreeButton;
-   OpenCloseJButton playerFourButton;
-   OpenCloseJButton leadershipTableButton; // when clicked, leadership table appears
-   ArrayList<OpenCloseJButton> eastPanelButtons;
-   JButton save;
-   JButton exit;
-   JPanel westPanel; // this panel is temporary, when you click a button in east panel, the info appears in there. 
-   PlayerInfo playerOneInfo; 
-   PlayerInfo playerTwoInfo;
-   PlayerInfo playerThreeInfo;
-   PlayerInfo playerFourInfo;
+   JPanel fiveCountryList; // player's location and the four country after this.  
    PlayerInfo currentPlayersInfo; // to change player infos easily.
-   LeadershipTable leadershipTable;
-   ArrayList<JPanel> westPanelInfos;
+   GameGUIEastPanel eastPanel;
    JPanel southPanel; // includes two hardest button. 
    JButton rollDice; // rolls dice, moves current player, gets travel money, arranges north panel and player info accordingly, open the country info page
    JButton nextTurn; // changes the current player, uploads its informations into the related panels.
@@ -45,7 +30,6 @@ public class GameGUI extends JPanel {
    ThreeSimplePages simplePages;
    Application app;
    int n; // used in for loops
-   int m;
    
    // Constructor to setup the GUI components and event handlers
    public GameGUI( Application application, Game game ) 
@@ -100,98 +84,8 @@ public class GameGUI extends JPanel {
          add( northPanel, BorderLayout.NORTH );
          
          // East Panel and West Panel
-         eastPanel = new JPanel( );
-         eastPanel.setLayout( new BoxLayout( eastPanel, BoxLayout.Y_AXIS ) );
-         westPanel = new JPanel( );
-         westPanel.setLayout( new FlowLayout() );
-         
-            // Declaring East Panel Buttons and West Panel Infos
-         eastPanelButtons = new ArrayList<OpenCloseJButton>();
-         westPanelInfos = new ArrayList<JPanel>();
-         
-         playerOneButton = new OpenCloseJButton( game.getPlayer( 0 ).getName() );
-         eastPanelButtons.add( playerOneButton );
-         
-         playerOneInfo = new PlayerInfo( game.getPlayer( 0 ), game.getLocationOfPlayer( game.getPlayer( 0 ) ) );
-         westPanelInfos.add( playerOneInfo );
-         
-         if ( numberOfPlayers >= 2 )
-         {
-            playerTwoButton = new OpenCloseJButton( game.getPlayer( 1 ).getName() );
-            eastPanelButtons.add( playerTwoButton );
-            
-            playerTwoInfo = new PlayerInfo( game.getPlayer( 1 ), game.getLocationOfPlayer( game.getPlayer( 1 ) ) );
-            westPanelInfos.add( playerTwoInfo );
-         }
-         
-         if ( numberOfPlayers >= 3 )
-         {
-            playerThreeButton = new OpenCloseJButton( game.getPlayer( 2 ).getName() );
-            eastPanelButtons.add( playerThreeButton );
-            
-            playerThreeInfo = new PlayerInfo( game.getPlayer( 2 ), game.getLocationOfPlayer( game.getPlayer( 2 ) ) );
-            westPanelInfos.add( playerThreeInfo );
-         }
-         
-         if ( numberOfPlayers == 4 )
-         {
-            playerFourButton = new OpenCloseJButton( game.getPlayer( 3 ).getName() );
-            eastPanelButtons.add( playerFourButton );
-            
-            playerFourInfo = new PlayerInfo( game.getPlayer( 3 ), game.getLocationOfPlayer( game.getPlayer( 3 ) ) );
-            westPanelInfos.add( playerFourInfo );
-         }
-         
-         leadershipTableButton = new OpenCloseJButton( "Leadership Table" );
-         eastPanelButtons.add( leadershipTableButton );
-         
-         leadershipTable = new LeadershipTable( game.getLeadershipTable() );
-         westPanelInfos.add( leadershipTable );
-         
-            // Adding buttons and game infos to east and west panels
-         for( n = 0; n < eastPanelButtons.size(); n++ )
-         {
-            eastPanel.add( eastPanelButtons.get( n ) );
-            westPanel.add( westPanelInfos.get( n ) );
-            
-            m = n; // cool, I wasnt expecting this works. ( if we directly put n instead of m's, it didnt work )
-            
-            eastPanelButtons.get( m ).addActionListener( new ActionListener() { 
-               @Override
-               public void actionPerformed( ActionEvent evt )
-               {
-                  if( eastPanelButtons.get( m ).isOpened() )
-                  {
-                     westPanelInfos.get( m ).setVisible( false );
-                  }
-                  else
-                  {
-                     closeOpenedWestPanelInfo();
-                     westPanelInfos.get( m ).setVisible( true );
-                  }
-                  eastPanelButtons.get( m ).changeOpened();
-               }
-            } );
-         }
-         
-            // TODO: Save Game
-         save = new JButton( "Save" );
-         eastPanel.add( save );
-         
-            // Exit Game
-         exit = new JButton( "Exit" );
-         eastPanel.add( exit );
-         exit.addActionListener( new ActionListener() {
-            @Override
-            public void actionPerformed( ActionEvent evt )
-            {
-               app.gameGui.setVisible( false );
-               app.mainMenu.setVisible( true );
-            }
-         });
-                  
+         eastPanel = new GameGUIEastPanel( this );
          add( eastPanel, BorderLayout.EAST );
-         add( westPanel, BorderLayout.WEST );
          
          // South Panel
          southPanel = new JPanel();
@@ -242,9 +136,7 @@ public class GameGUI extends JPanel {
       {        
          currentPlayer.addRevenue();
          
-         currentPlayersInfo = getPlayerInfo( currentPlayer.getPlayerNo() );
-         currentPlayersInfo.handleChanges( currentPlayer );
-         leadershipTable.refresh( game.getLeadershipTable() );
+         eastPanel.refresh( game );
          
          game.addTurnOfPlayer();
          currentPlayer = game.getCurrentPlayer();
@@ -259,23 +151,7 @@ public class GameGUI extends JPanel {
    // As explained at variable part: to get the player info panels of players easily.
    public PlayerInfo getPlayerInfo( int playerNo )
    {
-      return (PlayerInfo) westPanelInfos.get( playerNo );
-   }
-   
-   // returns if the method closed any info panels or not
-   public boolean closeOpenedWestPanelInfo()
-   {
-      for ( n = 0; n < eastPanelButtons.size(); n++ )
-      {         
-         if ( eastPanelButtons.get( n ).isOpened() )
-         {
-            westPanelInfos.get( n ).setVisible( false );
-            eastPanelButtons.get( n ).changeOpened();
-            return true;
-         }
-      }
-      
-      return false;
+      return eastPanel.getPlayerInfo( playerNo );
    }
    
    // North Panel Refreshers( there are 2 refreshers, we use what we need, dont refresh the whole panel every time )
