@@ -45,7 +45,7 @@ public class PlayerInfo extends JPanel {
       this.revenue.setText( "Revenue: " + revenue );
    }
    
-   public void handleChanges( Player p )
+   public void refresh( Player p )
    {
       setRevenue( p.getRevenue() );
       setCurrentMoney( p.getMoney() );

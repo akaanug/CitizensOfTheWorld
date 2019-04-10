@@ -131,7 +131,7 @@ public class QuestionPage extends JPanel {
          if ( remainingTime == 0 ) 
          {
             timer.stop();
-            parent.simplePages.youLose( questionNumber );
+            parent.youLosePage.refresh( questionNumber );
             setVisible( false );
          }
       }
