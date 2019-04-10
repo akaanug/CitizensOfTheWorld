@@ -11,6 +11,8 @@ public class Country
    Questions questions;
    Player[] citizens;
    int numberOfCitizens;
+   String flag;
+   String picture;
    
    // constructors 
    public Country( String name, int accomodationFee, int tax, Questions questions ) 
@@ -21,6 +23,9 @@ public class Country
       citizens = new Player[ NUMBER_OF_PLAYERS ];
       numberOfCitizens = 0;
       this.tax = tax;
+      
+      flag = "..\\Country Info\\Country Flags\\" + name + ".png";
+      picture = "..\\Country Info\\Country Pictures\\" + name + ".png";
    }
       
    // methods 
@@ -60,22 +65,14 @@ public class Country
       return questions;
    }
    
-   // burayý kendine göre güzelce düzenlersin 
-   public String toString()
+   public String getFlag()
    {
-      String s;
-      
-      s = "--------------------- \n";
-      s = s + "Country Name: " + name + "\n";
-      s = s + "Accomodation Fee: " + accomodationFee + "\n";
-      s = s + "Citizens of the Country: ";
-      for ( int n = 0; n < numberOfCitizens; n++ )
-      {
-         s = s + citizens[ n ].getName() + ", ";
-      }
-      s = s + "--------------------- \n";
-      
-      return s;
+      return flag;
+   }
+   
+   public String getPicture()
+   {
+      return picture;
    }
    
    // questionlarýn içinden 3 tane random seçip atýyorsun 
