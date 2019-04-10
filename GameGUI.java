@@ -27,91 +27,84 @@ public class GameGUI extends JPanel {
    YouWinPage youWinPage;
    YouLosePage youLosePage;
    AccomodationFeePage accomodationFeePage;
-   ThreeSimplePages simplePages;
    Application app;
    int n; // used in for loops
    
    // Constructor to setup the GUI components and event handlers
    public GameGUI( Application application, Game game ) 
    {  
-      if ( game != null ) // For null pointer exception.
+      setLayout( new BorderLayout() );
+      
+      this.game = game;
+      this.app = application;
+      this.currentPlayer = game.getCurrentPlayer();
+      this.numberOfPlayers = game.getNumberOfPlayers();
+      
+      // Center Panel
+      centerPanel = new JPanel();
+      add( centerPanel );
+      
+      countryInfo = new CountryInfo( game.getCountries().getCountry( 0 ), currentPlayer, this ); // this guy was needed to be initialized.
+      centerPanel.add( countryInfo );
+      
+      youWinPage = new YouWinPage( this );
+      centerPanel.add( youWinPage );
+      
+      youLosePage = new YouLosePage( this );
+      centerPanel.add( youLosePage );
+      
+      accomodationFeePage = new AccomodationFeePage( this );
+      centerPanel.add( accomodationFeePage );
+      
+      questionPage = new QuestionPage( this );
+      centerPanel.add( questionPage );
+      
+      // North panel
+      northPanel = new JPanel( new FlowLayout() );
+      
+      playerOfTurn = new JLabel( currentPlayer.getName() );
+      northPanel.add( playerOfTurn );
+      
+      playersMoney = new JLabel( currentPlayer.getMoney() + "" );
+      northPanel.add( playersMoney );  
+      
+      fiveCountryList = new JPanel();
+      for( int n = 0; n < 5; n++ )
       {
-         setLayout( new BorderLayout() );
-         
-         this.game = game;
-         this.app = application;
-         this.currentPlayer = game.getCurrentPlayer();
-         this.numberOfPlayers = game.getNumberOfPlayers();
-         
-         // Center Panel
-         centerPanel = new JPanel();
-         add( centerPanel );
-         
-         countryInfo = new CountryInfo( game.getCountries().getCountry( 0 ), currentPlayer, this ); // this guy was needed to be initialized.
-         centerPanel.add( countryInfo );
-         
-         youWinPage = new YouWinPage( this );
-         centerPanel.add( youWinPage );
-         
-         youLosePage = new YouLosePage( this );
-         centerPanel.add( youLosePage );
-         
-         accomodationFeePage = new AccomodationFeePage( this );
-         centerPanel.add( accomodationFeePage );
-         
-         simplePages = new ThreeSimplePages( this );
-         centerPanel.add( simplePages );
-         
-         questionPage = new QuestionPage( this );
-         centerPanel.add( questionPage );
-         
-         // North panel
-         northPanel = new JPanel( new FlowLayout() );
-         
-         playerOfTurn = new JLabel( currentPlayer.getName() );
-         northPanel.add( playerOfTurn );
-            
-         playersMoney = new JLabel( currentPlayer.getMoney() + "" );
-         northPanel.add( playersMoney );  
-         
-         fiveCountryList = new JPanel();
-         for( int n = 0; n < 5; n++ )
-         {
-            fiveCountryList.add( new JLabel( game.getCountries().getCountry( ( currentPlayer.getLocation() + n ) % 60 ).getName() + "     " ) );
-         }              
-         northPanel.add( fiveCountryList );
-         
-         add( northPanel, BorderLayout.NORTH );
-         
-         // East Panel and West Panel
-         eastPanel = new GameGUIEastPanel( this );
-         add( eastPanel, BorderLayout.EAST );
-         
-         // South Panel
-         southPanel = new JPanel();
-         southPanel.setLayout( new FlowLayout() );
-         
-            // Roll Dice Button 
-         rollDice = new JButton( "Roll Dice" );
-         southPanel.add( rollDice );
-         rollDice.addActionListener( new RollDiceBtnListener() );
-
-            // Next Turn Button
-         nextTurn = new JButton( "Next Turn" );
-         nextTurn.setVisible( false );
-         southPanel.add( nextTurn );
-         nextTurn.addActionListener( new NextTurnBtnListener() );
-         
-         add( southPanel, BorderLayout.SOUTH );
-         
-         setVisible( true );
-         setSize( app.getSize() );
-      }
+         fiveCountryList.add( new JLabel( game.getCountries().getCountry( ( currentPlayer.getLocation() + n ) % 60 ).getName() + "     " ) );
+      }              
+      northPanel.add( fiveCountryList );
+      
+      add( northPanel, BorderLayout.NORTH );
+      
+      // East Panel 
+      eastPanel = new GameGUIEastPanel( this );
+      add( eastPanel, BorderLayout.EAST );
+      
+      // South Panel
+      southPanel = new JPanel();
+      southPanel.setLayout( new FlowLayout() );
+      
+      // Roll Dice Button 
+      rollDice = new JButton( "Roll Dice" );
+      southPanel.add( rollDice );
+      rollDice.addActionListener( new RollDiceBtnListener() );
+      
+      // Next Turn Button
+      nextTurn = new JButton( "Next Turn" );
+      nextTurn.setVisible( false );
+      southPanel.add( nextTurn );
+      nextTurn.addActionListener( new NextTurnBtnListener() );
+      
+      add( southPanel, BorderLayout.SOUTH );
+      
+      setSize( app.getSize() );
+      setVisible( true );
    }
    
    // Methods
    
-   // Roll Dice Button Listener ( TODO: must be clickable only one time for each player )
+   // Roll Dice Button Listener 
    public class RollDiceBtnListener implements ActionListener
    {      
       @Override
