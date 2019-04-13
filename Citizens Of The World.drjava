@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <drjava version="drjava-20160913-225446">
-  <project autorefresh="false" main="cotw.Application" root="" work="">
+  <project autorefresh="false" build="classes/" main="gui.Application" root="" work="">
     <createjar file=""/>
     <source>
       <file active="true" name="gui/Application.java" package="gui" timestamp="13-Apr-2019 18:45:38">
@@ -67,7 +67,7 @@
         <select from="12" to="12"/>
         <scroll column="0" row="0"/>
       </file>
-      <file name="gui/GameGUINorthPanel.java" package="gui" timestamp="13-Apr-2019 18:45:38">
+      <file name="gui/GameGUINorthPanel.java" package="gui" timestamp="13-Apr-2019 18:54:56">
         <select from="12" to="12"/>
         <scroll column="0" row="0"/>
       </file>
@@ -87,7 +87,7 @@
         <select from="12" to="12"/>
         <scroll column="0" row="0"/>
       </file>
-      <file name="gui/PlayerInfo.java" package="gui" timestamp="13-Apr-2019 18:45:38">
+      <file name="gui/PlayerInfo.java" package="gui" timestamp="13-Apr-2019 18:54:57">
         <select from="12" to="12"/>
         <scroll column="0" row="0"/>
       </file>
