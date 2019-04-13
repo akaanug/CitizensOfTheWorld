@@ -38,48 +38,8 @@ public class PlayerMenu extends JPanel {
    {
       this.app = app;
       
-      // Number Of Players
-      numberOfPlayersPanel = new JPanel( new FlowLayout() );
-      numberOfPlayersGroup = new CheckboxGroup();
-      
-      numberOfPlayersPanel.add( new Label( "Choose Player Number" ) );
-      numberOfPlayersPanel.add( new Checkbox( "1", numberOfPlayersGroup, false ) );
-      numberOfPlayersPanel.add( new Checkbox( "2", numberOfPlayersGroup, false ) );
-      numberOfPlayersPanel.add( new Checkbox( "3", numberOfPlayersGroup, false ) );
-      numberOfPlayersPanel.add( new Checkbox( "4", numberOfPlayersGroup, false ) );
-      
-      numberOfPlayersButton = new JButton( "OK" );
-      numberOfPlayersPanel.add( numberOfPlayersButton );
-      numberOfPlayersButton.addActionListener( new OkBtnListener() );
-                               
-      add( numberOfPlayersPanel, BorderLayout.NORTH );     
-      
-      // Players Choices
-      playerChoosePanel = new JPanel();
-      playerChoosePanel.setLayout( new BoxLayout( playerChoosePanel, BoxLayout.Y_AXIS ) );
-      
-      alphabeticalCountries = getAlphabeticalCountriesArray(); // will be needed in country lists
-      
-      countriesOne = playerChoicePanelCreator( playerOnePanel, countriesOne, 0 ); 
-      countriesTwo = playerChoicePanelCreator( playerTwoPanel, countriesTwo, 1 ); 
-      countriesThree = playerChoicePanelCreator( playerThreePanel, countriesThree, 2 ); 
-      countriesFour = playerChoicePanelCreator( playerFourPanel, countriesFour, 3 ); 
-      
-      add( playerChoosePanel );
-      
-      // Back and Start Buttons
-      backAndStartPanel = new JPanel( new FlowLayout() );
-   
-      back = new JButton( "Back" );
-      backAndStartPanel.add( back ); 
-      back.addActionListener( new BackBtnListener() );
-      
-      listedCountries = getListedCountries(); // will be needed when the game is starting
-      start = new JButton( "Start" );
-      backAndStartPanel.add( start ); 
-      start.addActionListener( new StartBtnListener() );
- 
-      add( backAndStartPanel, BorderLayout.SOUTH );
+      createComponents();
+      handleActionListeners();
       
       setSize( app.getSize() );   // "super" JFrame sets initial size
       setVisible( false );    // "super" JFrame shows
