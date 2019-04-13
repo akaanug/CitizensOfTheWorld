@@ -26,7 +26,7 @@ public class Countries
    }
    
    // methods ( javadoclar )
-   public Country get( int location )
+   public Country getCountry( int location )
    {
       return countries[ location ];
    }
@@ -40,10 +40,5 @@ public class Countries
    public int getNumberOfCountries()
    {
       return numberOfCountries;
-   }
-   
-   public int size()
-   {
-      return countries.length;
    }
 }

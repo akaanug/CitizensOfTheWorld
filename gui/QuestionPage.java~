@@ -1,0 +1,150 @@
+package cotw;
+
+import java.awt.*;  
+import java.awt.event.*;
+import javax.swing.*;
+import mainCode.*;
+import java.util.ArrayList;
+import java.util.Observer;
+import java.util.Observable;
+
+// A GUI program is written as a subclass of Frame - the top-level container
+// This subclass inherits all properties from Frame, e.g., title, icon, buttons, content-pane
+public class QuestionPage extends JPanel implements Observer 
+{
+   // private variables
+   public static final int MAX_QUESTION_NUMBER = 3;
+   public static final int CHOICE_NUMBER = 3;
+   public static final int ONE_SECOND = 1000;
+   public static final int QUESTION_TIME = 15;
+   int remainingTime;  
+   JLabel header;
+   JLabel timeLabel;
+   Timer timer;
+   JLabel questionSentence;
+   JButton choiceOne;
+   JButton choiceTwo;
+   JButton choiceThree;
+   ArrayList<JButton> choiceButtons;
+   int questionNumber; // Bununla sorunun kaçýncý soru olduðunu bilicez. ( ingilizcem yetmedi ) 
+   int n; // for loops
+   GameGUI parent;
+   Game game;
+   
+   // Constructor to setup the GUI components
+   public QuestionPage( GameGUI parent )
+   {
+      this.parent = parent;
+      game = parent.game;
+      
+      game.getQuiz().addObserver( this );
+      
+      createComponents();
+      handleActionListeners();
+      
+      // Time Arranger
+      timer = new Timer(ONE_SECOND, new QuestionTimeListener() );
+      
+      setVisible( false );
+   }
+
+   // Methods  
+   
+   public void createComponents()
+   {
+      setLayout( new BoxLayout( this, BoxLayout.Y_AXIS ) );
+      
+      header = new JLabel();
+      add( header );
+      
+      timeLabel = new JLabel( remainingTime + "" );
+      add( timeLabel );
+      
+      questionSentence = new JLabel();
+      add( questionSentence );
+      
+      // Declare buttons
+      choiceButtons = new ArrayList<JButton>();
+      
+      choiceOne = new JButton();
+      choiceButtons.add( choiceOne );
+      
+      choiceTwo = new JButton();
+      choiceButtons.add( choiceTwo );
+      
+      choiceThree = new JButton();
+      choiceButtons.add( choiceThree );
+      
+      // Add Buttons to the Panel while arranging their event handlers
+      for ( n = 0; n < CHOICE_NUMBER; n++ )
+      {
+         add( choiceButtons.get( n ) );
+      }
+   }
+   
+   public void handleActionListeners()
+   {
+      for ( n = 0; n < CHOICE_NUMBER; n++ )
+      {
+         choiceButtons.get( n ).addActionListener( new ChoiceBtnListener() );
+      }
+   }
+   
+   // Question Time Listener
+   public class QuestionTimeListener implements ActionListener
+   {
+      @Override
+      public void actionPerformed( ActionEvent evt )
+      {
+         remainingTime--;
+         
+         timeLabel.setText( remainingTime + "" );
+         
+         if ( remainingTime == 0 ) 
+         {
+            timer.stop();
+            
+            game.youLose();
+         }
+      }
+   }
+   
+   // Choice Button Listener
+   public class ChoiceBtnListener implements ActionListener
+   {
+      @Override
+      public void actionPerformed( ActionEvent evt )
+      {                  
+         timer.stop();
+         
+         game.giveAnswerToQuestion( choiceButtons.indexOf( evt.getSource() ) );
+      }
+   }
+   
+   public void update( Observable obs, Object obj )
+   {      
+      Quiz quiz = (Quiz)obs;
+      Question currentQuestion = quiz.getQuestion();
+      
+      if ( quiz.isQuizzing() )
+      {
+         remainingTime = QUESTION_TIME;
+         
+         timeLabel.setText( remainingTime + "" );      
+         header.setText( "QUESTION   " + ( quiz.getQuestionNumber() + 1 ) );
+         questionSentence.setText( currentQuestion.getQuestionSentence() );
+         for ( n = 0; n < CHOICE_NUMBER; n++ )
+         {
+            choiceButtons.get( n ).setText( currentQuestion.getChoice( n ) );
+         }
+         
+         timer.start();
+         setVisible( true );
+      }
+      else
+      {
+         setVisible( false );
+      }
+   }
+}   
+         

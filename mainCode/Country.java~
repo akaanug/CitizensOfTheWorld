@@ -90,8 +90,8 @@ public class Country extends Observable
       for ( int n = 0; n < 3; n++ )
       {
          location = (int)( Math.random() * ( 10 - n ) );
-         randomQuestions.putToIndex( questionsTemplate.get( location ), n );
-         questionsTemplate.putToIndex( questionsTemplate.get( 9 - n ), location );
+         randomQuestions.putToIndex( questionsTemplate.getQuestion( location ), n );
+         questionsTemplate.putToIndex( questionsTemplate.getQuestion( 9 - n ), location );
       }
       
       return randomQuestions;
@@ -129,12 +129,6 @@ public class Country extends Observable
    public boolean hasACitizen()
    {
       return numberOfCitizens > 0;
-   }
-   
-   public void notifier()
-   {
-      setChanged();
-      notifyObservers();
    }
 }
    

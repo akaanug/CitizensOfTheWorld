@@ -1,0 +1,27 @@
+
+public class Quiz
+{
+   // properties
+   public static final int QUESTION_NUMBER = 3;
+   Questions quizQuestions;
+   int currentQuestion;
+   
+   // constructors
+   public Quiz( Country c )
+   {
+      newQuiz( c );
+   }
+   
+   public void newQuiz( Country c )
+   {
+      quizQuestions = c.determineThreeRandomQuestions();
+      currentQuestion = 0;
+   }
+   
+   public Question nextQuestion()
+   {
+      currentQuestion++;
+      
+      return quizQuestions.get( currentQuestion );
+   }
+}
