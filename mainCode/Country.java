@@ -27,7 +27,7 @@ public class Country extends Observable
       this.tax = tax;
       
       flag = "..\\Country Info\\Country Flags\\" + name + ".png";
-      picture = "..\\Country Info\\Country Pictures\\" + name + ".png";
+      picture = "..\\Country Info\\Country Pictures\\" + name + ".jpg";
    }
       
    // methods 
