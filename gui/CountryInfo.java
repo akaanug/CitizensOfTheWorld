@@ -127,7 +127,7 @@ public class CountryInfo extends JPanel implements Observer {
       accomodationFee.setText( "Accomodation Fee: " + c.getAccomodationFee()  );
       citizenshipFee.setText( "Citizenship Fee: " + 30 );
       income.setText( "Income: " + c.getTax() );
-      countryPicture.setPicture( c.getFlag() );
+      countryPicture.setPicture( c.getPicture() );
       
       setVisible( true );
    }   
