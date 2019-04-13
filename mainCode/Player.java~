@@ -80,12 +80,17 @@ public class Player extends Observable
       return isPlaying;
    }
    
+   public void notifier()
+   {
+      setChanged();
+      notifyObservers();
+   }
+   
    public void leaveGame()
    {
       isPlaying = false;
       
-      setChanged();
-      notifyObservers();
+      notifier();
    }
    
    public boolean equals( Player p )
@@ -104,16 +109,14 @@ public class Player extends Observable
       money = money - ( dice1 + dice2 ) * TRAVEL_CHARGE;
       location = ( location + dice1 + dice2 ) % 60;
       
-      setChanged();
-      notifyObservers();
+      notifier();
    }
    
    public void payAccomodationFee( Country c )
    {
       money = money - c.getAccomodationFee();
       
-      setChanged();
-      notifyObservers();
+      notifier();
    }
    
    // burda player eðer vatandaþsa tüm sorularý cevaplarýyla birlikte görebiliyor. Onu string olarak atýcaksýn. Countrieste metodu var zaten onun kolay iþ.
@@ -137,30 +140,21 @@ public class Player extends Observable
       
       revenue = revenue + c.getTax();
       
-      setChanged();
-      notifyObservers();
+      notifier();
    }
    
    public void addRevenue()
    {
       money = money + revenue;
       
-      setChanged();
-      notifyObservers();
-   }
-   
-   public void myTurn()
-   {
-      setChanged();
-      notifyObservers();
+      notifier();
    }
    
    public void payQuestionFee()
    {
       money = money - Question.QUESTION_FEE;
       
-      setChanged();
-      notifyObservers();
+      notifier();
    }
    
    public int compareTo( Player p )

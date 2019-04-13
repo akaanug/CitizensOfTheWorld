@@ -27,20 +27,6 @@ public class Questions
    
    // methods  
    
-   public String toString()
-   {
-      String s;
-      int n;
-      
-      s = "";
-      for ( n = 0; n < numberOfQuestions; n++ )
-      {
-         s = s + n + ") " + questions[ n ].toString();
-      }
-      
-      return s;
-   }
-   
    public Question get( int questionNo )
    {
       return questions[ questionNo ];

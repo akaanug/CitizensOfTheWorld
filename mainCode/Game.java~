@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Observable;
 import util.*;
-import cotw.*;
+import gui.*;
    
 public class Game extends Observable
 {   

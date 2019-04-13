@@ -21,7 +21,7 @@ public class Questions
       questions = new Question[ x.questions.length ];
       for ( n = 0; n < questions.length; n++ )
       {
-         questions[ n ] = new Question( x.getQuestion( n ) );
+         questions[ n ] = new Question( x.get( n ) );
       }
    }
    
@@ -41,7 +41,7 @@ public class Questions
       return s;
    }
    
-   public Question getQuestion( int questionNo )
+   public Question get( int questionNo )
    {
       return questions[ questionNo ];
    }

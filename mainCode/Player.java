@@ -119,19 +119,6 @@ public class Player extends Observable
       notifier();
    }
    
-   // burda player eðer vatandaþsa tüm sorularý cevaplarýyla birlikte görebiliyor. Onu string olarak atýcaksýn. Countrieste metodu var zaten onun kolay iþ.
-   public String getAllQuestions( Country country )
-   {
-      if ( country.isACitizen( this ) )
-      {
-         return country.getQuestions().toString();
-      }
-      else
-      {
-         return "You are not a citizen of this country.";
-      }
-   }
-   
    // citizenship kazanýrsa citizen arrayine ekle
    public void addCitizenship( Country c )
    {

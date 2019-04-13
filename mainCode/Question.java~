@@ -44,6 +44,16 @@ public class Question
       return choices[ choiceNo ];
    }
    
+   // toStringi biliyosun zaten soru cümlesi ve cevaplarýný düzgün bir þekilde print etsin. Cevaplarý hizalý yapsan iyi olur. 
+   public String toString()
+   {
+      String[] choices;
+      choices = getChoices();
+      
+      return getQuestionSentence() + "\n" + "A) " + choices[ 0 ] + "\n"  + "B) " + choices[ 1 ] 
+             + "\n" + "C) " + choices[ 2 ] + "\n";
+   }
+   
    public final boolean isAnswerCorrect( int answer )
    {
       return this.answer == answer;

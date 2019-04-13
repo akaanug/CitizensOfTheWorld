@@ -90,6 +90,16 @@ public class Game extends Observable
    {
       return quiz;
    }
+   
+   public LeadershipTable getLeadershipTable()
+   {
+      return leadershipTable;
+   }
+      
+   public Country getLocationOfPlayer( Player p )
+   {
+      return countries.get( p.getLocation() );
+   }
       
    public void shufflePlayers()
    {
@@ -108,11 +118,6 @@ public class Game extends Observable
          players[ n ] = playersTemp[ location ];
          playersTemp[ location ] = playersTemp[ numberOfPlayers - n - 1 ];
       }
-   }
-        
-   public LeadershipTable getLeadershipTable()
-   {
-      return leadershipTable;
    }
    
    public void nextTurn()
@@ -140,11 +145,6 @@ public class Game extends Observable
    {
       currentPlayer.rollDice();      
       getCurrentLocation().notifier();
-   }
-   
-   public Country getLocationOfPlayer( Player p )
-   {
-      return countries.get( p.getLocation() );
    }
    
    public boolean isTurnOf( Player p)
