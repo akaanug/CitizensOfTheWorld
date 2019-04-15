@@ -34,11 +34,14 @@ public class ResizablePicture extends JPanel
    {
       super.paintComponent( g );
       
-      Image bg = new ImageIcon(getClass().getResource( filename ) ).getImage();
-      
-      Graphics2D g2 = (Graphics2D) g.create();
-      g2.drawImage( bg, 0, 0, width, height, this);
-      g2.dispose();
+      if ( filename != null )
+      {
+         Image bg = new ImageIcon(getClass().getResource( filename ) ).getImage();
+         
+         Graphics2D g2 = (Graphics2D) g.create();
+         g2.drawImage( bg, 0, 0, width, height, this);
+         g2.dispose();
+      }
    }
    
    public void setPicture( String filename )
@@ -50,6 +53,24 @@ public class ResizablePicture extends JPanel
    public void setPicture( ResizablePicture picture )
    {
       this.filename = picture.filename;
+      repaint();
+   }
+   
+   public int getWidth()
+   {
+      return width;
+   }
+   
+   public int getHeight()
+   {
+      return height;
+   }
+   
+   public void resizePicture( int width, int height )
+   {
+      this.width = width;
+      this.height = height;
+      
       repaint();
    }
    
