@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import mainCode.*;
+import mainCode.pictures.Avatar;
 
 // A Swing GUI application inherits from top-level container javax.swing.JFrame
 public class PlayerMenu extends JPanel {
@@ -24,12 +25,12 @@ public class PlayerMenu extends JPanel {
    JPanel playerTwoPanel;
    JPanel playerThreePanel;
    JPanel playerFourPanel;
-   JList<String> countriesOne; // country list for every player ( inside scroll pane ) 
-   JList<String> countriesTwo;
-   JList<String> countriesThree;
-   JList<String> countriesFour;
+   ArrayList<JList<String>> allCountryLists;
+   ArrayList<JList<Avatar>> allAvatarLists;
    ArrayList<String> listedCountries; // countries that are listed as in the game ( the usage explained above the method )
+   ArrayList<Avatar> listedAvatars;
    String[] alphabeticalCountries; // we need alphabetical list of countries in scroll panes
+   Avatar[] avatars;
    Application app; 
    int numberOfPlayers;
    
@@ -69,14 +70,28 @@ public class PlayerMenu extends JPanel {
       
       // Players Choices
       playerChoosePanel = new JPanel();
-      playerChoosePanel.setLayout( new BoxLayout( playerChoosePanel, BoxLayout.Y_AXIS ) );
+      playerChoosePanel.setLayout( new GridLayout( 2, 2 ) );
       
-      alphabeticalCountries = getAlphabeticalCountriesArray(); // will be needed in country lists
+      alphabeticalCountries = getAlphabeticalCountriesArray(); // will be needed in country lists      
+      allCountryLists = new ArrayList<JList<String>>();  
       
-      countriesOne = playerChoicePanelCreator( playerOnePanel, countriesOne, 0 ); 
-      countriesTwo = playerChoicePanelCreator( playerTwoPanel, countriesTwo, 1 ); 
-      countriesThree = playerChoicePanelCreator( playerThreePanel, countriesThree, 2 ); 
-      countriesFour = playerChoicePanelCreator( playerFourPanel, countriesFour, 3 ); 
+      avatars = getAvatarsArray(); // will be needed in avatar lists
+      allAvatarLists = new ArrayList<JList<Avatar>>();
+         
+      JList<String> countryList;
+      JList<Avatar> avatarList;
+      for ( int n = 0; n < 4; n++ )
+      {
+         countryList = new JList<String>( alphabeticalCountries );
+         allCountryLists.add( countryList );
+         
+         avatarList = new JList<Avatar>( avatars );
+         avatarList.setLayoutOrientation( JList.VERTICAL_WRAP );
+         avatarList.setVisibleRowCount( 13 );
+         allAvatarLists.add( avatarList );
+         
+         playerChoicePanelCreator( playerOnePanel, countryList, avatarList, n ); 
+      }
       
       add( playerChoosePanel );
       
@@ -90,6 +105,20 @@ public class PlayerMenu extends JPanel {
       backAndStartPanel.add( start ); 
  
       add( backAndStartPanel, BorderLayout.SOUTH );
+   }
+   
+   // Player Choice Panel Creator ( each player panel's code are similar, so we do all of them with one method
+   public void playerChoicePanelCreator( JPanel playerPanel, JList<String> countryList, JList<Avatar> avatarList, int playerNo )
+   {
+      playerPanel = new JPanel( new FlowLayout() );
+      
+      playerPanel.add( new JLabel( ( playerNo + 1 ) + "" ) );      
+      playerPanel.add( new JTextField( 10 ) );
+      playerPanel.add( new JScrollPane( countryList ) );
+      playerPanel.add( new JScrollPane( avatarList ) );
+      
+      playerPanel.setVisible( false );
+      playerChoosePanel.add( playerPanel ); 
    }
    
    public void handleActionListeners()
@@ -140,36 +169,23 @@ public class PlayerMenu extends JPanel {
       {
          String[] namesOfPlayers;
          int[] locationsOfPlayers;
+         Avatar[] avatarsOfPlayers;
          String country;
          
          namesOfPlayers = new String[ numberOfPlayers ];
          locationsOfPlayers = new int[ numberOfPlayers ];
+         avatarsOfPlayers = new Avatar[ numberOfPlayers ];
          for ( int n = 0; n < numberOfPlayers; n++ )
          {
             namesOfPlayers[ n ] = getPlayerName( n );
             locationsOfPlayers[ n ] = getSelectedCountry( n );
+            avatarsOfPlayers[ n ] = getSelectedAvatar( n );
          }
          
-         app.gameGui = new GameGUI( app, new Game( numberOfPlayers, locationsOfPlayers, namesOfPlayers ) ); 
+         app.gameGui = new GameGUI( app, new Game( numberOfPlayers, locationsOfPlayers, namesOfPlayers, avatarsOfPlayers ) ); 
          app.add( app.gameGui );
          setVisible( false );
       }
-   }
-   
-   // Player Choice Panel Creator ( each player panel's code are similar, so we do all of them with one method
-   public JList<String> playerChoicePanelCreator( JPanel playerPanel, JList<String> countryList, int playerNo )
-   {
-      playerPanel = new JPanel( new FlowLayout() );
-      
-      playerPanel.add( new JLabel( ( playerNo + 1 ) + "" ) );      
-      playerPanel.add( new JTextField( 10 ) );
-      countryList = new JList<String>( alphabeticalCountries );
-      playerPanel.add( new JScrollPane( countryList ) );
-      
-      playerPanel.setVisible( false );
-      playerChoosePanel.add( playerPanel ); 
-      
-      return countryList;
    }
    
    // These two methods are created in order to reach the player name textfields and country selection scrolls easily and in for loop
@@ -180,27 +196,19 @@ public class PlayerMenu extends JPanel {
    
    public int getSelectedCountry( int playerNo )
    {
-      if ( playerNo == 0 )
-      {
-         return listedCountries.indexOf( countriesOne.getSelectedValue().toString() );
-      }
-      else if ( playerNo == 1 )
-      {
-         return listedCountries.indexOf( countriesTwo.getSelectedValue().toString() );
-      }
-      else if ( playerNo == 2 )
-      {
-         return listedCountries.indexOf( countriesThree.getSelectedValue().toString() );
-      }
-      else 
-      {
-         return listedCountries.indexOf( countriesFour.getSelectedValue().toString() );
-      }      
+      return listedCountries.indexOf( allCountryLists.get( playerNo ).getSelectedValue().toString() );  
+   }
+   
+   public Avatar getSelectedAvatar( int playerNo )
+   {
+      return allAvatarLists.get( playerNo ).getSelectedValue();
    }
    
    // Creates the country arraylist with the order in the game ( to determine the locations of players from the country they chose )
    public ArrayList<String> getAlphabeticalCountries() 
    {
+      final int COUNTRY_NUMBER = 60;
+      
       try
       {
          ArrayList<String> countries;
@@ -210,7 +218,7 @@ public class PlayerMenu extends JPanel {
          countries = new ArrayList<String>();
          fr = new FileReader( "Country Info\\countries alphabetical.txt" );
          br = new BufferedReader( fr );
-         for( int n = 0; n < 60; n++ )
+         for( int n = 0; n < COUNTRY_NUMBER; n++ )
          {
             countries.add( br.readLine() );
          }
@@ -222,17 +230,17 @@ public class PlayerMenu extends JPanel {
          return null;
       }
    }
-      
+   
    // Creates the country array in alphabetical order ( to make it compatible with JList )
    public String[] getAlphabeticalCountriesArray()
    {
       String[] arrayCountries;
       ArrayList<String> listCountries;
       
-      arrayCountries = new String[ 60 ];
       listCountries = getAlphabeticalCountries();
+      arrayCountries = new String[ listCountries.size() ];
       
-      for ( int n = 0; n < 60; n++ )
+      for ( int n = 0; n < arrayCountries.length; n++ )
       {
          arrayCountries[ n ] = listCountries.get( n );
       }
@@ -242,6 +250,8 @@ public class PlayerMenu extends JPanel {
    
    public ArrayList<String> getListedCountries() 
    {
+      final int COUNTRY_NUMBER = 60;
+      
       try
       {
          ArrayList<String> countries;
@@ -251,7 +261,7 @@ public class PlayerMenu extends JPanel {
          countries = new ArrayList<String>();
          fr = new FileReader( "Country Info\\countries listed.txt" );
          br = new BufferedReader( fr );
-         for( int n = 0; n < 60; n++ )
+         for( int n = 0; n < COUNTRY_NUMBER; n++ )
          {
             countries.add( br.readLine() );
          }
@@ -263,4 +273,35 @@ public class PlayerMenu extends JPanel {
          return null;
       }
    }
+   
+   // Puts all accessible avatars in an array 
+   public Avatar[] getAvatarsArray()
+   {
+      final int AVATAR_NUMBER = 26;
+      
+      try
+      {
+         Avatar[] avatars;
+         FileReader fr;
+         BufferedReader br;
+         Avatar avatar;
+         
+         avatars = new Avatar[ AVATAR_NUMBER ];
+         fr = new FileReader( "Avatar Pictures\\avatar names.txt" );
+         br = new BufferedReader( fr );
+         for( int n = 0; n < AVATAR_NUMBER; n++ )
+         {
+            avatar = new Avatar( br.readLine() );
+            avatars[ n ] = avatar;
+         }
+         
+         return avatars;
+      }
+      catch (IOException e)
+      {
+         return null;
+      }
+   }
+   
+   
 }

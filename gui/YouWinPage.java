@@ -100,15 +100,4 @@ public class YouWinPage extends JPanel implements Observer {
       g2.drawImage( image, 0,0,getWidth(),getHeight(), this);
       g2.dispose();
    } 
-   
-//   test iÃ§in belki sonra kullanÄ±lÄ±r baboÅŸ
-//   public static void main (String[] args)
-//   {
-//      JFrame f = new JFrame();
-//      YouWinPage p = new YouWinPage();
-//      f.add(p);
-//      f.setResizable(false);
-//      f.setSize( 481, 585 );
-//      f.setVisible( true );
-//   }
 }

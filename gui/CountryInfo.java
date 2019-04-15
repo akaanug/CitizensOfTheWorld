@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import mainCode.*;
+import mainCode.pictures.*;
 import util.*;
 import java.util.Observer;
 import java.util.Observable;
@@ -13,9 +14,7 @@ import java.util.Observable;
 public class CountryInfo extends JPanel implements Observer {
 
    // private variables
-   GameGUI parent;
    Game game;
-   Country c;
    JLabel countryName;
    JLabel accomodationFee;
    JLabel citizenshipFee;
@@ -28,10 +27,9 @@ public class CountryInfo extends JPanel implements Observer {
    ResizablePicture countryPicture;
    
    // Constructor to setup the GUI components
-   public CountryInfo( GameGUI parent ) 
+   public CountryInfo( Game game ) 
    {     
-      this.parent = parent;
-      game = parent.game;
+      this.game = game;
       
       // Add Observer
       Countries countries = game.getCountries();
@@ -79,7 +77,7 @@ public class CountryInfo extends JPanel implements Observer {
       setLayout( new BorderLayout() );
             
       // Country Picture
-      countryPicture = new ResizablePicture();
+      countryPicture = new CountryPicture();
       add( countryPicture, BorderLayout.NORTH );
       
       // Information of Country
@@ -121,7 +119,7 @@ public class CountryInfo extends JPanel implements Observer {
    
    public void update( Observable obs, Object obj )
    {
-      c = (Country)obs;
+      Country c = (Country)obs;
 
       countryName.setText( c.getName() );
       accomodationFee.setText( "Accomodation Fee: " + c.getAccomodationFee()  );

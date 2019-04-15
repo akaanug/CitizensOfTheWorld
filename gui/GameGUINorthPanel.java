@@ -4,6 +4,7 @@ import java.awt.*;        // Using AWT layouts
 import java.awt.event.*;  // Using AWT event classes and listener interfaces
 import javax.swing.*;     // Using Swing components and containers
 import mainCode.*;
+import mainCode.pictures.Avatar;
 import util.*;
 import java.util.Observer;
 import java.util.Observable;
@@ -12,6 +13,7 @@ public class GameGUINorthPanel extends JPanel implements Observer
 {
    // properties
    JLabel playerOfTurn; // normally we will put an icon of current player but it is name for now
+   Avatar playerAvatar;
    JLabel playersMoney; // current player's money 
    JLabel location; // player's location and the four country after this.  
    JButton leaveGame;
@@ -46,19 +48,38 @@ public class GameGUINorthPanel extends JPanel implements Observer
    public void createComponents()
    {
       Player currentPlayer = game.getCurrentPlayer();
+     
+      setLayout( new GridLayout( 1, 2 ) );
+      setBackground( Color.black );
       
-      playerOfTurn = new JLabel( currentPlayer.getName() );
-      add( playerOfTurn );
+      // First panel
+      JPanel firstPanel = new JPanel();
+      firstPanel.setBackground( new Color( 0, 0, 140 ) );
+      
+      playerAvatar = currentPlayer.getAvatar();
+      firstPanel.add( playerAvatar );
       
       playersMoney = new JLabel( currentPlayer.getMoney() + "" );
-      add( playersMoney );  
+      playersMoney.setOpaque( true );
+      playersMoney.setBackground( Color.white );
+      playersMoney.setFont( new Font( "", Font.BOLD, 32 ) );
+      firstPanel.add( playersMoney );  
+      
+      add( firstPanel );
+      
+      // Second panel
+      JPanel secondPanel = new JPanel();
+      secondPanel.setBackground( Color.yellow );
       
       location = new JLabel( game.getCurrentLocation().getName() );
-      add( location );
+      location.setFont( new Font( "", Font.BOLD, 32 ) );
+      secondPanel.add( location );
       
       leaveGame = new JButton( "Leave Game" );
       leaveGame.addActionListener( new LeaveGameBtnListener() );
-      add( leaveGame );
+      secondPanel.add( leaveGame );
+      
+      add( secondPanel );
    }
    
    public void update( Observable obs, Object obj )
@@ -66,6 +87,7 @@ public class GameGUINorthPanel extends JPanel implements Observer
       Player currentPlayer = (Player)obs;
       
       playerOfTurn.setText( currentPlayer.getName() );
+      playerAvatar.setPicture( currentPlayer.getAvatar() );
       playersMoney.setText( currentPlayer.getMoney() + "" );
       location.setText( game.getCurrentLocation().getName() );
    }

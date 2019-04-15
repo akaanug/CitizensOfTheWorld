@@ -1,9 +1,10 @@
-package cotw;
+package gui;
 
 import java.awt.*;        // Using AWT layouts
 import java.awt.event.*;  // Using AWT event classes and listener interfaces
 import javax.swing.*;     // Using Swing components and containers
 import mainCode.*;
+import mainCode.pictures.Avatar;
 import util.*;
 import java.util.Observer;
 import java.util.Observable;
@@ -12,6 +13,7 @@ public class GameGUINorthPanel extends JPanel implements Observer
 {
    // properties
    JLabel playerOfTurn; // normally we will put an icon of current player but it is name for now
+   Avatar playerAvatar;
    JLabel playersMoney; // current player's money 
    JLabel location; // player's location and the four country after this.  
    JButton leaveGame;
@@ -39,7 +41,7 @@ public class GameGUINorthPanel extends JPanel implements Observer
       public void actionPerformed( ActionEvent evt )
       {
          game.leaveGame();
-         parent.nextTurn.doClick();
+         parent.nextTurn.doClick(); // Bunu kaldýrmamýz lazým aslýnda bakýcam bi ara 
       }
    }
    
@@ -49,6 +51,9 @@ public class GameGUINorthPanel extends JPanel implements Observer
       
       playerOfTurn = new JLabel( currentPlayer.getName() );
       add( playerOfTurn );
+      
+      playerAvatar = currentPlayer.getAvatar();
+      add( playerAvatar );
       
       playersMoney = new JLabel( currentPlayer.getMoney() + "" );
       add( playersMoney );  
@@ -66,6 +71,7 @@ public class GameGUINorthPanel extends JPanel implements Observer
       Player currentPlayer = (Player)obs;
       
       playerOfTurn.setText( currentPlayer.getName() );
+      playerAvatar.setPicture( currentPlayer.getAvatar() );
       playersMoney.setText( currentPlayer.getMoney() + "" );
       location.setText( game.getCurrentLocation().getName() );
    }

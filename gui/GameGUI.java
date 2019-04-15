@@ -50,7 +50,7 @@ public class GameGUI extends JPanel {
       centerPanel = new JPanel();
       add( centerPanel );
       
-      countryInfo = new CountryInfo( this ); 
+      countryInfo = new CountryInfo( game ); 
       centerPanel.add( countryInfo );
       
       youWinPage = new YouWinPage( this );

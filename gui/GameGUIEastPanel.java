@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class GameGUIEastPanel extends JPanel
 {
    // properties
+   int eastButtonSize;
    GameGUI parent;
    JPanel westPanel;
    JPanel eastPanel;
@@ -24,7 +25,7 @@ public class GameGUIEastPanel extends JPanel
    {
       this.parent = parent;
       game = parent.game;
-      
+         
       createComponents();
       handleActionListeners();
    }
@@ -34,7 +35,7 @@ public class GameGUIEastPanel extends JPanel
    public void createComponents()
    {
       eastPanel = new JPanel();
-      eastPanel.setLayout( new BoxLayout( eastPanel, BoxLayout.Y_AXIS ) );
+      eastPanel.setLayout( new GridLayout( 7, 1 ) );
       westPanel = new JPanel();
       westPanel.setLayout( new FlowLayout() );
       
@@ -42,18 +43,26 @@ public class GameGUIEastPanel extends JPanel
       eastPanelButtons = new ArrayList<OpenCloseJButton>();
       westPanelInfos = new ArrayList<JPanel>();
       
+      eastButtonSize = ( parent.getHeight() - 150 ) / 7;
       for ( int n = 0; n < game.getNumberOfPlayers(); n++ )
       {
-         eastPanelButtons.add( new OpenCloseJButton( game.getPlayer( n ).getName() ) );
+         eastPanelButtons.add( new OpenCloseJButton( game.getPlayer( n ).getAvatar(), eastButtonSize ) );
          westPanelInfos.add( new PlayerInfo( game, n ) );
       }                         
-      eastPanelButtons.add( new OpenCloseJButton( "Leadership Table" ) );
+      eastPanelButtons.add( new OpenCloseJButton( "Leadership ", eastButtonSize ) );
       westPanelInfos.add( new LeadershipTablePanel( game.getLeadershipTable() ) );
       
       for( int n = 0; n < eastPanelButtons.size(); n++ )
       {
          eastPanel.add( eastPanelButtons.get( n ) );
          westPanel.add( westPanelInfos.get( n ) );
+      }
+      
+      for ( int n = eastPanelButtons.size(); n < 5; n++ )
+      {
+         JPanel temporaryPanel = new JPanel();
+         temporaryPanel.setOpaque( false );
+         eastPanel.add( temporaryPanel );
       }
       
       // Save Game
