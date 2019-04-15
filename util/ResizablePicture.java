@@ -6,20 +6,26 @@ import javax.swing.*;
 public class ResizablePicture extends JPanel
 {
    // properties
-   public static final int SIZE_X = 300;
-   public static final int SIZE_Y = 200;
+   int width;
+   int height;
    String filename;
    
    // constructors
-   public ResizablePicture()
+   public ResizablePicture( int width, int height )
    {
-      setPreferredSize( new Dimension( SIZE_X, SIZE_Y ) );
+      this.width = width;
+      this.height = height;
+      
+      setPreferredSize( new Dimension( width, height ) );
    }
    
-   public ResizablePicture( String filename )
+   public ResizablePicture( int width, int height, String filename )
    {
-      setPreferredSize( new Dimension( SIZE_X, SIZE_Y ) );
+      this.width = width;
+      this.height = height;
       this.filename = filename;
+      
+      setPreferredSize( new Dimension( width, height ) );
    }
    
    // methods
@@ -31,7 +37,7 @@ public class ResizablePicture extends JPanel
       Image bg = new ImageIcon(getClass().getResource( filename ) ).getImage();
       
       Graphics2D g2 = (Graphics2D) g.create();
-      g2.drawImage( bg, 0,0,getWidth(),getHeight(), this);
+      g2.drawImage( bg, 0, 0, width, height, this);
       g2.dispose();
    }
    
@@ -39,6 +45,17 @@ public class ResizablePicture extends JPanel
    {
       this.filename = filename;
       repaint();
+   }
+   
+   public void setPicture( ResizablePicture picture )
+   {
+      this.filename = picture.filename;
+      repaint();
+   }
+   
+   public String getFilename()
+   {
+      return filename;
    }
 }
      

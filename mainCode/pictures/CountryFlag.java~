@@ -1,0 +1,16 @@
+package mainCode.pictures;
+
+import util.ResizablePicture;
+
+public class CountryFlag extends ResizablePicture
+{
+   // properties
+   public static final int WIDTH = 300;
+   public static final int HEIGHT = 200;
+   
+   // constructors
+   public CountryFlag( String filename )
+   {
+      super( WIDTH, HEIGHT, filename );
+   }
+}

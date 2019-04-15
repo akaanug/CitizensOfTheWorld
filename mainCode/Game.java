@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.Observable;
 import util.*;
 import gui.*;
+import mainCode.pictures.*;
    
 public class Game extends Observable
 {   
@@ -29,7 +30,7 @@ public class Game extends Observable
    Quiz quiz;
    
    // constructors         
-   public Game( int numberOfPlayers, int[] locationsOfPlayers, String[] namesOfPlayers ) 
+   public Game( int numberOfPlayers, int[] locationsOfPlayers, String[] namesOfPlayers, Avatar[] avatarsOfPlayers ) 
    { 
        fileInfo( "Country Info\\countries.txt" );
        
@@ -41,7 +42,7 @@ public class Game extends Observable
        players = new Player[ numberOfPlayers ];
        for ( int n = 0; n < numberOfPlayers; n++ )
        {
-          players[ n ] = new Player( namesOfPlayers[ n ], locationsOfPlayers[ n ], n );
+          players[ n ] = new Player( namesOfPlayers[ n ], locationsOfPlayers[ n ], avatarsOfPlayers[ n ], n );
        }
        
        shufflePlayers();

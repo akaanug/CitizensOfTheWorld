@@ -35,6 +35,7 @@ public class Quiz extends Observable
    public void quizEnded()
    {
       quizzing = false;
+      
       notifier();
    }
    
@@ -50,6 +51,7 @@ public class Quiz extends Observable
    public void nextQuestion()
    {
       questionNumber++;
+      
       notifier();
    }
    

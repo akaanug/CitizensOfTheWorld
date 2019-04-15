@@ -12,23 +12,15 @@ public class OpenCloseJButton extends JButton
    boolean opened;
    
    // constructors
-   public OpenCloseJButton( String text, int size )
+   public OpenCloseJButton( String text)
    {
       super( text );
-      setBackground( Color.cyan );
-      setPreferredSize( new Dimension( size, size ) );
-      
       opened = false;
    }
    
-   public OpenCloseJButton( Icon icon, int size )
+   public OpenCloseJButton( Icon icon )
    {
-      setLayout( new FlowLayout( FlowLayout.CENTER ) );
-      setBackground( Color.cyan );
-      setPreferredSize( new Dimension( size, size ) );
-      
-      add( new JLabel( icon ) );
-      
+      super( icon );
       opened = false;
    }
    

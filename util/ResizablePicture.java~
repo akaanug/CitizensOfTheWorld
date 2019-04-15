@@ -11,6 +11,11 @@ public class ResizablePicture extends JPanel
    String filename;
    
    // constructors
+   public ResizablePicture()
+   {
+      setPreferredSize( new Dimension( SIZE_X, SIZE_Y ) );
+   }
+   
    public ResizablePicture( String filename )
    {
       setPreferredSize( new Dimension( SIZE_X, SIZE_Y ) );

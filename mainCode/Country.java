@@ -1,6 +1,7 @@
 package mainCode;
 
 import java.util.Observable;
+import mainCode.pictures.*;
 
 // buraya bi comment atýver
 public class Country extends Observable
@@ -13,8 +14,8 @@ public class Country extends Observable
    Questions questions;
    Player[] citizens;
    int numberOfCitizens;
-   String flag;
-   String picture;
+   CountryFlag flag;
+   CountryPicture picture;
    
    // constructors 
    public Country( String name, int accomodationFee, int tax, Questions questions ) 
@@ -24,10 +25,9 @@ public class Country extends Observable
       this.questions = questions;
       citizens = new Player[ NUMBER_OF_PLAYERS ];
       numberOfCitizens = 0;
-      this.tax = tax;
-      
-      flag = "..\\Country Info\\Country Flags\\" + name + ".png";
-      picture = "..\\Country Info\\Country Pictures\\" + name + ".jpg";
+      this.tax = tax;     
+      flag = new CountryFlag( name );
+      picture = new CountryPicture( name );
    }
       
    // methods 
@@ -67,12 +67,12 @@ public class Country extends Observable
       return questions;
    }
    
-   public String getFlag()
+   public CountryFlag getFlag()
    {
       return flag;
    }
    
-   public String getPicture()
+   public CountryPicture getPicture()
    {
       return picture;
    }
