@@ -2,15 +2,15 @@ package mainCode;
 
 import java.util.Observable;
 
-// buraya bi comment atıver
+// buraya bi comment atÃ½ver
 public class Player extends Observable
 {
    // properties
    public static final int STARTING_MONEY = 1000;
    public static final int TRAVEL_CHARGE = 5;
    int money;
-   Countries countries; // vatandaşı olduğumuz ülkeler
-   int numberOfCountries; // bu da onların sayısı
+   Countries countries; // vatandaÃ¾Ã½ olduÃ°umuz Ã¼lkeler
+   int numberOfCountries; // bu da onlarÃ½n sayÃ½sÃ½
    String name;
    int location;
    int playerNo;
@@ -19,7 +19,7 @@ public class Player extends Observable
    
    // constructors
    
-   // bu guide biyerde lazım onun içün yazıyorum.
+   // bu guide biyerde lazÃ½m onun iÃ§Ã¼n yazÃ½yorum.
    public Player()
    {
       countries = new Countries();
@@ -44,7 +44,7 @@ public class Player extends Observable
       isPlaying = true;
    }
    
-   // methods ( javadocları yazınız lütfen )
+   // methods ( javadoclarÃ½ yazÃ½nÃ½z lÃ¼tfen )
    public int getPlayerNo()
    {
       return playerNo;
@@ -65,6 +65,10 @@ public class Player extends Observable
       return location;
    }
    
+   public Countries getCountries() 
+   {
+      return countries;
+   }
    public int getMoney()
    {
       return money;
@@ -98,7 +102,7 @@ public class Player extends Observable
       return this.getPlayerNo() == p.getPlayerNo();
    }
    
-   // zar sallama olayı, locationunu değiştiriyosun ( burda geçen yazdığımız dice şeysini kullanabilirsin )
+   // zar sallama olayÃ½, locationunu deÃ°iÃ¾tiriyosun ( burda geÃ§en yazdÃ½Ã°Ã½mÃ½z dice Ã¾eysini kullanabilirsin )
    public void rollDice()
    {
       int dice1;
@@ -119,7 +123,7 @@ public class Player extends Observable
       notifier();
    }
    
-   // citizenship kazanırsa citizen arrayine ekle
+   // citizenship kazanÃ½rsa citizen arrayine ekle
    public void addCitizenship( Country c )
    {
       countries.add( c );
