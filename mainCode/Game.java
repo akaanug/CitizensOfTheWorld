@@ -47,7 +47,9 @@ public class Game extends Observable
        
        shufflePlayers();
        
-       currentPlayer = players[ 0 ];       
+       currentPlayer = players[ 0 ];   
+       currentPlayer.notifier();
+       
        leadershipTable = new LeadershipTable( players );
    }      
    

@@ -6,6 +6,7 @@ import javax.swing.*;
 import mainCode.*;
 import java.util.Observer;
 import java.util.Observable;
+import java.util.ArrayList;
 
 // A GUI program is written as a subclass of Frame - the top-level container
 // This subclass inherits all properties from Frame, e.g., title, icon, buttons, content-pane
@@ -19,6 +20,8 @@ public class PlayerInfo extends JPanel implements Observer{
    JLabel revenue;
    JLabel location;
    JLabel nationality;
+   JPanel countriesPanel;
+   ArrayList<JPanel> countries;
    
    // Constructor to setup the GUI components
    public PlayerInfo( Game game, int playerNo ) 
@@ -40,20 +43,43 @@ public class PlayerInfo extends JPanel implements Observer{
             
       playerName = new JLabel( "Nickname: " + p.getName() );
       nationality = new JLabel( "Nationality: " + game.getLocationOfPlayer( p ).getName() );
+      
+      // countries
+//      countries = new ArrayList<JPanel>();
+//      countriesPanel = new JPanel();
+//      countriesPanel.setLayout( new BoxLayout( countriesPanel, BoxLayout.Y_AXIS  ) );
+      
       currentMoney = new JLabel( "Current Money: " + p.getMoney() );
       revenue = new JLabel( "Revenue: " + p.getRevenue() );
       
       add( playerName );
       add( nationality );
+//      add( countriesPanel );
       add( currentMoney );
       add( revenue );
       
       setSize(300, 200);
    }
    
+//   public JPanel createCountryPanel( Country c )
+//   {
+//      JPanel panel = new JPanel();
+//      
+//      panel.add( new JLabel( c.getName() ) );
+//      panel.add( new JLabel( c.getTax() + "" ) );
+//      
+//      countries.add( panel );
+//      return panel;
+//   }
+   
    public void update( Observable obs, Object obj )
    {
       currentMoney.setText( "Money: " + p.getMoney()  );
       revenue.setText( "Revenue: " + p.getRevenue() );
+      
+//      if ( countries.size() < p.getCountries().size() )
+//      {
+//         countriesPanel.add( createCountryPanel( p.getLastCountry() ) );
+//      }
    }
 }

@@ -52,7 +52,7 @@ public class ResizablePicture extends JPanel
    
    public void setPicture( ResizablePicture picture )
    {
-      this.filename = picture.filename;
+      this.filename = picture.getFilename();
       repaint();
    }
    

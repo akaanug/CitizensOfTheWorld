@@ -155,7 +155,7 @@ public class MainMenu extends JPanel {
    {
       super.paintComponent( g );
       
-      Image bg = new ImageIcon(getClass().getResource( "..\\Background Photos\\Main Menu.jpeg" ) ).getImage();
+      Image bg = new ImageIcon( getClass().getResource( "..\\Background Photos\\Main Menu.jpeg" ) ).getImage();
       
       Graphics2D g2 = (Graphics2D) g.create();
       g2.drawImage( bg, 0,0,getWidth(),getHeight(), this);

@@ -46,7 +46,7 @@ public class GameGUIEastPanel extends JPanel
       eastButtonSize = ( parent.getHeight() - 150 ) / 7;
       for ( int n = 0; n < game.getNumberOfPlayers(); n++ )
       {
-         eastPanelButtons.add( new OpenCloseJButton( game.getPlayer( n ).getAvatar(), eastButtonSize ) );
+         eastPanelButtons.add( new OpenCloseJButton( game.getPlayer( n ), eastButtonSize ) );
          westPanelInfos.add( new PlayerInfo( game, n ) );
       }                         
       eastPanelButtons.add( new OpenCloseJButton( "Leadership ", eastButtonSize ) );
@@ -82,7 +82,7 @@ public class GameGUIEastPanel extends JPanel
       // Button Listeners for Player Infos and Leadership Table
       for( int n = 0; n < eastPanelButtons.size(); n++ )
       {       
-         int m = n; 
+         final int m = n; 
          
          eastPanelButtons.get( m ).addActionListener( new ActionListener() { 
             @Override

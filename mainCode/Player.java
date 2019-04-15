@@ -83,6 +83,16 @@ public class Player extends Observable
       return avatar;
    }
    
+   public Countries getCountries()
+   {
+      return countries;
+   }
+   
+   public Country getLastCountry()
+   {
+      return countries.get( countries.size() - 1 );
+   }
+   
    public boolean isPlaying()
    {
       return isPlaying;
