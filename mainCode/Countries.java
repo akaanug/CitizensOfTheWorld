@@ -1,6 +1,6 @@
 package mainCode;
 
-// buraya bi comment atıver
+// buraya bi comment atÃ½ver
 public class Countries
 {
    // properties
@@ -35,15 +35,10 @@ public class Countries
    {
       countries[ numberOfCountries ] = country;
       numberOfCountries++;
-   }
-   
-   public int getNumberOfCountries()
-   {
-      return numberOfCountries;
-   }
+   }   
    
    public int size()
    {
-      return countries.length;
+      return numberOfCountries;
    }
 }
