@@ -44,42 +44,41 @@ public class PlayerInfo extends JPanel implements Observer{
       playerName = new JLabel( "Nickname: " + p.getName() );
       nationality = new JLabel( "Nationality: " + game.getLocationOfPlayer( p ).getName() );
       
-      // countries
-//      countries = new ArrayList<JPanel>();
-//      countriesPanel = new JPanel();
-//      countriesPanel.setLayout( new BoxLayout( countriesPanel, BoxLayout.Y_AXIS  ) );
+      countries = new ArrayList<JPanel>();
+      countriesPanel = new JPanel();
+      countriesPanel.setLayout( new BoxLayout( countriesPanel, BoxLayout.Y_AXIS  ) );
       
-      currentMoney = new JLabel( "Current Money: " + p.getMoney() );
-      revenue = new JLabel( "Revenue: " + p.getRevenue() );
+      currentMoney = new JLabel( );
+      revenue = new JLabel( );
       
       add( playerName );
       add( nationality );
-//      add( countriesPanel );
+      add( countriesPanel );
       add( currentMoney );
       add( revenue );
       
       setSize(300, 200);
    }
    
-//   public JPanel createCountryPanel( Country c )
-//   {
-//      JPanel panel = new JPanel();
-//      
-//      panel.add( new JLabel( c.getName() ) );
-//      panel.add( new JLabel( c.getTax() + "" ) );
-//      
-//      countries.add( panel );
-//      return panel;
-//   }
+   public void createCountryPanel( Country c )
+   {
+      JPanel panel = new JPanel();
+      
+      panel.add( new JLabel( c.getName() ) );
+      panel.add( new JLabel( c.getTax() + "" ) );
+      
+      countries.add( panel );
+      countriesPanel.add( panel );
+   }
    
    public void update( Observable obs, Object obj )
    {
       currentMoney.setText( "Money: " + p.getMoney()  );
       revenue.setText( "Revenue: " + p.getRevenue() );
       
-//      if ( countries.size() < p.getCountries().size() )
-//      {
-//         countriesPanel.add( createCountryPanel( p.getLastCountry() ) );
-//      }
+      if ( countries.size() < p.getNumberOfCountries() )
+      {
+         createCountryPanel( p.getLastCountry() );
+      }
    }
 }
