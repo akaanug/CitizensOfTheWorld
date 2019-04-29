@@ -145,6 +145,7 @@ public class MainMenu extends JPanel {
       b.setFont( new Font( name, Font.ITALIC, font ) );
       b.setForeground( foreground );
       b.setBorder( new LineBorder( Color.black, 2 ) );
+      b.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
       
       return b;
    }

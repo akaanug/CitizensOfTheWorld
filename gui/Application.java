@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 // A Swing GUI application inherits from top-level container javax.swing.JFrame
 public class Application extends JFrame {
- 
+   
    // Private instance variables
    MainMenu mainMenu;
    PlayerMenu playerMenu;
@@ -18,7 +18,7 @@ public class Application extends JFrame {
    GameGUI gameGui;
    ArrayList<JPanel> panels;
    Game game;
-
+   
    // Constructor to setup the GUI components and event handlers
    public Application() 
    {
@@ -28,6 +28,14 @@ public class Application extends JFrame {
       setUndecorated( true );
       setVisible(true);    // "super" JFrame shows
       setLocation( 0, 0 );
+      
+      try { 
+         
+         UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel"); 
+      } 
+      catch (Exception e) { 
+         System.out.println("Look and Feel not set"); 
+      } 
       
       // Add main panels to the frame.
       panels = new ArrayList<JPanel>();

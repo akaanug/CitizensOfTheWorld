@@ -24,18 +24,11 @@ public class PlayerInfo extends JPanel {
       currentMoney = new JLabel( "Current Money: " + p.getMoney() );
       revenue = new JLabel( "Revenue: " + p.getRevenue() );
       
-      Font font = new Font("Courier", Font.BOLD,16);   
-      
-      playerName.setFont(font);
-      NATIONALITY.setFont(font);
-      currentMoney.setFont(font);
-      revenue.setFont(font);
       
       add( playerName );
       add( NATIONALITY );
       add( currentMoney );
       add( revenue );
-      setBackground( Color.GREEN );
       
       setVisible( false );
       setSize(300, 200);
