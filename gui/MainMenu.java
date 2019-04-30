@@ -81,7 +81,7 @@ public class MainMenu extends JPanel {
       // Add listeners to the buttons
       for( int n = 0; n < buttons.size(); n++ )
       {
-         final int m = n;
+         int m = n;
          
          // Add action listeners
          if ( m < buttons.size() - 1 )
@@ -145,7 +145,6 @@ public class MainMenu extends JPanel {
       b.setFont( new Font( name, Font.ITALIC, font ) );
       b.setForeground( foreground );
       b.setBorder( new LineBorder( Color.black, 2 ) );
-      b.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
       
       return b;
    }
@@ -156,7 +155,7 @@ public class MainMenu extends JPanel {
    {
       super.paintComponent( g );
       
-      Image bg = new ImageIcon( getClass().getResource( "..\\Background Photos\\Main Menu.jpeg" ) ).getImage();
+      Image bg = new ImageIcon( getClass().getResource( "..\\pictures\\Background Photos\\Main Menu.jpeg" ) ).getImage();
       
       Graphics2D g2 = (Graphics2D) g.create();
       g2.drawImage( bg, 0,0,getWidth(),getHeight(), this);

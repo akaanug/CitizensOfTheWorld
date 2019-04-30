@@ -66,7 +66,7 @@ public class Quiz extends Observable
       notifyObservers();
    }
    
-   public int checkAnswer( int answer )
+   protected int checkAnswer( int answer )
    {
       if ( getQuestion().isAnswerCorrect( answer ) )
       {

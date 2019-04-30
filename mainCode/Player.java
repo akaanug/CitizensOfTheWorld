@@ -4,19 +4,19 @@ import java.util.Observable;
 import mainCode.pictures.*;
 
 // buraya bi comment atýver
-public class Player extends Observable
+public class Player extends Observable implements Comparable
 {
    // properties
    public static final int STARTING_MONEY = 1000;
-   public static final int TRAVEL_CHARGE = 5;
    int money;
    Countries countries; // vatandaþý olduðumuz ülkeler
    int numberOfCountries; // bu da onlarýn sayýsý
    String name;
-   int location;
+   Country currentCountry;
    int playerNo;
    int revenue;
    boolean isPlaying;
+   boolean hasTurn;
    Avatar avatar;
    
    // constructors
@@ -24,11 +24,10 @@ public class Player extends Observable
    // bu guide biyerde lazým onun içün yazýyorum.
    public Player()
    {
-      countries = new Countries();
+      countries = new Countries( Route.COUNTRY_NUMBER );
       numberOfCountries = 0;
       money = STARTING_MONEY;
       name = "";
-      location = 0;
       playerNo = 0;
       revenue = 0;
       isPlaying = true;
@@ -36,11 +35,11 @@ public class Player extends Observable
    
    public Player( String name, int location, Avatar avatar, int playerNo )
    {
-      countries = new Countries();
+      countries = new Countries( Route.COUNTRY_NUMBER );
       numberOfCountries = 0;
       money = STARTING_MONEY;
       this.name = name;
-      this.location = location;
+      this.currentCountry = Route.getCountry( location );
       this.avatar = avatar;
       this.playerNo = playerNo;
       revenue = 0;
@@ -63,9 +62,9 @@ public class Player extends Observable
       return numberOfCountries;
    }
    
-   public int getLocation()
+   public Country getCurrentCountry()
    {
-      return location;
+      return currentCountry;
    }
    
    public int getMoney()
@@ -90,7 +89,7 @@ public class Player extends Observable
    
    public Country getLastCountry()
    {
-      return countries.get( countries.size() - 1 );
+      return countries.get( countries.getNumberOfCountries() - 1 );
    }
    
    public boolean isPlaying()
@@ -98,39 +97,48 @@ public class Player extends Observable
       return isPlaying;
    }
    
-   public void notifier()
+   public boolean hasTurn()
    {
-      setChanged();
-      notifyObservers();
+      return hasTurn;
    }
    
-   public void leaveGame()
+   protected void setHasTurn( boolean tf )
+   {
+      hasTurn = tf;
+      
+      notifier();
+   }
+   
+   protected void setPlayerNo( int playerNo )
+   {
+      this.playerNo = playerNo;
+   }
+   
+   protected void leaveGame()
    {
       isPlaying = false;
       
       notifier();
    }
    
-   public boolean equals( Player p )
+   protected boolean equals( Player p )
    {
       return this.getPlayerNo() == p.getPlayerNo();
    }
    
    // zar sallama olayý, locationunu deðiþtiriyosun ( burda geçen yazdýðýmýz dice þeysini kullanabilirsin )
-   public void rollDice()
+   protected int rollDice()
    {
       int dice1;
       int dice2;
       
       dice1 = (int)( Math.random() * 6 ) + 1;
       dice2 = (int)( Math.random() * 6 ) + 1;     
-      money = money - ( dice1 + dice2 ) * TRAVEL_CHARGE;
-      location = ( location + dice1 + dice2 ) % 60;
       
-      notifier();
+      return dice1 + dice2;
    }
    
-   public void payAccomodationFee( Country c )
+   protected void payAccomodationFee( Country c )
    {
       money = money - c.getAccomodationFee();
       
@@ -138,7 +146,7 @@ public class Player extends Observable
    }
    
    // citizenship kazanýrsa citizen arrayine ekle
-   public void addCitizenship( Country c )
+   protected void addCitizenship( Country c )
    {
       countries.add( c );
       numberOfCountries++;
@@ -148,22 +156,34 @@ public class Player extends Observable
       notifier();
    }
    
-   public void addRevenue()
+   protected void addRevenue()
    {
-      money = money + revenue;
-      
+      money = money + revenue;      
       notifier();
    }
    
-   public void payQuestionFee()
+   protected void payQuestionFee()
    {
-      money = money - Question.QUESTION_FEE;
-      
+      money = money - Question.QUESTION_FEE;      
       notifier();
    }
    
-   public int compareTo( Player p )
+   protected void payTravelFee( int locationChange )
    {
+      money = money - locationChange * Route.TRAVEL_CHARGE;
+      notifier();
+   }
+   
+   protected void setLocation( Country c )
+   {
+      currentCountry = c;      
+      notifier();
+   }
+   
+   public int compareTo( Object o )
+   {
+      Player p = (Player)o;
+      
       if ( this.numberOfCountries > p.numberOfCountries )
       {
          return 1;
@@ -188,7 +208,17 @@ public class Player extends Observable
          }
       }
    }
-}
    
+   // Notifiers
+   protected void notifier()
+   {
+      setChanged();
+      notifyObservers();
+   }
    
-   
+   protected void notifier( String s )
+   {
+      setChanged();
+      notifyObservers( s );
+   }
+}   

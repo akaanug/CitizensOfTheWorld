@@ -39,8 +39,7 @@ public class LeadershipTable extends Observable
          }
       }
       
-      setChanged();
-      notifyObservers();
+      notifier();
    }
    
    public int size()
@@ -51,5 +50,11 @@ public class LeadershipTable extends Observable
    public Player get( int n )
    {
       return leadershipTable[ n ];
+   }
+   
+   public void notifier()
+   {
+      setChanged();
+      notifyObservers();
    }
 }

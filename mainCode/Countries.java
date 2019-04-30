@@ -1,28 +1,29 @@
 package mainCode;
 
-// buraya bi comment atÃ½ver
+import util.GameFileReader;
+
+// buraya bi comment atýver
 public class Countries
 {
    // properties
-   public static final int COUNTRY_NUMBER = 60;
    Country[] countries;
    int numberOfCountries;
    
    // constructors
    public Countries( Country[] countries )
    {
-      countries = new Country[ COUNTRY_NUMBER ];
+      this.countries = new Country[ countries.length ];
       
-      for ( int n = 0; n < COUNTRY_NUMBER; n++ )
+      for ( int n = 0; n < countries.length; n++ )
       {
          this.countries[ n ] = countries[ n ];
       }
 
    }
    
-   public Countries()
+   public Countries( int maxCountryNumber )
    {
-      countries = new Country[ COUNTRY_NUMBER ];
+      countries = new Country[ maxCountryNumber ];
    }
    
    // methods ( javadoclar )
@@ -35,10 +36,15 @@ public class Countries
    {
       countries[ numberOfCountries ] = country;
       numberOfCountries++;
-   }   
+   }
+   
+   public int getNumberOfCountries()
+   {
+      return numberOfCountries;
+   }
    
    public int size()
    {
-      return numberOfCountries;
+      return countries.length;
    }
 }

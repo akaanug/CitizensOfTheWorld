@@ -86,8 +86,11 @@ public class GameGUINorthPanel extends JPanel implements Observer
    {
       Player currentPlayer = (Player)obs;
       
-      playerAvatar.setPicture( currentPlayer.getAvatar() );
-      playersMoney.setText( currentPlayer.getMoney() + "" );
-      location.setText( game.getCurrentLocation().getName() );
+      if ( currentPlayer.hasTurn() )
+      {
+         playerAvatar.setPicture( currentPlayer.getAvatar() );
+         playersMoney.setText( currentPlayer.getMoney() + "" );
+         location.setText( game.getCurrentLocation().getName() );
+      }
    }
 }

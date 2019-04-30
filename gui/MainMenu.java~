@@ -81,7 +81,7 @@ public class MainMenu extends JPanel {
       // Add listeners to the buttons
       for( int n = 0; n < buttons.size(); n++ )
       {
-         final int m = n;
+         int m = n;
          
          // Add action listeners
          if ( m < buttons.size() - 1 )

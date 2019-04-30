@@ -43,10 +43,10 @@ public class LeadershipTablePanel extends JPanel implements Observer {
       
       for( int n = 0; n < playerInfos.length; n++ )
       {
-         playerInfos[n].add( new JLabel( ( n + 1 ) + "     " ) );
-         playerInfos[n].add( new JLabel( leadershipTable.get( n ).getName() + "     " ) );
-         playerInfos[n].add( new JLabel( leadershipTable.get( n ).getNumberOfCountries() + "     " ) );
-         playerInfos[n].add( new JLabel( leadershipTable.get( n ).getMoney() + "" ) );
+         playerInfos[n].add( new JLabel( ) );
+         playerInfos[n].add( new JLabel( ) );
+         playerInfos[n].add( new JLabel( ) );
+         playerInfos[n].add( new JLabel( ) );
          add( playerInfos[n] );
       }
    }

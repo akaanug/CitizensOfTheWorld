@@ -34,6 +34,8 @@ public class GameGUI extends JPanel {
       this.app = application;
       
       createComponents();
+      game.startGame();
+      
       handleActionListeners();
       
       setVisible( true );

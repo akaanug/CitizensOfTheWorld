@@ -46,86 +46,86 @@ public class YouWinPage extends javax.swing.JPanel implements Observer {
    @SuppressWarnings("unchecked")
    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
       private void initComponents() {
-      
-      moneyField = new javax.swing.JTextField();
-      congText = new java.awt.TextField();
-      exitButton = new javax.swing.JButton();
-      imgLabel = new javax.swing.JLabel();
-      refText = new javax.swing.JTextField();
-      
-      setBackground(new java.awt.Color(153, 255, 153));
-      
-      moneyField.setFont(new java.awt.Font("Gisha", 0, 48)); // NOI18N
-      moneyField.setForeground(new java.awt.Color(51, 204, 51));
-      moneyField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-      moneyField.setText("$WIN");
-      moneyField.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-      moneyField.addInputMethodListener(new java.awt.event.InputMethodListener() {
-         public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-         }
-         public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-            moneyFieldInputMethodTextChanged(evt);
-         }
-      });
-      
-      congText.setBackground(new java.awt.Color(204, 255, 204));
-      congText.setEditable(false);
-      congText.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
-      congText.setForeground(new java.awt.Color(102, 0, 255));
-      congText.setText(" CONGRATULATIONS!");
-      
-      exitButton.setFont(new java.awt.Font("Gisha", 0, 12)); // NOI18N
-      exitButton.setText("Exit");
-      exitButton.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
-      
-      imgLabel.setIcon(new javax.swing.ImageIcon("..\\Background Photos\\WinFrame.png")); // NOI18N
-      imgLabel.setText("");
-      
-      refText.setBackground(new java.awt.Color(153, 255, 153));
-      refText.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-      refText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-      refText.setText("You got real estate investment!");
-      
-      javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-      this.setLayout(layout);
-      layout.setHorizontalGroup(
-                                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                   .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                             .addGroup(layout.createSequentialGroup()
-                                                                          .addGap(25, 25, 25)
-                                                                          .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                       .addComponent(congText, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                                                                    .addComponent(imgLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                    .addGap(8, 8, 8))))
-                                                             .addGroup(layout.createSequentialGroup()
-                                                                          .addGap(50, 50, 50)
-                                                                          .addComponent(refText, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                             .addGroup(layout.createSequentialGroup()
-                                                                          .addGap(72, 72, 72)
-                                                                          .addComponent(moneyField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                             .addGroup(layout.createSequentialGroup()
-                                                                          .addGap(97, 97, 97)
-                                                                          .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                .addContainerGap(24, Short.MAX_VALUE))
-                               );
-      layout.setVerticalGroup(
-                              layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                              .addGap(38, 38, 38)
-                                              .addComponent(imgLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                              .addComponent(congText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                              .addGap(5, 5, 5)
-                                              .addComponent(refText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                              .addComponent(moneyField, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                              .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                              .addGap(26, 26, 26))
-                             );
-   }// </editor-fold>                        
+
+        moneyField = new javax.swing.JTextField();
+        exitButton = new javax.swing.JButton();
+        refText = new javax.swing.JTextField();
+        congText = new javax.swing.JTextField();
+
+        setBackground(new java.awt.Color(153, 255, 153));
+
+        moneyField.setEditable(false);
+        moneyField.setFont(new java.awt.Font("Gisha", 0, 48)); // NOI18N
+        moneyField.setForeground(new java.awt.Color(51, 204, 51));
+        moneyField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        moneyField.setText("$WIN");
+        moneyField.setBorder(null);
+        moneyField.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        moneyField.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                moneyFieldInputMethodTextChanged(evt);
+            }
+        });
+
+        exitButton.setFont(new java.awt.Font("Gisha", 0, 12)); // NOI18N
+        exitButton.setText("Exit");
+        exitButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));;
+
+        refText.setEditable(false);
+        refText.setBackground(new java.awt.Color(153, 255, 153));
+        refText.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        refText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        refText.setText("You got real estate investment!");
+        refText.setBorder(null);
+
+        congText.setEditable(false);
+        congText.setBackground(new java.awt.Color(153, 255, 153));
+        congText.setFont(new java.awt.Font("Gisha", 1, 36)); // NOI18N
+        congText.setForeground(new java.awt.Color(204, 0, 204));
+        congText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        congText.setText("CONGRATULATIONS!");
+        congText.setBorder(null);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(congText, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addComponent(refText, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(71, 71, 71)
+                                .addComponent(moneyField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(125, Short.MAX_VALUE)
+                .addComponent(congText, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(refText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(moneyField, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53))
+        );
+    }// </editor-fold>         
    
    private void moneyFieldInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {                                                  
       // TODO add your handling code here:
@@ -157,7 +157,7 @@ public class YouWinPage extends javax.swing.JPanel implements Observer {
    
    
    // Variables declaration - do not modify                     
-   private java.awt.TextField congText;
+   private javax.swing.JTextField congText;
    private javax.swing.JButton exitButton;
    private javax.swing.JLabel imgLabel;
    private javax.swing.JTextField moneyField;

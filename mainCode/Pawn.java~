@@ -1,0 +1,98 @@
+package mainCode;
+
+import util.ResizablePicture;
+import java.awt.Point;
+import javax.swing.Timer;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Pawn
+{
+   // properties
+   public static final int WIDTH = 10;
+   public static final int HEIGHT = 15; 
+   
+   ResizablePicture picture;
+   Country currentCountry;
+   double locX;
+   double locY;
+   Timer timer;
+   int remainingTime;
+   int movementNumber;
+   double movementOfX;
+   double movementOfY;
+   
+   // constructors
+   public Pawn( Player p, Timer t )
+   {
+      picture = new ResizablePicture( WIDTH, HEIGHT, "..\\pictures\\Pawns\\" + p.getPlayerNo() + ".png" );      
+      setLocation( p.getCurrentCountry() );
+      
+      timer = new Timer( MOVING_TIME_ONE_PIXEL, new MovementTimeListener() ); 
+   }
+   
+   // methods
+   public Point getLocation()
+   {
+      return new Point( (int)locX, (int)locY );
+   }
+   
+   public Country getCurrentCountry()
+   {
+      return currentCountry;
+   }
+         
+   protected void setLocation( Country c )
+   {
+      currentCountry = c;
+      locX = c.getLocation().getX();
+      locY = c.getLocation().getY();
+   }
+   
+   protected void setLocation( double locX, double locY )
+   {
+      this.locX = locX;
+      this.locY = locY;
+   }
+   
+   protected void move( double x, double y )
+   {
+      setLocation( locX + x, locY + y );
+      System.out.println( locX );
+      System.out.println( locY );
+   }
+   
+   protected void moveNextCountry()
+   {
+      System.out.println( "AAAAAAAAAAAA" );
+      // Get the location of next country
+      currentCountry = Route.COUNTRIES_ON_ROUTE.get( ( currentCountry.getLocationOnRoute() + 1 ) % 60 );
+      Point newLocation = currentCountry.getLocation();
+      
+      // Find the distance and needed movements
+      double distance = Math.hypot( newLocation.getX() - locX, newLocation.getY() - locY );      
+      remainingTime = (int)distance;
+      
+      // Move the pawn
+      movementOfX = ( newLocation.getX() - locX ) / remainingTime;
+      movementOfY = ( newLocation.getY() - locY ) / remainingTime;
+      timer.start();
+      
+   }
+   
+   protected void moveAlongCountries( int movementNumber )
+   {
+      this.movementNumber = movementNumber;
+      moveNextCountry();
+   }
+   
+   public class MovementTimeListener implements ActionListener
+   {
+      @Override
+      public void actionPerformed( ActionEvent evt )
+      {
+         move( movementOfX, movementOfY );      
+      }
+   }
+}
+         

@@ -2,6 +2,7 @@ package mainCode;
 
 import java.util.Observable;
 import mainCode.pictures.*;
+import java.awt.Point;
 
 // buraya bi comment atýver
 public class Country extends Observable
@@ -16,9 +17,11 @@ public class Country extends Observable
    int numberOfCitizens;
    CountryFlag flag;
    CountryPicture picture;
+   Point location;
+   int locationOnRoute;
    
    // constructors 
-   public Country( String name, int accomodationFee, int tax, Questions questions ) 
+   public Country( String name, int accomodationFee, int tax, Questions questions, int locX, int locY, int locationOnRoute ) 
    {
       this.accomodationFee = accomodationFee;
       this.name = name;
@@ -28,8 +31,10 @@ public class Country extends Observable
       this.tax = tax;     
       flag = new CountryFlag( name );
       picture = new CountryPicture( name );
+      location = new Point( locX, locY );
+      this.locationOnRoute = locationOnRoute;
    }
-      
+   
    // methods 
    
    public int getAccomodationFee()
@@ -77,8 +82,18 @@ public class Country extends Observable
       return picture;
    }
    
+   public Point getLocation()
+   {
+      return location;
+   }
+   
+   public int getLocationOnRoute()
+   {
+      return locationOnRoute;
+   }
+   
    // questionlarýn içinden 3 tane random seçip atýyorsun 
-   public Questions determineThreeRandomQuestions()
+   protected Questions determineThreeRandomQuestions()
    {
       Questions randomQuestions;
       Questions questionsTemplate;
@@ -98,7 +113,7 @@ public class Country extends Observable
    }
    
    // playeri arraya ekliyosun yani ez
-   public void addToCitizenship( Player p )
+   protected void addToCitizenship( Player p )
    {
       citizens[ numberOfCitizens ] = p;
       numberOfCitizens++;

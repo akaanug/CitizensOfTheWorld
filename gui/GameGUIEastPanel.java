@@ -82,7 +82,7 @@ public class GameGUIEastPanel extends JPanel
       // Button Listeners for Player Infos and Leadership Table
       for( int n = 0; n < eastPanelButtons.size(); n++ )
       {       
-         final int m = n; 
+         int m = n; 
          
          eastPanelButtons.get( m ).addActionListener( new ActionListener() { 
             @Override

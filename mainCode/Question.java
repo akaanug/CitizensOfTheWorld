@@ -44,7 +44,7 @@ public class Question
       return choices[ choiceNo ];
    }
    
-   public final boolean isAnswerCorrect( int answer )
+   protected final boolean isAnswerCorrect( int answer )
    {
       return this.answer == answer;
    }

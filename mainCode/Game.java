@@ -16,24 +16,22 @@ public class Game extends Observable
    Scanner scan = new Scanner( System.in);
          
    // properties
-   final int NUMBER_OF_QUESTIONS = 10;
-   final int NUMBER_OF_COUNTRIES = 60;
-   final int NUMBER_OF_CHOICES = 3;
-   final int NUMBER_OF_QUIZ_QUESTIONS = 3;
+   public static final int NUMBER_OF_QUESTIONS = 10;
+   public static final int NUMBER_OF_COUNTRIES = 60;
+   public static final int NUMBER_OF_CHOICES = 3;
+   public static final int NUMBER_OF_QUIZ_QUESTIONS = 3;
    int numberOfPlayers;
-   Countries countries;
    Player[] players;
    int roundNo;
    int turnOfPlayer;
    LeadershipTable leadershipTable;
    Player currentPlayer;
    Quiz quiz;
+   Route route;
    
    // constructors         
    public Game( int numberOfPlayers, int[] locationsOfPlayers, String[] namesOfPlayers, Avatar[] avatarsOfPlayers ) 
    { 
-       fileInfo( "Country Info\\countries.txt" );
-       
        this.numberOfPlayers = numberOfPlayers;
        roundNo = 0;
        turnOfPlayer = 0;
@@ -48,8 +46,9 @@ public class Game extends Observable
        shufflePlayers();
        
        currentPlayer = players[ 0 ];   
-       currentPlayer.notifier();
+       currentPlayer.setHasTurn( true );
        
+       route = new Route( players );
        leadershipTable = new LeadershipTable( players );
    }      
    
@@ -84,11 +83,6 @@ public class Game extends Observable
       return roundNo;
    }
    
-   public Countries getCountries()
-   {
-      return countries;
-   }
-   
    public Quiz getQuiz()
    {
       return quiz;
@@ -101,7 +95,7 @@ public class Game extends Observable
       
    public Country getLocationOfPlayer( Player p )
    {
-      return countries.get( p.getLocation() );
+      return p.getCurrentCountry();
    }
       
    public void shufflePlayers()
@@ -119,6 +113,7 @@ public class Game extends Observable
       {
          location = (int)( Math.random() * ( numberOfPlayers - n ) );
          players[ n ] = playersTemp[ location ];
+         players[ n ].setPlayerNo( n );
          playersTemp[ location ] = playersTemp[ numberOfPlayers - n - 1 ];
       }
    }
@@ -126,6 +121,7 @@ public class Game extends Observable
    public void nextTurn()
    {
       currentPlayer.addRevenue();
+      currentPlayer.setHasTurn( false );
       
       boolean found = false;         
       while( !found )
@@ -141,13 +137,17 @@ public class Game extends Observable
       leadershipTable.refresh();
       
       currentPlayer = getPlayer( turnOfPlayer );
-      currentPlayer.notifier();
+      currentPlayer.setHasTurn( true );
    }
    
    public void rollDice( )
    {
-      currentPlayer.rollDice();      
-      getCurrentLocation().notifier();
+      int movementNumber;
+      
+      movementNumber = currentPlayer.rollDice();     
+      
+      currentPlayer.payTravelFee( movementNumber );
+      route.movePawn( currentPlayer, movementNumber );
    }
    
    public boolean isTurnOf( Player p)
@@ -219,71 +219,14 @@ public class Game extends Observable
       currentPlayer.leaveGame();
    }
    
-   public void fileInfo( String fileName ) 
-   {     
-      try
+   public void startGame()
+   {
+      // Initialise all players and leadership table 
+      for ( int n = 0; n < numberOfPlayers; n++ )
       {
-         FileReader fr;
-         String line;         
-         CSVReader cr;
-         int infoCount;
-         int questionCount;
-         int countryCount;
-         Questions questions;
-         String questionSentence;
-         String[] choices;
-         int answer;
-         
-         answer = 0;
-         questions = new Questions( NUMBER_OF_QUESTIONS );
-         questionSentence = "";
-         this.countries = new Countries();
-         choices = new String[ 3 ];
-         fr = new FileReader( fileName );
-         cr = new CSVReader( fr );
-         infoCount = 0;
-         questionCount = 0;
-         countryCount = 0;
-         while ( countryCount < NUMBER_OF_COUNTRIES )
-         {
-            while ( questionCount < NUMBER_OF_QUESTIONS )
-            {
-               if ( infoCount == 0 )
-               {
-                  questionSentence = cr.next();
-               }
-               else if ( infoCount == 4 )
-               {
-                  answer = Integer.parseInt( cr.next() );             
-               }
-               else
-               {
-                  choices[ infoCount - 1 ] = cr.next();
-               }
-               infoCount = ( infoCount + 1 ) % 5;
-               
-               if ( infoCount == 0 )
-               {
-                  questions.add( new Question( questionSentence, choices, answer ) );
-                  questionCount++;
-                  
-                  choices = new String[ 3 ];
-               }
-            }
-            
-            this.countries.add( new Country( cr.next(), Integer.parseInt( cr.next() ), Integer.parseInt( cr.next() ), questions ) );
-            
-            countryCount++;
-            
-            questions = new Questions( NUMBER_OF_QUESTIONS );
-            questionCount = 0;
-         }
-         
-         cr.close();
-      }
-      catch (IOException e)
-      {
+         getPlayer( n ).notifier();
       }
       
-   }     
+      leadershipTable.notifier();
+   }   
 }

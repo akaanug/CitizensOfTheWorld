@@ -93,7 +93,7 @@ public class YouLosePage extends JPanel implements Observer {
    {
       super.paintComponent(g);
       
-      Image image = new ImageIcon(getClass().getResource( "..\\Background Photos\\LoseFrame.gif" ) ).getImage();
+      Image image = new ImageIcon(getClass().getResource( "..\\pictures\\Background Photos\\LoseFrame.gif" ) ).getImage();
       
       Graphics2D g2 = (Graphics2D) g.create();
       g2.drawImage( image, 0,0,getWidth(),getHeight(), this);

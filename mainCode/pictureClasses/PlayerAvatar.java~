@@ -1,0 +1,13 @@
+package mainCode;
+
+import util.*;
+
+public class PlayerAvatar
+{
+   // properties
+   public static final int WIDTH = 20;
+   public static final int HEIGHT = 30;
+   public static final ResizablePicture pawnPicture;
+   Point location;
+   
+   // constructors

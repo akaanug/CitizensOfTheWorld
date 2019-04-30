@@ -25,17 +25,16 @@ public class CountryInfo extends JPanel implements Observer {
    JButton payAccomodationFee;
    JButton getCitizenship;
    ResizablePicture countryPicture;
-   
+      
    // Constructor to setup the GUI components
    public CountryInfo( Game game ) 
    {     
       this.game = game;
       
       // Add Observer
-      Countries countries = game.getCountries();
-      for ( int n = 0; n < countries.size(); n++ )
+      for ( int n = 0; n < Route.COUNTRY_NUMBER; n++ )
       {
-         countries.get( n ).addObserver( this );
+         Route.COUNTRIES_ON_ROUTE.get( n ).addObserver( this );
       }
       
       createComponents();
@@ -88,6 +87,7 @@ public class CountryInfo extends JPanel implements Observer {
       accomodationFee = new JLabel();
       citizenshipFee = new JLabel();
       income = new JLabel();
+      citizens = new JLabel( "Citizens: " );
       
       infoPanel.add( countryName );
       infoPanel.add( accomodationFee );
@@ -126,6 +126,11 @@ public class CountryInfo extends JPanel implements Observer {
       citizenshipFee.setText( "Citizenship Fee: " + 30 );
       income.setText( "Income: " + c.getTax() );
       countryPicture.setPicture( c.getPicture() );
+      
+//      if ( countries.size() < p.getNumberOfCountries() )
+//      {
+//         createCountryPanel( p.getLastCountry() );
+//      }
       
       setVisible( true );
    }   

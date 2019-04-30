@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import mainCode.*;
 import mainCode.pictures.Avatar;
+import util.GameFileReader;
 
 // A Swing GUI application inherits from top-level container javax.swing.JFrame
 public class PlayerMenu extends JPanel {
@@ -28,7 +29,6 @@ public class PlayerMenu extends JPanel {
    ArrayList<JList<String>> allCountryLists;
    ArrayList<JList<Avatar>> allAvatarLists;
    ArrayList<String> listedCountries; // countries that are listed as in the game ( the usage explained above the method )
-   ArrayList<Avatar> listedAvatars;
    String[] alphabeticalCountries; // we need alphabetical list of countries in scroll panes
    Avatar[] avatars;
    Application app; 
@@ -39,7 +39,10 @@ public class PlayerMenu extends JPanel {
    {
       this.app = app;
       
+      alphabeticalCountries = GameFileReader.getAlphabeticalCountriesArray(); // will be needed in country lists
+      avatars = GameFileReader.getAvatarsArray(); // will be needed in avatar lists     
       createComponents();
+      
       handleActionListeners();
       
       setSize( app.getSize() );   // "super" JFrame sets initial size
@@ -71,12 +74,9 @@ public class PlayerMenu extends JPanel {
       // Players Choices
       playerChoosePanel = new JPanel();
       playerChoosePanel.setLayout( new GridLayout( 2, 2 ) );
-      
-      alphabeticalCountries = getAlphabeticalCountriesArray(); // will be needed in country lists      
-      allCountryLists = new ArrayList<JList<String>>();  
-      
-      avatars = getAvatarsArray(); // will be needed in avatar lists
-      allAvatarLists = new ArrayList<JList<Avatar>>();
+         
+      allCountryLists = new ArrayList<JList<String>>(); 
+      allAvatarLists = new ArrayList<JList<Avatar>>(); 
          
       JList<String> countryList;
       JList<Avatar> avatarList;
@@ -125,11 +125,13 @@ public class PlayerMenu extends JPanel {
    {
       numberOfPlayersButton.addActionListener( new OkBtnListener() );
       back.addActionListener( new BackBtnListener() );
-      listedCountries = getListedCountries(); // will be needed when the game is starting
+      listedCountries = GameFileReader.getListedCountries(); // will be needed when the game is starting
       start.addActionListener( new StartBtnListener() );
    }
    
-   // OK Button listener ( BURAYI OPTÝMÝZE EDEBÝLÝRÝZ )
+   // BUTTON LISTENERS 
+   
+      // OK Button listener ( BURAYI OPTÝMÝZE EDEBÝLÝRÝZ )
    private class OkBtnListener implements ActionListener 
    {
       @Override
@@ -161,7 +163,7 @@ public class PlayerMenu extends JPanel {
       }
    }
    
-   // Start Button Listener
+      // Start Button Listener
    private class StartBtnListener implements ActionListener 
    {
       @Override
@@ -203,105 +205,5 @@ public class PlayerMenu extends JPanel {
    {
       return allAvatarLists.get( playerNo ).getSelectedValue();
    }
-   
-   // Creates the country arraylist with the order in the game ( to determine the locations of players from the country they chose )
-   public ArrayList<String> getAlphabeticalCountries() 
-   {
-      final int COUNTRY_NUMBER = 60;
       
-      try
-      {
-         ArrayList<String> countries;
-         FileReader fr;
-         BufferedReader br;
-         
-         countries = new ArrayList<String>();
-         fr = new FileReader( "Country Info\\countries alphabetical.txt" );
-         br = new BufferedReader( fr );
-         for( int n = 0; n < COUNTRY_NUMBER; n++ )
-         {
-            countries.add( br.readLine() );
-         }
-         
-         return countries;
-      }
-      catch (IOException e)
-      {
-         return null;
-      }
-   }
-   
-   // Creates the country array in alphabetical order ( to make it compatible with JList )
-   public String[] getAlphabeticalCountriesArray()
-   {
-      String[] arrayCountries;
-      ArrayList<String> listCountries;
-      
-      listCountries = getAlphabeticalCountries();
-      arrayCountries = new String[ listCountries.size() ];
-      
-      for ( int n = 0; n < arrayCountries.length; n++ )
-      {
-         arrayCountries[ n ] = listCountries.get( n );
-      }
-      
-      return arrayCountries;
-   }
-   
-   public ArrayList<String> getListedCountries() 
-   {
-      final int COUNTRY_NUMBER = 60;
-      
-      try
-      {
-         ArrayList<String> countries;
-         FileReader fr;
-         BufferedReader br;
-         
-         countries = new ArrayList<String>();
-         fr = new FileReader( "Country Info\\countries listed.txt" );
-         br = new BufferedReader( fr );
-         for( int n = 0; n < COUNTRY_NUMBER; n++ )
-         {
-            countries.add( br.readLine() );
-         }
-         
-         return countries;
-      }
-      catch (IOException e)
-      {
-         return null;
-      }
-   }
-   
-   // Puts all accessible avatars in an array 
-   public Avatar[] getAvatarsArray()
-   {
-      final int AVATAR_NUMBER = 26;
-      
-      try
-      {
-         Avatar[] avatars;
-         FileReader fr;
-         BufferedReader br;
-         Avatar avatar;
-         
-         avatars = new Avatar[ AVATAR_NUMBER ];
-         fr = new FileReader( "Avatar Pictures\\avatar names.txt" );
-         br = new BufferedReader( fr );
-         for( int n = 0; n < AVATAR_NUMBER; n++ )
-         {
-            avatar = new Avatar( br.readLine() );
-            avatars[ n ] = avatar;
-         }
-         
-         return avatars;
-      }
-      catch (IOException e)
-      {
-         return null;
-      }
-   }
-   
-   
 }
