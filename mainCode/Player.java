@@ -1,7 +1,7 @@
 package mainCode;
 
 import java.util.Observable;
-import mainCode.pictures.*;
+import mainCode.pictureClasses.*;
 
 // buraya bi comment atýver
 public class Player extends Observable implements Comparable

@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import mainCode.*;
-import mainCode.pictures.*;
+import mainCode.pictureClasses.*;
 import util.*;
 import java.util.Observer;
 import java.util.Observable;

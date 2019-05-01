@@ -82,13 +82,18 @@ public class Country extends Observable
       return picture;
    }
    
+   public Point getLocation()
+   {
+      return location;
+   }
+   
    public int getLocationOnRoute()
    {
       return locationOnRoute;
    }
    
    // questionlarýn içinden 3 tane random seçip atýyorsun 
-   public Questions determineThreeRandomQuestions()
+   protected Questions determineThreeRandomQuestions()
    {
       Questions randomQuestions;
       Questions questionsTemplate;
@@ -108,7 +113,7 @@ public class Country extends Observable
    }
    
    // playeri arraya ekliyosun yani ez
-   public void addToCitizenship( Player p )
+   protected void addToCitizenship( Player p )
    {
       citizens[ numberOfCitizens ] = p;
       numberOfCitizens++;

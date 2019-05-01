@@ -3,7 +3,7 @@ package util;
 import java.awt.*;        // Using AWT layouts
 import java.awt.event.*;  // Using AWT event classes and listener interfaces
 import javax.swing.*;     // Using Swing components and containers
-import mainCode.pictures.*;
+import mainCode.pictureClasses.*;
 import java.util.Observer;
 import java.util.Observable;
 import mainCode.*;

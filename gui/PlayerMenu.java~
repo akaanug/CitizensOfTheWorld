@@ -75,8 +75,8 @@ public class PlayerMenu extends JPanel {
       playerChoosePanel = new JPanel();
       playerChoosePanel.setLayout( new GridLayout( 2, 2 ) );
          
-      allCountryLists = new ArrayList<JList<String>>();  
-      allAvatarLists = new ArrayList<JList<Avatar>>();
+      allCountryLists = new ArrayList<JList<String>>(); 
+      allAvatarLists = new ArrayList<JList<Avatar>>(); 
          
       JList<String> countryList;
       JList<Avatar> avatarList;

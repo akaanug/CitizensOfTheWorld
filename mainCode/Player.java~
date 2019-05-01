@@ -109,6 +109,11 @@ public class Player extends Observable implements Comparable
       notifier();
    }
    
+   protected void setPlayerNo( int playerNo )
+   {
+      this.playerNo = playerNo;
+   }
+   
    protected void leaveGame()
    {
       isPlaying = false;

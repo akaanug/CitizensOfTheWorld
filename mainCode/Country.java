@@ -1,7 +1,7 @@
 package mainCode;
 
 import java.util.Observable;
-import mainCode.pictures.*;
+import mainCode.pictureClasses.*;
 import java.awt.Point;
 
 // buraya bi comment atýver

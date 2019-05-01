@@ -113,6 +113,7 @@ public class Game extends Observable
       {
          location = (int)( Math.random() * ( numberOfPlayers - n ) );
          players[ n ] = playersTemp[ location ];
+         players[ n ].setPlayerNo( n );
          playersTemp[ location ] = playersTemp[ numberOfPlayers - n - 1 ];
       }
    }
@@ -147,8 +148,6 @@ public class Game extends Observable
       
       currentPlayer.payTravelFee( movementNumber );
       route.movePawn( currentPlayer, movementNumber );
-      
-      getCurrentLocation().notifier();
    }
    
    public boolean isTurnOf( Player p)

@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.Observable;
 import util.*;
 import gui.*;
-import mainCode.pictures.*;
+import mainCode.pictureClasses.*;
    
 public class Game extends Observable
 {   

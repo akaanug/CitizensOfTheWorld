@@ -93,7 +93,7 @@ public class GameFileReader
    }
    
    // Used in Game class, to upload the country informations.
-   public static Country[] uploadCountryInfo( ) 
+   public static Countries uploadCountryInfo( ) 
    {     
       final int NUMBER_OF_QUESTIONS = 10;
       final int NUMBER_OF_COUNTRIES = 60;
@@ -111,12 +111,12 @@ public class GameFileReader
          String questionSentence;
          String[] choices;
          int answer;
-         Country[] countries;
+         Countries countries;
          
          answer = 0;
          questions = new Questions( NUMBER_OF_QUESTIONS );
          questionSentence = "";
-         countries = new Country[ NUMBER_OF_COUNTRIES ];
+         countries = new Countries( NUMBER_OF_COUNTRIES );
          choices = new String[ NUMBER_OF_CHOICES ];
          fr = new FileReader( "Country Info\\countries.txt" );
          cr = new CSVReader( fr );
@@ -150,7 +150,7 @@ public class GameFileReader
                }
             }
             
-            countries[ countryCount ] = new Country( cr.next(), Integer.parseInt( cr.next() ), Integer.parseInt( cr.next() ), questions, 10, 10, countryCount );
+            countries.add( new Country( cr.next(), Integer.parseInt( cr.next() ), Integer.parseInt( cr.next() ), questions, 10 * countryCount, 10 * countryCount, countryCount ) );
             
             countryCount++;
             

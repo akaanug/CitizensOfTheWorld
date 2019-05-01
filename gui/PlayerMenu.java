@@ -8,7 +8,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import mainCode.*;
-import mainCode.pictures.Avatar;
+import mainCode.pictureClasses.Avatar;
 import util.GameFileReader;
 
 // A Swing GUI application inherits from top-level container javax.swing.JFrame
