@@ -8,12 +8,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import mainCode.*;
-import mainCode.pictures.Avatar;
+import mainCode.pictureClasses.Avatar;
 import util.GameFileReader;
 
 // A Swing GUI application inherits from top-level container javax.swing.JFrame
 public class PlayerMenu extends JPanel {
- 
+   
    // Private instance variables
    JButton back;
    JButton start;
@@ -68,16 +68,16 @@ public class PlayerMenu extends JPanel {
       
       numberOfPlayersButton = new JButton( "OK" );
       numberOfPlayersPanel.add( numberOfPlayersButton );
-                               
+      
       add( numberOfPlayersPanel, BorderLayout.NORTH );     
       
       // Players Choices
       playerChoosePanel = new JPanel();
       playerChoosePanel.setLayout( new GridLayout( 2, 2 ) );
-         
+      
       allCountryLists = new ArrayList<JList<String>>(); 
       allAvatarLists = new ArrayList<JList<Avatar>>(); 
-         
+      
       JList<String> countryList;
       JList<Avatar> avatarList;
       for ( int n = 0; n < 4; n++ )
@@ -97,13 +97,13 @@ public class PlayerMenu extends JPanel {
       
       // Back and Start Buttons
       backAndStartPanel = new JPanel( new FlowLayout() );
-   
+      
       back = new JButton( "Back" );
       backAndStartPanel.add( back ); 
       
       start = new JButton( "Start" );
       backAndStartPanel.add( start ); 
- 
+      
       add( backAndStartPanel, BorderLayout.SOUTH );
    }
    
@@ -131,7 +131,7 @@ public class PlayerMenu extends JPanel {
    
    // BUTTON LISTENERS 
    
-      // OK Button listener ( BURAYI OPTÝMÝZE EDEBÝLÝRÝZ )
+   // OK Button listener ( BURAYI OPTÝMÝZE EDEBÝLÝRÝZ )
    private class OkBtnListener implements ActionListener 
    {
       @Override
@@ -163,7 +163,7 @@ public class PlayerMenu extends JPanel {
       }
    }
    
-      // Start Button Listener
+   // Start Button Listener
    private class StartBtnListener implements ActionListener 
    {
       @Override
@@ -205,5 +205,5 @@ public class PlayerMenu extends JPanel {
    {
       return allAvatarLists.get( playerNo ).getSelectedValue();
    }
-      
+   
 }

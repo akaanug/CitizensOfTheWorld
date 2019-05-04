@@ -10,14 +10,14 @@ package gui;
  * @author kaan
  */
 public class LT extends javax.swing.JPanel {
-
+    
     /**
      * Creates new form LeadershipTablePanel
      */
     public LT( int num, String names, int numOfCountries, int moneys ) {
         initComponents( num, names, numOfCountries, moneys );
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -25,74 +25,66 @@ public class LT extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
-    private void initComponents( int num, String names, int numOfCountries, int moneys ) {
-
-        jPanel1 = new javax.swing.JPanel();
+        private void initComponents( int num, String names, int numOfCountries, int moneys ) {
+        
         name = new javax.swing.JLabel();
         noOfCountries = new javax.swing.JLabel();
-        number = new javax.swing.JLabel();
         money = new javax.swing.JLabel();
-
-        jPanel1.setBackground(new java.awt.Color(102, 255, 255));
-
-        name.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        number = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        
+        setBackground(new java.awt.Color(102, 255, 255));
+        
+        name.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         name.setText(names);
-
-        noOfCountries.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        noOfCountries.setText( numOfCountries + "" );
-
-        number.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        
+        noOfCountries.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        noOfCountries.setText(numOfCountries + "");
+        
+        money.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        money.setText( moneys + "" );
+        
+        number.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         number.setForeground(new java.awt.Color(255, 0, 0));
-        number.setText(num + "");
-
-        money.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        money.setText(moneys + "");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(number, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(noOfCountries, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23))
-                    .addComponent(money, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(name)
-                    .addComponent(number))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(noOfCountries)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(money, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
-        );
-
+        number.setText(num + ".");
+        
+        jLabel1.setOpaque(true);
+        
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, Short.MAX_VALUE)
-        );
+                                  layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                      .addGroup(layout.createSequentialGroup()
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                  .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                .addComponent(money, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                  .addGroup(layout.createSequentialGroup()
+                                                                                .addGap(22, 22, 22)
+                                                                                .addComponent(number, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                              .addComponent(noOfCountries, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                              .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                                    .addContainerGap())
+                                      .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                 );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 360, Short.MAX_VALUE))
-        );
-    }// </editor-fold>  
+                                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                                  .addContainerGap()
+                                                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                .addComponent(number)
+                                                                .addComponent(name))
+                                                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                  .addComponent(noOfCountries)
+                                                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                  .addComponent(money, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                                                  .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
+                               );
+    }// </editor-fold>                        
     
     public void change( int num, String names, int numOfCountries, int moneys )
     {
@@ -102,10 +94,10 @@ public class LT extends javax.swing.JPanel {
         money.setText( moneys + "" );
         
     }
-
-
-    // Variables declaration - do not modify                     
-    private javax.swing.JPanel jPanel1;
+    
+    
+    // Variables declaration - do not modify  
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel money;
     private javax.swing.JLabel name;
     private javax.swing.JLabel noOfCountries;
