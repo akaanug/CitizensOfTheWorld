@@ -467,6 +467,8 @@ public class PlayerMenu extends javax.swing.JPanel {
       if( p2Panel.isVisible() ) {
          numberOfPlayers = 2;
       }
+      else
+         numberOfPlayers = 1;
    }                                        
    
    private void threeCheckActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -479,6 +481,8 @@ public class PlayerMenu extends javax.swing.JPanel {
       if( p3Panel.isVisible() ) {
          numberOfPlayers = 3;
       }
+      else
+         numberOfPlayers = 2;
    }                                          
    
    private void fourCheckActionPerformed(java.awt.event.ActionEvent evt) {                                          
@@ -491,6 +495,8 @@ public class PlayerMenu extends javax.swing.JPanel {
       if( p4Panel.isVisible() ) {
          numberOfPlayers = 4;
       }
+      else
+         numberOfPlayers = 3;
    }                                         
    
    private void backActionPerformed(java.awt.event.ActionEvent evt) {                                     
