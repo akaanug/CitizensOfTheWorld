@@ -24,15 +24,16 @@ public class QuestionPage extends javax.swing.JPanel implements Observer {
      * Creates new form QuestionPageJ
      */
     
-    GameGUI parent;
-    Timer timer;
-    ArrayList<JButton> choiceButtons;
     public static final int CHOICE_NUMBER = 3;
-    public static final int ONE_SECOND = 1000;
-    public static final int QUESTION_TIME = 15;
-    int remainingTime;  
+    GameGUI parent;
     Game game;
-    int n;
+    ArrayList<JButton> choiceButtons;
+    private JButton choiceOne;
+    private JButton choiceThree;
+    private JButton choiceTwo;
+    private JLabel header;
+    private JLabel questionSentence;
+    private JLabel timeLabel;
     
     public QuestionPage( GameGUI parent ) {
         initComponents();
@@ -49,34 +50,14 @@ public class QuestionPage extends javax.swing.JPanel implements Observer {
         
         handleActionListeners();
         
-        timer = new Timer(ONE_SECOND, new QuestionTimeListener() );
-        
         setVisible( false );
     }
     
     public void handleActionListeners()
     {
-        for ( n = 0; n < CHOICE_NUMBER; n++ )
+        for ( int n = 0; n < CHOICE_NUMBER; n++ )
         {
             choiceButtons.get( n ).addActionListener( new ChoiceBtnListener() );
-        }
-    }
-    
-    public class QuestionTimeListener implements ActionListener
-    {
-        @Override
-        public void actionPerformed( ActionEvent evt )
-        {
-            remainingTime--;
-            
-            timeLabel.setText( remainingTime + "" );
-            
-            if ( remainingTime == 0 ) 
-            {
-                timer.stop();
-                
-                game.youLose();
-            }
         }
     }
     
@@ -85,8 +66,6 @@ public class QuestionPage extends javax.swing.JPanel implements Observer {
         @Override
         public void actionPerformed( ActionEvent evt )
         {                  
-            timer.stop();
-            
             game.giveAnswerToQuestion( choiceButtons.indexOf( evt.getSource() ) );
         }
     }
@@ -97,18 +76,15 @@ public class QuestionPage extends javax.swing.JPanel implements Observer {
         Question currentQuestion = quiz.getQuestion();
         
         if ( quiz.isQuizzing() )
-        {
-            remainingTime = QUESTION_TIME;
-            
-            timeLabel.setText( remainingTime + "" );      
+        {           
+            timeLabel.setText( quiz.getRemainingTime() + "" );      
             header.setText( "QUESTION   " + ( quiz.getQuestionNumber() + 1 ) );
             questionSentence.setText( currentQuestion.getQuestionSentence() );
-            for ( n = 0; n < CHOICE_NUMBER; n++ )
+            for ( int n = 0; n < CHOICE_NUMBER; n++ )
             {
                 choiceButtons.get( n ).setText( currentQuestion.getChoice( n ) );
             }
             
-            timer.start();
             setVisible( true );
         }
         else
@@ -194,16 +170,5 @@ public class QuestionPage extends javax.swing.JPanel implements Observer {
                 .addComponent(choiceThree, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45))
         );
-    }// </editor-fold>
-    
-    
-    // Variables declaration - do not modify                     
-    private javax.swing.JButton choiceFour;
-    private javax.swing.JButton choiceOne;
-    private javax.swing.JButton choiceThree;
-    private javax.swing.JButton choiceTwo;
-    private javax.swing.JLabel header;
-    private javax.swing.JLabel questionSentence;
-    private javax.swing.JLabel timeLabel;
-    // End of variables declaration                   
+    }// </editor-fold>                 
 }
