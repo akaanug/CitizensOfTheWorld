@@ -100,6 +100,11 @@ public class Game extends Observable implements Observer
    {
       return p.getCurrentCountry();
    }
+   
+   public Route getRoute()
+   {
+      return route;
+   }
       
    public void shufflePlayers()
    {
@@ -145,12 +150,7 @@ public class Game extends Observable implements Observer
    
    public void rollDice( )
    {
-      int movementNumber;
-      
-      movementNumber = currentPlayer.rollDice();     
-      
-      currentPlayer.payTravelFee( movementNumber );
-      route.movePawn( currentPlayer, movementNumber );
+      route.movePawn( currentPlayer, currentPlayer.rollDice() );
    }
    
    public boolean isTurnOf( Player p)

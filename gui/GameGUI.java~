@@ -106,7 +106,6 @@ public class GameGUI extends JPanel {
          game.rollDice();
          
          rollDice.setVisible( false );
-         countryInfo.setVisible( true );
       }
    }
    

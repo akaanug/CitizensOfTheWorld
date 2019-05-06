@@ -34,9 +34,14 @@ public class GameGUIEastPanel extends JPanel
    
    public void createComponents()
    {
+      setOpaque( false );
+      
       eastPanel = new JPanel();
+      eastPanel.setOpaque( false );
       eastPanel.setLayout( new GridLayout( 7, 1 ) );
+      
       westPanel = new JPanel();
+      westPanel.setOpaque( false );
       westPanel.setLayout( new FlowLayout() );
       
       // Declaring East Panel Buttons and West Panel Infos
@@ -49,7 +54,7 @@ public class GameGUIEastPanel extends JPanel
          eastPanelButtons.add( new OpenCloseJButton( game.getPlayer( n ), eastButtonSize ) );
          westPanelInfos.add( new PlayerInfo( game, n ) );
       }                         
-      eastPanelButtons.add( new OpenCloseJButton( "Leadership ", eastButtonSize ) );
+      eastPanelButtons.add( new OpenCloseJButton( "Leadership", eastButtonSize ) );
       westPanelInfos.add( new LeadershipTablePanel( game.getLeadershipTable() ) );
       
       for( int n = 0; n < eastPanelButtons.size(); n++ )

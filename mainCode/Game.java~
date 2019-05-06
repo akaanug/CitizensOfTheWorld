@@ -7,11 +7,12 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Observable;
+import java.util.Observer;
 import util.*;
 import gui.*;
-import mainCode.pictures.*;
-   
-public class Game extends Observable
+import mainCode.pictureClasses.*;
+
+public class Game extends Observable implements Observer 
 {   
    Scanner scan = new Scanner( System.in);
          
@@ -35,7 +36,9 @@ public class Game extends Observable
        this.numberOfPlayers = numberOfPlayers;
        roundNo = 0;
        turnOfPlayer = 0;
+       
        quiz = new Quiz();
+       quiz.addObserver( this );
        
        players = new Player[ numberOfPlayers ];
        for ( int n = 0; n < numberOfPlayers; n++ )
@@ -194,24 +197,9 @@ public class Game extends Observable
       notifyObservers( new YouLosePage() );
    }
    
-   public int giveAnswerToQuestion( int answer )
+   public void giveAnswerToQuestion( int answer )
    {
-      int reflection = quiz.checkAnswer( answer );
-   
-      if ( reflection == 0 )
-      {
-         youLose();
-      }
-      else if ( reflection == 1 )
-      {
-         currentPlayer.payQuestionFee();
-      }
-      else if ( reflection == 2 )
-      {
-         youWin();
-      }
-      
-      return reflection;
+      quiz.checkAnswer( answer );
    }
          
    public void leaveGame()
@@ -229,4 +217,25 @@ public class Game extends Observable
       
       leadershipTable.notifier();
    }   
+   
+   public void update( Observable obs, Object obj )
+   {
+      if ( obj != null )
+      {
+         String s = (String)obj;
+         
+         if ( s.equals( "you win" ) )
+         {
+            youWin();
+         }
+         else if ( s.equals( "you lose" ) )
+         {
+            youLose();
+         }
+         else if ( s.equals( "next question" ) )
+         {
+            currentPlayer.payQuestionFee();
+         }
+      }
+   }
 }

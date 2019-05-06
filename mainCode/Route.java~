@@ -6,23 +6,19 @@ import javax.swing.Timer;
 public class Route
 {
    // properties
-   public static final int PAWN_MOVING_TIME_ONE_PIXEL = 40;
    public static final int COUNTRY_NUMBER = 60;
    public static final int TRAVEL_CHARGE = 5;
    public static final Countries COUNTRIES_ON_ROUTE = GameFileReader.uploadCountryInfo( );
    Pawn[] pawns;
    Pawn currentPawn;
-   Timer timer;
    
    // constructors
    public Route( Player[] players )
    {
-      timer = new Timer( PAWN_MOVING_TIME_ONE_PIXEL, new PawnTimeListener() );
-      
       pawns = new Pawn[ players.length ];
       for ( int n = 0; n < pawns.length; n++ )
       {
-         pawns[ n ] = new Pawn( players[ n ], timer );
+         pawns[ n ] = new Pawn( players[ n ] );
       }
    }
    
@@ -33,26 +29,7 @@ public class Route
    }
    
    protected void movePawn( Player p, int movementNumber )
-   {
-      currentPawn = pawns[ p.getPlayerNo() ];
-            
-      for ( int n = 0; n < movementNumber; n++ )
-      {
-         currentPawn.moveNextCountry();
-         p.setLocation( currentPawn.getCurrentCountry() );
-      }         
-   }
-   
-   public class PawnTimeListener implements ActionListener
-   {
-      @Override
-      public void actionPerformed( ActionEvent evt )
-      {
-         if ( remainingTime == 0 ) 
-         {
-            timer.stop();
-            currentPawn.setLocation( (int)locX, (int)locY ); // küsüratlarý yok etmek için            
-         }        
-      }
+   {        
+      pawns[ p.getPlayerNo() ].moveAmongCountries( movementNumber );    
    }
 }

@@ -11,21 +11,25 @@ public class Pawn
    // properties
    public static final int WIDTH = 10;
    public static final int HEIGHT = 15; 
-   
+   public static final int MOVING_TIME_ONE_PIXEL = 40;
    ResizablePicture picture;
+   Player p;
    Country currentCountry;
    double locX;
    double locY;
    Timer timer;
+   int neededMovements;
    int remainingTime;
    int movementNumber;
    double movementOfX;
    double movementOfY;
    
    // constructors
-   public Pawn( Player p, Timer t )
+   public Pawn( Player p )
    {
-      picture = new ResizablePicture( WIDTH, HEIGHT, "..\\pictures\\Pawns\\" + p.getPlayerNo() + ".png" );      
+      picture = new ResizablePicture( WIDTH, HEIGHT, "..\\pictures\\Pawns\\" + p.getPlayerNo() + ".png" );  
+      
+      this.p = p;
       setLocation( p.getCurrentCountry() );
       
       timer = new Timer( MOVING_TIME_ONE_PIXEL, new MovementTimeListener() ); 
@@ -64,23 +68,23 @@ public class Pawn
    
    protected void moveNextCountry()
    {
-      System.out.println( "AAAAAAAAAAAA" );
       // Get the location of next country
       currentCountry = Route.COUNTRIES_ON_ROUTE.get( ( currentCountry.getLocationOnRoute() + 1 ) % 60 );
       Point newLocation = currentCountry.getLocation();
       
       // Find the distance and needed movements
       double distance = Math.hypot( newLocation.getX() - locX, newLocation.getY() - locY );      
-      remainingTime = (int)distance;
+      neededMovements = (int)distance;
+      remainingTime = neededMovements;
       
       // Move the pawn
-      movementOfX = ( newLocation.getX() - locX ) / remainingTime;
-      movementOfY = ( newLocation.getY() - locY ) / remainingTime;
+      movementOfX = ( newLocation.getX() - locX ) / neededMovements;
+      movementOfY = ( newLocation.getY() - locY ) / neededMovements;
       timer.start();
       
    }
    
-   protected void moveAlongCountries( int movementNumber )
+   protected void moveAmongCountries( int movementNumber )
    {
       this.movementNumber = movementNumber;
       moveNextCountry();
@@ -91,7 +95,28 @@ public class Pawn
       @Override
       public void actionPerformed( ActionEvent evt )
       {
-         move( movementOfX, movementOfY );      
+         remainingTime--;
+         System.out.println( remainingTime );
+         
+         move( movementOfX, movementOfY );   
+         
+         if ( remainingTime == 0 ) 
+         {
+            timer.stop();
+            movementNumber--;
+            
+            setLocation( (int)locX, (int)locY ); // küsüratlarý yok etmek için         
+            p.setLocation( currentCountry );
+            
+            if ( movementNumber != 0 )
+            {
+               moveNextCountry();
+            }
+            else
+            {
+               currentCountry.notifier();
+            }
+         }
       }
    }
 }

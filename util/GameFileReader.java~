@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import mainCode.*;
-import mainCode.pictures.Avatar;
+import mainCode.pictureClasses.Avatar;
 
 public class GameFileReader
 {   

@@ -168,9 +168,9 @@ public class Player extends Observable implements Comparable
       notifier();
    }
    
-   protected void payTravelFee( int locationChange )
+   protected void payTravelFee( )
    {
-      money = money - locationChange * Route.TRAVEL_CHARGE;
+      money = money - Route.TRAVEL_CHARGE;
       notifier();
    }
    

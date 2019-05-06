@@ -150,7 +150,7 @@ public class GameFileReader
                }
             }
             
-            countries.add( new Country( cr.next(), Integer.parseInt( cr.next() ), Integer.parseInt( cr.next() ), questions, 10 * countryCount, 10 * countryCount, countryCount ) );
+            countries.add( new Country( cr.next(), Integer.parseInt( cr.next() ), Integer.parseInt( cr.next() ), questions, Integer.parseInt( cr.next() ), Integer.parseInt( cr.next() ), countryCount ) );
             
             countryCount++;
             
