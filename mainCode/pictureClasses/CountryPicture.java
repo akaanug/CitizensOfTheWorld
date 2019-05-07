@@ -1,8 +1,9 @@
 package mainCode.pictureClasses;
 
 import util.ResizablePicture;
+import java.io.Serializable;
 
-public class CountryPicture extends ResizablePicture
+public class CountryPicture extends ResizablePicture implements Serializable
 {
    // properties
    public static final int WIDTH = 300;

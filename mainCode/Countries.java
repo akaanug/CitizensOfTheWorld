@@ -1,9 +1,10 @@
 package mainCode;
 
 import util.GameFileReader;
+import java.io.Serializable;
 
 // buraya bi comment atýver
-public class Countries
+public class Countries implements Serializable
 {
    // properties
    Country[] countries;

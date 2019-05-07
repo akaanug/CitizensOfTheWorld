@@ -7,8 +7,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 import java.util.Observable;
+import java.io.Serializable;
 
-public class Pawn extends Observable
+public class Pawn extends Observable implements Serializable
 {
    // properties
    public static final int WIDTH = 20;
@@ -90,7 +91,7 @@ public class Pawn extends Observable
       
       // Find the distance and needed movements
       double distance = Math.hypot( newLocation.getX() - locX, newLocation.getY() - locY );      
-      neededMovements = (int)distance;
+      neededMovements = (int)(distance / 2);
       remainingTime = neededMovements;
       
       // Move the pawn
@@ -106,13 +107,12 @@ public class Pawn extends Observable
       moveNextCountry();
    }
    
-   public class MovementTimeListener implements ActionListener
+   public class MovementTimeListener implements ActionListener, Serializable
    {
       @Override
       public void actionPerformed( ActionEvent evt )
       {
          remainingTime--;
-         System.out.println( remainingTime );
          
          move( movementOfX, movementOfY );   
          

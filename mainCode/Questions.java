@@ -1,7 +1,9 @@
 package mainCode;
 
+import java.io.Serializable;
+
 // Represents package of questions.
-public class Questions
+public class Questions implements Serializable
 {
    // properties
    Question[] questions;

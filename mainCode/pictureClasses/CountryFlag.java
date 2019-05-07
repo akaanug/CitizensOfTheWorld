@@ -1,8 +1,9 @@
 package mainCode.pictureClasses;
 
 import util.ResizablePicture;
+import java.io.Serializable;
 
-public class CountryFlag extends ResizablePicture
+public class CountryFlag extends ResizablePicture implements Serializable
 {
    // properties
    public static final int WIDTH = 150;

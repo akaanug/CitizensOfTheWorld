@@ -2,8 +2,9 @@ package mainCode;
 
 import util.GameFileReader;
 import javax.swing.Timer;
+import java.io.Serializable;
 
-public class Route
+public class Route implements Serializable
 {
    // properties
    public static final int COUNTRY_NUMBER = 60;

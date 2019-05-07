@@ -28,8 +28,13 @@ public class Route
       return COUNTRIES_ON_ROUTE.get( location );
    }
    
+   public Pawn getPawn( int playerNo )
+   {
+      return pawns[ playerNo ];
+   }
+   
    protected void movePawn( Player p, int movementNumber )
    {        
-      pawns[ p.getPlayerNo() ].moveAmongCountries( movementNumber );    
+      getPawn( p.getPlayerNo() ).moveAmongCountries( movementNumber );    
    }
 }

@@ -3,8 +3,9 @@ package mainCode.pictureClasses;
 import util.*;
 import java.awt.*;
 import javax.swing.*;
+import java.io.Serializable;
 
-public class Avatar extends ResizablePicture implements Icon
+public class Avatar extends ResizablePicture implements Icon, Serializable
 {
    // properties
    public static final int STANDART_EDGE = 50;

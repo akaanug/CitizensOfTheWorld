@@ -1,18 +1,21 @@
 package mainCode;
 
 import util.ResizablePicture;
-import java.awt.Point;
+import java.awt.*;
 import javax.swing.Timer;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.*;
+import java.util.Observable;
+import java.io.Serializable;
 
-public class Pawn
+public class Pawn extends Observable implements Serializable
 {
    // properties
-   public static final int WIDTH = 10;
-   public static final int HEIGHT = 15; 
+   public static final int WIDTH = 20;
+   public static final int HEIGHT = 30; 
    public static final int MOVING_TIME_ONE_PIXEL = 40;
-   ResizablePicture picture;
+   String picturePath;
    Player p;
    Country currentCountry;
    double locX;
@@ -26,16 +29,23 @@ public class Pawn
    
    // constructors
    public Pawn( Player p )
-   {
-      picture = new ResizablePicture( WIDTH, HEIGHT, "..\\pictures\\Pawns\\" + p.getPlayerNo() + ".png" );  
-      
+   {      
       this.p = p;
       setLocation( p.getCurrentCountry() );
-      
+         
       timer = new Timer( MOVING_TIME_ONE_PIXEL, new MovementTimeListener() ); 
    }
    
    // methods
+   public void draw( Graphics g, JPanel panel )
+   {
+      Image bg = new ImageIcon( getClass().getResource( "..\\pictures\\pawns\\" + p.getPlayerNo() + ".png" ) ).getImage();
+      
+      Graphics2D g2 = (Graphics2D) g.create();
+      g2.drawImage( bg, (int)locX, (int)locY - HEIGHT, WIDTH, HEIGHT, panel );
+      g2.dispose();
+   }
+   
    public Point getLocation()
    {
       return new Point( (int)locX, (int)locY );
@@ -57,24 +67,31 @@ public class Pawn
    {
       this.locX = locX;
       this.locY = locY;
+      
+      setChanged();
+      notifyObservers();
    }
    
    protected void move( double x, double y )
    {
-      setLocation( locX + x, locY + y );
-      System.out.println( locX );
-      System.out.println( locY );
+      setLocation( ( locX + x ) % 1920, locY + y );
    }
    
    protected void moveNextCountry()
    {
       // Get the location of next country
+      p.payTravelFee();
       currentCountry = Route.COUNTRIES_ON_ROUTE.get( ( currentCountry.getLocationOnRoute() + 1 ) % 60 );
-      Point newLocation = currentCountry.getLocation();
+      
+      Point newLocation = new Point( currentCountry.getLocation() );
+      if ( currentCountry.getLocationOnRoute() == 0 )
+      {
+         newLocation.translate( 1920, 0 );
+      }
       
       // Find the distance and needed movements
       double distance = Math.hypot( newLocation.getX() - locX, newLocation.getY() - locY );      
-      neededMovements = (int)distance;
+      neededMovements = (int)(distance / 2);
       remainingTime = neededMovements;
       
       // Move the pawn
@@ -96,7 +113,6 @@ public class Pawn
       public void actionPerformed( ActionEvent evt )
       {
          remainingTime--;
-         System.out.println( remainingTime );
          
          move( movementOfX, movementOfY );   
          
@@ -117,7 +133,7 @@ public class Pawn
                currentCountry.notifier();
             }
          }
-      }
+      }    
    }
 }
          

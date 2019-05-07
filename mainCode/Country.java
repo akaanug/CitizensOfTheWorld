@@ -3,9 +3,10 @@ package mainCode;
 import java.util.Observable;
 import mainCode.pictureClasses.*;
 import java.awt.Point;
+import java.io.Serializable;
 
 // buraya bi comment atýver
-public class Country extends Observable
+public class Country extends Observable implements Serializable
 {
    // properties
    public static final int NUMBER_OF_PLAYERS = 4;

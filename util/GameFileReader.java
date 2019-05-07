@@ -6,8 +6,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import mainCode.*;
 import mainCode.pictureClasses.Avatar;
+import java.io.Serializable;
 
-public class GameFileReader
+public class GameFileReader implements Serializable
 {   
    // Used in PlayerMenu, to create country JList.
    public static String[] getAlphabeticalCountriesArray()

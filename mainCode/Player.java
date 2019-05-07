@@ -2,9 +2,10 @@ package mainCode;
 
 import java.util.Observable;
 import mainCode.pictureClasses.*;
+import java.io.Serializable;
 
 // buraya bi comment atýver
-public class Player extends Observable implements Comparable
+public class Player extends Observable implements Comparable, Serializable
 {
    // properties
    public static final int STARTING_MONEY = 1000;

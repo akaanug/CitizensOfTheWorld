@@ -1,8 +1,9 @@
 package mainCode;
 
 import java.util.Observable;
+import java.io.Serializable;
    
-public class LeadershipTable extends Observable
+public class LeadershipTable extends Observable implements Serializable
 {
    // properties 
    Player[] leadershipTable;

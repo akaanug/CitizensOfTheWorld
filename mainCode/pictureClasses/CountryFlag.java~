@@ -1,4 +1,4 @@
-package mainCode.picture classes;
+package mainCode.pictureClasses;
 
 import util.ResizablePicture;
 

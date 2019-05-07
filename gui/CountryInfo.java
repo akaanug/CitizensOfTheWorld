@@ -18,19 +18,11 @@ import java.util.Observable;
  *
  * @author kaan.uguralp-ug
  */
-public class CountryInfo extends JPanel implements Observer {
+public class CountryInfo extends javax.swing.JPanel implements Observer {
    
-   // Variables declaration - do not modify 
+   
    Game game;
-   ResizablePicture countryPicture;                  
-   private JLabel accomodationFee;
-   private JLabel citizenshipFee;
-   private JLabel countryName;
-   private JLabel countryPic;
-   private JButton getCitizenship;
-   private JLabel income;
-   private JButton payAccomodationFee;
-   // End of variables declaration
+   ResizablePicture countryPicture;
    
    /**
     * Creates new form CountryInfo
@@ -110,24 +102,24 @@ public class CountryInfo extends JPanel implements Observer {
       private void initComponents() {
       
       countryPicture = new CountryPicture();
-      countryPic = new JLabel();
+      countryPic = new javax.swing.JLabel();
       countryPic.add( countryPicture );
       
-      countryName = new JLabel();
-      accomodationFee = new JLabel();
-      citizenshipFee = new JLabel();
-      income = new JLabel();
-      payAccomodationFee = new JButton();
-      getCitizenship = new JButton();
+      countryName = new javax.swing.JLabel();
+      accomodationFee = new javax.swing.JLabel();
+      citizenshipFee = new javax.swing.JLabel();
+      income = new javax.swing.JLabel();
+      payAccomodationFee = new javax.swing.JButton();
+      getCitizenship = new javax.swing.JButton();
       
       setBackground(new java.awt.Color(102, 255, 255));
       
       countryName.setFont(new java.awt.Font("Gisha", 1, 24)); // NOI18N
       countryName.setForeground(new java.awt.Color(0, 102, 102));
-      countryName.setHorizontalAlignment(SwingConstants.CENTER);
+      countryName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
       countryName.setText("countryName");
       countryName.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-      countryName.setDebugGraphicsOptions(DebugGraphics.NONE_OPTION);
+      countryName.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
       
       countryPic.setText("countryPicture");
       
@@ -155,47 +147,58 @@ public class CountryInfo extends JPanel implements Observer {
       getCitizenship.setBorder(null);
       getCitizenship.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
       
-      GroupLayout layout = new GroupLayout(this);
+      javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
       this.setLayout(layout);
       layout.setHorizontalGroup(
-                                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                    .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                              .addGroup(layout.createSequentialGroup()
                                                                           .addContainerGap()
-                                                                          .addComponent(payAccomodationFee, GroupLayout.PREFERRED_SIZE, 233, GroupLayout.PREFERRED_SIZE)
-                                                                          .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                                          .addComponent(getCitizenship, GroupLayout.PREFERRED_SIZE, 241, GroupLayout.PREFERRED_SIZE))
+                                                                          .addComponent(payAccomodationFee, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                          .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                          .addComponent(getCitizenship, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                              .addGroup(layout.createSequentialGroup()
                                                                           .addGap(95, 95, 95)
-                                                                          .addComponent(countryPic, GroupLayout.PREFERRED_SIZE, 301, GroupLayout.PREFERRED_SIZE))
+                                                                          .addComponent(countryPic, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                              .addGroup(layout.createSequentialGroup()
                                                                           .addGap(58, 58, 58)
-                                                                          .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                                                       .addComponent(countryName, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                       .addComponent(accomodationFee, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                       .addComponent(citizenshipFee, GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
-                                                                                       .addComponent(income, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                                          .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                                       .addComponent(countryName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                       .addComponent(accomodationFee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                       .addComponent(citizenshipFee, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                                                                                       .addComponent(income, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                );
       layout.setVerticalGroup(
-                              layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                 .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                              layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                               .addGap(6, 6, 6)
-                                              .addComponent(countryPic, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                                              .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                              .addComponent(countryName, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-                                              .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                              .addComponent(accomodationFee, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-                                              .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                              .addComponent(countryPic, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                              .addComponent(countryName, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                              .addComponent(accomodationFee, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                               .addComponent(citizenshipFee)
-                                              .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                               .addComponent(income)
                                               .addGap(30, 30, 30)
-                                              .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                           .addComponent(payAccomodationFee, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
-                                                           .addComponent(getCitizenship, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE))
+                                              .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                           .addComponent(payAccomodationFee, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                           .addComponent(getCitizenship, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                                               .addGap(31, 31, 31))
                              );
-   }// </editor-fold>                                      
+   }// </editor-fold>                        
+   
+   
+   // Variables declaration - do not modify                     
+   private javax.swing.JLabel accomodationFee;
+   private javax.swing.JLabel citizenshipFee;
+   private javax.swing.JLabel countryName;
+   private javax.swing.JLabel countryPic;
+   private javax.swing.JButton getCitizenship;
+   private javax.swing.JLabel income;
+   private javax.swing.JButton payAccomodationFee;
+   // End of variables declaration                   
 }

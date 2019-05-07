@@ -4,8 +4,9 @@ import java.util.Observable;
 import javax.swing.Timer;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.Serializable;
 
-public class Quiz extends Observable
+public class Quiz extends Observable implements Serializable
 {
    // properties
    public static final int QUESTION_NUMBER = 3;
@@ -111,7 +112,7 @@ public class Quiz extends Observable
    }
    
    // Question time listener class
-   public class QuestionTimeListener implements ActionListener
+   public class QuestionTimeListener implements ActionListener, Serializable
     {
         @Override
         public void actionPerformed( ActionEvent evt )

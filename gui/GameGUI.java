@@ -1,3 +1,4 @@
+
 package gui;
 
 import java.awt.*;        // Using AWT layouts
@@ -16,6 +17,7 @@ public class GameGUI extends JPanel implements Observer {
    Game game;
    GameGUINorthPanel northPanel; // includes all variables until east panel
    PlayerInfo currentPlayersInfo; // to change player infos easily.
+   GameGUIWestPanel westPanel;
    GameGUIEastPanel eastPanel;
    JPanel southPanel; // includes two hardest button. 
    JButton rollDice; // rolls dice, moves current player, gets travel money, arranges north panel and player info accordingly, open the country info page
@@ -25,6 +27,7 @@ public class GameGUI extends JPanel implements Observer {
    QuestionPage questionPage;
    YouWinPage youWinPage;
    YouLosePage youLosePage;
+   SaveGame saveGame;
    AccomodationFeePage accomodationFeePage;
    Application app;
    int n; // used in for loops
@@ -57,8 +60,12 @@ public class GameGUI extends JPanel implements Observer {
       
       // Center Panel
       centerPanel = new JPanel();
+      centerPanel.setLayout( new GridBagLayout() );
       centerPanel.setOpaque( false );
       add( centerPanel );
+      
+      saveGame = new SaveGame( this);
+      centerPanel.add( saveGame );
       
       countryInfo = new CountryInfo( game ); 
       centerPanel.add( countryInfo );
@@ -79,9 +86,13 @@ public class GameGUI extends JPanel implements Observer {
       northPanel = new GameGUINorthPanel( this );      
       add( northPanel, BorderLayout.NORTH );
       
+      // West Panel -- to be able to make center panels exactly at center.
+      westPanel = new GameGUIWestPanel();
+      add( westPanel, BorderLayout.WEST );
+      
       // East Panel 
-      eastPanel = new GameGUIEastPanel( this );
-      add( eastPanel, BorderLayout.EAST );
+      eastPanel = new GameGUIEastPanel( westPanel, this );
+      add( eastPanel, BorderLayout.EAST );      
       
       // South Panel
       southPanel = new JPanel();
@@ -139,7 +150,7 @@ public class GameGUI extends JPanel implements Observer {
       
       Graphics2D g2 = (Graphics2D) g.create();
       
-      Image bg = new ImageIcon( getClass().getResource( "..\\pictures\\Background Photos\\Game Table.gif" ) ).getImage();
+      Image bg = new ImageIcon( getClass().getResource( "..\\pictures\\Background Photos\\Game Table.jpeg" ) ).getImage();
       g2.drawImage( bg, 0,0,getWidth(),getHeight(), this);
 
       for ( int n = 0; n < game.getNumberOfPlayers(); n++ )

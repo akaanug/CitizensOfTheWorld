@@ -3,9 +3,8 @@ package util;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.Serializable;
 
-public class CSVReader extends BufferedReader implements Serializable
+public class CSVReader extends BufferedReader
 {
    // properties
    public static final char QUOTER = '"';

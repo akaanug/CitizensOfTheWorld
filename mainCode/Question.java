@@ -1,7 +1,9 @@
 package mainCode;
 
+import java.io.Serializable;
+
 // Represents a single question, with choices and the answer, that will be asked to players
-public class Question
+public class Question implements Serializable
 {
    // properties
    public static final int QUESTION_FEE = 10;

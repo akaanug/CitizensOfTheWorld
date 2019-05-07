@@ -6,9 +6,11 @@ import javax.swing.*;     // Using Swing components and containers
 import mainCode.*;
 import java.util.ArrayList;
 import util.*;
+import java.util.Observer;
+import java.util.Observable;
 
 // A Swing GUI application inherits from top-level container javax.swing.JFrame
-public class GameGUI extends JPanel {
+public class GameGUI extends JPanel implements Observer {
  
    // Private instance variables
    Game game;
@@ -33,6 +35,11 @@ public class GameGUI extends JPanel {
       this.game = game;
       this.app = application;
       
+      for ( int n = 0; n < game.getNumberOfPlayers(); n++ )
+      {
+         game.getRoute().getPawn( n ).addObserver( this );
+      }
+      
       createComponents();
       game.startGame();
       
@@ -50,6 +57,7 @@ public class GameGUI extends JPanel {
       
       // Center Panel
       centerPanel = new JPanel();
+      centerPanel.setOpaque( false );
       add( centerPanel );
       
       countryInfo = new CountryInfo( game ); 
@@ -77,6 +85,7 @@ public class GameGUI extends JPanel {
       
       // South Panel
       southPanel = new JPanel();
+      southPanel.setOpaque( false );
       southPanel.setLayout( new FlowLayout() );
       
       // Roll Dice Button 
@@ -120,5 +129,29 @@ public class GameGUI extends JPanel {
          nextTurn.setVisible( false );
          rollDice.setVisible( true );
       }
+   }
+   
+   // Adding Background photo
+   @Override
+   protected void paintComponent(Graphics g) 
+   {
+      super.paintComponent( g );
+      
+      Graphics2D g2 = (Graphics2D) g.create();
+      
+      Image bg = new ImageIcon( getClass().getResource( "..\\pictures\\Background Photos\\Game Table.jpeg" ) ).getImage();
+      g2.drawImage( bg, 0,0,getWidth(),getHeight(), this);
+
+      for ( int n = 0; n < game.getNumberOfPlayers(); n++ )
+      {
+         game.getRoute().getPawn( n ).draw( g, this );
+      }
+      
+      g2.dispose();
+   }
+   
+   public void update( Observable obs, Object obj )
+   {
+      repaint();
    }
 }
