@@ -40,11 +40,9 @@ public class PlayerInfo extends javax.swing.JPanel implements Observer{
       
       p.addObserver( this );
       countries = new ArrayList<JPanel>();
-      
-      avatar = p.getAvatar();
-      
-      countriesPanel.setLayout( new BoxLayout( countriesPanel, BoxLayout.Y_AXIS  ) );
+
       initComponents();
+      countriesPanel.setLayout( new BoxLayout( countriesPanel, BoxLayout.Y_AXIS  ) );
       setVisible( false );
    }
    
@@ -56,6 +54,8 @@ public class PlayerInfo extends javax.swing.JPanel implements Observer{
    @SuppressWarnings("unchecked")
    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
       private void initComponents() {
+      avatarLabel = new javax.swing.JLabel();
+      avatar = p.getAvatar();
       avatarLabel.add(avatar);
       playerName = new javax.swing.JLabel();
       currentMoney = new javax.swing.JLabel();
@@ -65,14 +65,14 @@ public class PlayerInfo extends javax.swing.JPanel implements Observer{
       countriesPanel = new javax.swing.JPanel();
       currentMoneyTitle = new javax.swing.JLabel();
       jLabel1 = new javax.swing.JLabel();
-      avatarLabel = new javax.swing.JLabel();
+      
       
       setBackground(new java.awt.Color(102, 255, 255));
       
       playerName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
       playerName.setForeground(new java.awt.Color(0, 0, 102));
       playerName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-      playerName.setText("player name");
+      playerName.setText(p.getName());
       
       currentMoney.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
       currentMoney.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
