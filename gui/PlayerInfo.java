@@ -15,6 +15,7 @@ import mainCode.*;
 import java.util.Observer;
 import java.util.Observable;
 import java.util.ArrayList;
+import mainCode.pictureClasses.Avatar;
 
 /**
  *
@@ -26,6 +27,7 @@ public class PlayerInfo extends javax.swing.JPanel implements Observer{
    Player p;
    Game game;
    ArrayList<JPanel> countries;
+   Avatar avatar;
    
    /**
     * Creates new form PlayerInfoJ
@@ -38,7 +40,7 @@ public class PlayerInfo extends javax.swing.JPanel implements Observer{
       
       p.addObserver( this );
       countries = new ArrayList<JPanel>();
-      
+
       initComponents();
       countriesPanel.setLayout( new BoxLayout( countriesPanel, BoxLayout.Y_AXIS  ) );
       setVisible( false );
@@ -52,31 +54,42 @@ public class PlayerInfo extends javax.swing.JPanel implements Observer{
    @SuppressWarnings("unchecked")
    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
       private void initComponents() {
-      
+      avatarLabel = new javax.swing.JLabel();
+      avatar = p.getAvatar();
+      avatarLabel.add(avatar);
       playerName = new javax.swing.JLabel();
       currentMoney = new javax.swing.JLabel();
       revenue = new javax.swing.JLabel();
       nationality = new javax.swing.JLabel();
+      citizenshipsTitle = new javax.swing.JLabel();
       countriesPanel = new javax.swing.JPanel();
-      location = new javax.swing.JLabel();
+      currentMoneyTitle = new javax.swing.JLabel();
+      jLabel1 = new javax.swing.JLabel();
+      
       
       setBackground(new java.awt.Color(102, 255, 255));
       
-      playerName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+      playerName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
       playerName.setForeground(new java.awt.Color(0, 0, 102));
       playerName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-      playerName.setText( "Nickname: " + p.getName() );
+      playerName.setText(p.getName());
       
-      currentMoney.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+      currentMoney.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+      currentMoney.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
       currentMoney.setText("currentMoney");
       
-      revenue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+      revenue.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
       revenue.setText("revenue");
       
-      nationality.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-      nationality.setText( "Nationality: " + game.getLocationOfPlayer( p ).getName() );
+      nationality.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+      nationality.setText("nationality");
       
-      countriesPanel.setBackground(new java.awt.Color(102, 255, 255));
+      citizenshipsTitle.setBackground(new java.awt.Color(204, 255, 255));
+      citizenshipsTitle.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+      citizenshipsTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+      citizenshipsTitle.setText("CITIZENSHIPS");
+      citizenshipsTitle.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+      citizenshipsTitle.setOpaque(true);
       
       javax.swing.GroupLayout countriesPanelLayout = new javax.swing.GroupLayout(countriesPanel);
       countriesPanel.setLayout(countriesPanelLayout);
@@ -86,43 +99,67 @@ public class PlayerInfo extends javax.swing.JPanel implements Observer{
                                              );
       countriesPanelLayout.setVerticalGroup(
                                             countriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                               .addGap(0, 72, Short.MAX_VALUE)
+                                               .addGap(0, 327, Short.MAX_VALUE)
                                            );
       
-      location.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-      location.setText("location");
+      currentMoneyTitle.setBackground(new java.awt.Color(204, 255, 255));
+      currentMoneyTitle.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+      currentMoneyTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+      currentMoneyTitle.setText("CURRENT MONEY");
+      currentMoneyTitle.setOpaque(true);
+      
+      jLabel1.setBackground(new java.awt.Color(102, 102, 255));
+      jLabel1.setOpaque(true);
       
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
       this.setLayout(layout);
       layout.setHorizontalGroup(
                                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                   .addComponent(playerName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                   .addComponent(countriesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                   .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                    .addGroup(layout.createSequentialGroup()
-                                                .addGap(10, 10, 10)
+                                                .addContainerGap()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                             .addComponent(location, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                             .addComponent(revenue, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                             .addComponent(currentMoney, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
-                                                             .addComponent(nationality, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                             .addGroup(layout.createSequentialGroup()
+                                                                          .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                                                       .addComponent(currentMoneyTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                                                                                       .addComponent(citizenshipsTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                       .addComponent(countriesPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                       .addComponent(revenue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                                          .addGap(0, 0, Short.MAX_VALUE))
+                                                             .addGroup(layout.createSequentialGroup()
+                                                                          .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                       .addComponent(nationality, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                       .addGroup(layout.createSequentialGroup()
+                                                                                                    .addComponent(avatarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                                    .addGap(28, 28, 28)
+                                                                                                    .addComponent(playerName, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
+                                                                                       .addComponent(currentMoney, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                                          .addContainerGap())))
                                );
       layout.setVerticalGroup(
                               layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                  .addGroup(layout.createSequentialGroup()
-                                              .addComponent(playerName, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                              .addGap(3, 3, 3)
-                                              .addComponent(currentMoney, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                              .addGap(12, 12, 12)
+                                              .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                           .addComponent(playerName, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                           .addComponent(avatarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                              .addGap(17, 17, 17)
                                               .addComponent(nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                                               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                               .addComponent(revenue)
-                                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                              .addComponent(location, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                                               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                              .addComponent(citizenshipsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                               .addComponent(countriesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                              .addGap(0, 11, Short.MAX_VALUE))
+                                              .addGap(11, 11, 11)
+                                              .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 5, Short.MAX_VALUE)
+                                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                              .addComponent(currentMoneyTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                              .addGap(2, 2, 2)
+                                              .addComponent(currentMoney, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                              .addContainerGap())
                              );
-   }// </editor-fold>   
+   }// </editor-fold>  
    
    public void createCountryPanel( Country c )
    {
@@ -145,12 +182,16 @@ public class PlayerInfo extends javax.swing.JPanel implements Observer{
          createCountryPanel( p.getLastCountry() );
       }
    }
+   
    // Variables declaration - do not modify                     
+   private javax.swing.JLabel avatarLabel;
    private javax.swing.JPanel countriesPanel;
+   private javax.swing.JLabel citizenshipsTitle;
    private javax.swing.JLabel currentMoney;
-   private javax.swing.JLabel location;
+   private javax.swing.JLabel currentMoneyTitle;
+   private javax.swing.JLabel jLabel1;
    private javax.swing.JLabel nationality;
    private javax.swing.JLabel playerName;
    private javax.swing.JLabel revenue;
-   // End of variables declaration                   
+   // End of variables declaration              
 }
