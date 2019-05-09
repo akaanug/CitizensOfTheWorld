@@ -39,7 +39,7 @@ public class LeadershipTablePanel extends JPanel implements Observer {
         lt.setBackground(new java.awt.Color(102, 255, 255));
         lt.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lt.setForeground(new java.awt.Color(255, 0, 0));
-        //lt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lt.setText("LEADERSHIP TABLE");
         lt.setOpaque(true);
         add(lt);
@@ -55,7 +55,7 @@ public class LeadershipTablePanel extends JPanel implements Observer {
     
     public void update( Observable obs, Object obj )
     {
-        for( int n = 0; n < leadershipTable.size(); n++ )
+        for( int n = 0; n < playerInfos.length; n++ )
         {
             playerInfos[n].change( n + 1, leadershipTable.get(n).getName(), leadershipTable.get( n ).getNumberOfCountries(), leadershipTable.get( n ).getMoney() );
         }

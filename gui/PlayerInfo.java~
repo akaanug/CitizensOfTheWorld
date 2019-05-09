@@ -82,7 +82,7 @@ public class PlayerInfo extends javax.swing.JPanel implements Observer{
       revenue.setText("revenue");
       
       nationality.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-      nationality.setText("nationality");
+      nationality.setText("Nationality: " + game.getLocationOfPlayer( p ).getName());
       
       citizenshipsTitle.setBackground(new java.awt.Color(204, 255, 255));
       citizenshipsTitle.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
