@@ -9,19 +9,19 @@ import util.*;
 // This subclass inherits all properties from Frame, e.g., title, icon, buttons, content-pane
 public class Credits extends JPanel {
 
-   // private variables
+   //properties
    JLabel text;
    JButton back;
    Application app;
    
-   // Constructor to setup the GUI components
+   //constructors
    public Credits( Application app ) 
    {
       setLayout( new BorderLayout() );
       
       this.app = app;
       
-      text = new JLabel( "Bak kardeþim buraya credits atýyoruzzzz" );      
+      text = new JLabel( "Bak kardeÅŸim buraya credits atÄ±yoruzzzz" );      
       add( text );
       
       back = new JButton( "Back" );
@@ -34,7 +34,10 @@ public class Credits extends JPanel {
    
    // methods
    
-   // Back Button Listener
+   /*
+    * BackBtnListener to describe what happens when 
+    * user clicks the back from Credits
+    */
    public class BackBtnListener implements ActionListener
    {
       @Override
