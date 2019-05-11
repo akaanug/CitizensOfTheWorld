@@ -6,7 +6,7 @@ import java.io.Serializable;
 public class Question implements Serializable
 {
    // properties
-   public static final int QUESTION_FEE = 80;
+   public static final int QUESTION_FEE = 60;
    String questionSentence;
    String[] choices;
    int answer;
