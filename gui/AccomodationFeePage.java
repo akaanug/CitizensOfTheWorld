@@ -124,7 +124,7 @@ public class AccomodationFeePage extends javax.swing.JPanel implements Observer
    {
       Game game = (Game)obs;
       
-      moneyField.setText( "+ " + game.getCurrentLocation().getAccomodationFee() );    
+      moneyField.setText( "- " + game.getCurrentLocation().getAccomodationFee() );    
       setVisible( game.getStage().equals( "accomodation fee" ) );
    }
    
