@@ -8,22 +8,18 @@ import util.*;
 // A GUI program is written as a subclass of Frame - the top-level container
 // This subclass inherits all properties from Frame, e.g., title, icon, buttons, content-pane
 public class Credits extends JPanel {
-
-   //properties
-   JLabel text;
+   
+   // private variables
    JButton back;
    Application app;
    
-   //constructors
+   // Constructor to setup the GUI components
    public Credits( Application app ) 
    {
       setLayout( new BorderLayout() );
       
       this.app = app;
-      
-      text = new JLabel( "Bak kardeşim buraya credits atıyoruzzzz" );      
-      add( text );
-      
+        
       back = new JButton( "Back" );
       add( back, BorderLayout.SOUTH ); 
       back.addActionListener( new BackBtnListener() );
@@ -34,10 +30,7 @@ public class Credits extends JPanel {
    
    // methods
    
-   /*
-    * BackBtnListener to describe what happens when 
-    * user clicks the back from Credits
-    */
+   // Back Button Listener
    public class BackBtnListener implements ActionListener
    {
       @Override
@@ -46,5 +39,17 @@ public class Credits extends JPanel {
          setVisible( false );
          app.mainMenu.setVisible( true );
       }
+   }
+   // Adding Background photo
+   @Override
+   protected void paintComponent(Graphics g) 
+   {
+      super.paintComponent( g );
+      
+      Image bg = new ImageIcon( getClass().getResource( "..\\pictures\\Background Photos\\Credits.jpg" ) ).getImage();
+      
+      Graphics2D g2 = (Graphics2D) g.create();
+      g2.drawImage( bg, 0,0,getWidth(),getHeight(), this);
+      g2.dispose();
    }
 }
