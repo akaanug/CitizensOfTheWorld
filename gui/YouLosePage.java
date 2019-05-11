@@ -116,7 +116,7 @@ public class YouLosePage extends javax.swing.JPanel implements Observer{
       
       if( obj.getClass() == this.getClass() )
       {
-         moneyField.setText( "- " + ( game.getQuiz().getQuestionNumber() + 1 ) * 10 );
+         moneyField.setText( "- " + ( game.getQuiz().getQuestionNumber() + 1 ) * 60 );
          
          setVisible( true );
       }
