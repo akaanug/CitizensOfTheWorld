@@ -6,7 +6,7 @@ import java.io.Serializable;
 public class Question implements Serializable
 {
    // properties
-   public static final int QUESTION_FEE = 10;
+   public static final int QUESTION_FEE = 80;
    String questionSentence;
    String[] choices;
    int answer;
@@ -20,7 +20,7 @@ public class Question implements Serializable
       
    }
    
-   // clone constructoru üþendim yazýver
+   // clone constructoru Ã¼Ã¾endim yazÃ½ver
    public Question( Question x )
    {
       this.questionSentence = x.questionSentence;
@@ -30,7 +30,7 @@ public class Question implements Serializable
    
    // methods
    
-   // javadoclarý hallediver sana zahmet
+   // javadoclarÃ½ hallediver sana zahmet
    public String getQuestionSentence()
    {
       return questionSentence;
