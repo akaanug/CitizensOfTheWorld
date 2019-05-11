@@ -10,7 +10,6 @@ import util.*;
 public class HowToPlay extends JPanel {
 
    // private variables
-   JLabel text;
    JButton back;
    Application app;
    
@@ -19,10 +18,7 @@ public class HowToPlay extends JPanel {
    {
       setLayout( new BorderLayout() );
       
-      this.app = app;
-      
-      text = new JLabel( "Bak kardeþim buraya how to play atýyoruzzzz" );      
-      add( text );
+      this.app = app;  
       
       back = new JButton( "Back" );
       add( back, BorderLayout.SOUTH ); 
@@ -43,5 +39,16 @@ public class HowToPlay extends JPanel {
          setVisible( false );
          app.mainMenu.setVisible( true );
       }
+   }
+   @Override
+   protected void paintComponent(Graphics g) 
+   {
+      super.paintComponent( g );
+      
+      Image bg = new ImageIcon( getClass().getResource( "..\\pictures\\Background Photos\\How to play.jpg" ) ).getImage();
+      
+      Graphics2D g2 = (Graphics2D) g.create();
+      g2.drawImage( bg, 0,0,getWidth(),getHeight(), this);
+      g2.dispose();
    }
 }
