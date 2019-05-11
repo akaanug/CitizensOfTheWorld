@@ -4,6 +4,7 @@ import java.awt.*;        // Using AWT layouts
 import java.awt.event.*;  // Using AWT event classes and listener interfaces
 import javax.swing.*;     // Using Swing components and containers
 import mainCode.*;
+import util.*;
 import java.util.ArrayList;
 
 // A Swing GUI application inherits from top-level container javax.swing.JFrame
@@ -18,6 +19,7 @@ public class Application extends JFrame {
     GameGUI gameGui;
     ArrayList<JPanel> panels;
     Game game;
+    MusicPlayer musicPlayer;
     
     // Constructor to setup the GUI components and event handlers
     public Application() 
@@ -58,12 +60,16 @@ public class Application extends JFrame {
         for ( int n = 0; n < panels.size(); n++ )
         {
             add( panels.get( n ) );
-        }      
+        }  
+        
+        musicPlayer = new MusicPlayer ( GameFileReader.getMusics() );
     }
     
-    // Methods
+    // methods
     
-    // The entry main() method
+    /*
+     * main method to start application
+     */
     public static void main(String[] args) {
         // Run GUI codes in Event-Dispatching thread for thread-safety
         SwingUtilities.invokeLater(new Runnable() {
