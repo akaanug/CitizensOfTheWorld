@@ -1,8 +1,9 @@
 package mainCode;
 
 import java.util.Observable;
+import java.io.Serializable;
 
-public class Dice extends Observable
+public class Dice extends Observable implements Serializable
 {
    // properties
    Die die1;
