@@ -7,22 +7,29 @@ import mainCode.*;
 import util.*;
 import java.util.ArrayList;
 
-public class GameGUIEastPanel extends JPanel
+/*
+ * GameGUIEastPanel class creates the components located in the Easthern part of GUIPanel
+ * @author Burak Öçalan
+ * @version 12.05.2019
+ */
+public class GameGUIEastPanel extends JPanel 
 {
    // properties
-   int eastButtonSize;
+   int buttonSize;
    GameGUI parent;
-   JPanel westPanel;
-   JPanel eastPanel;
+   GameGUIWestPanel westPanel;
+   JPanel buttonPanel;
+   JPanel infoPanel;
    Game game;
-   ArrayList<OpenCloseJButton> eastPanelButtons;
-   ArrayList<JPanel> westPanelInfos;
+   ArrayList<OpenCloseJButton> buttons;
+   ArrayList<JPanel> infos;
    JButton save;
    JButton exit;
    
    // constructors
-   public GameGUIEastPanel( GameGUI parent )
+   public GameGUIEastPanel( GameGUIWestPanel westPanel, GameGUI parent )
    {
+      this.westPanel = westPanel;
       this.parent = parent;
       game = parent.game;
          
@@ -30,79 +37,89 @@ public class GameGUIEastPanel extends JPanel
       handleActionListeners();
    }
    
-   // Methods
+   // methods
    
+   /*
+    * creating the components of GameGuýEastPanel
+    */
    public void createComponents()
    {
       setOpaque( false );
       
-      eastPanel = new JPanel();
-      eastPanel.setOpaque( false );
-      eastPanel.setLayout( new GridLayout( 7, 1 ) );
+      buttonPanel = new JPanel();
+      buttonPanel.setOpaque( false );
+      buttonPanel.setLayout( new GridLayout( 7, 1 ) );
       
-      westPanel = new JPanel();
-      westPanel.setOpaque( false );
-      westPanel.setLayout( new FlowLayout() );
+      infoPanel = new JPanel();
+      infoPanel.setOpaque( false );
+      infoPanel.setLayout( new FlowLayout() );
       
-      // Declaring East Panel Buttons and West Panel Infos
-      eastPanelButtons = new ArrayList<OpenCloseJButton>();
-      westPanelInfos = new ArrayList<JPanel>();
+      // Declaring button and info panels
+      buttons = new ArrayList<OpenCloseJButton>();
+      infos = new ArrayList<JPanel>();
       
-      eastButtonSize = ( parent.getHeight() - 150 ) / 7;
+      buttonSize = ( parent.getHeight() - 150 ) / 7;
       for ( int n = 0; n < game.getNumberOfPlayers(); n++ )
       {
-         eastPanelButtons.add( new OpenCloseJButton( game.getPlayer( n ), eastButtonSize ) );
-         westPanelInfos.add( new PlayerInfo( game, n ) );
+         buttons.add( new OpenCloseJButton( game.getPlayer( n ), buttonSize ) );
+         infos.add( new PlayerInfo( game, n ) );
       }                         
-      eastPanelButtons.add( new OpenCloseJButton( "Leadership", eastButtonSize ) );
-      westPanelInfos.add( new LeadershipTablePanel( game.getLeadershipTable() ) );
+      buttons.add( new OpenCloseJButton( "Leadership", buttonSize ) );
+      infos.add( new LeadershipTablePanel( game.getLeadershipTable() ) );
       
-      for( int n = 0; n < eastPanelButtons.size(); n++ )
+      for( int n = 0; n < buttons.size(); n++ )
       {
-         eastPanel.add( eastPanelButtons.get( n ) );
-         westPanel.add( westPanelInfos.get( n ) );
+         buttonPanel.add( buttons.get( n ) );
+         infoPanel.add( infos.get( n ) );
       }
       
-      for ( int n = eastPanelButtons.size(); n < 5; n++ )
+      for ( int n = buttons.size(); n < 5; n++ )
       {
          JPanel temporaryPanel = new JPanel();
          temporaryPanel.setOpaque( false );
-         eastPanel.add( temporaryPanel );
+         buttonPanel.add( temporaryPanel );
       }
+      
+      // Handling west panel
+      westPanel.setButtonPanelSize( buttonSize );
+      westPanel.setPlayerInfoSize( (int) PlayerInfo.SIZE.getWidth() );
       
       // Save Game
       save = new JButton( "Save" );
-      eastPanel.add( save );
+      buttonPanel.add( save );
       
       // Exit Game
       exit = new JButton( "Exit" );
-      eastPanel.add( exit );
+      buttonPanel.add( exit );
       
-      add( westPanel );
-      add( eastPanel );
+      add( infoPanel );
+      add( buttonPanel );
    }
    
+   //adding action listener for probable operations of GameGuýEastPanel
    public void handleActionListeners()
    {
       // Button Listeners for Player Infos and Leadership Table
-      for( int n = 0; n < eastPanelButtons.size(); n++ )
+      for( int n = 0; n < buttons.size(); n++ )
       {       
          int m = n; 
          
-         eastPanelButtons.get( m ).addActionListener( new ActionListener() { 
+         buttons.get( m ).addActionListener( new ActionListener() { 
             @Override
             public void actionPerformed( ActionEvent evt )
             {
-               if( eastPanelButtons.get( m ).isOpened() )
+               if( buttons.get( m ).isOpened() )
                {
-                  westPanelInfos.get( m ).setVisible( false );
+                  infos.get( m ).setVisible( false );
+                  westPanel.changePlayerInfoVisibility( false );
                }
                else
                {
                   closeOpenedWestPanelInfo();
-                  westPanelInfos.get( m ).setVisible( true );
+                  infos.get( m ).setVisible( true );
+                  westPanel.changePlayerInfoVisibility( true );
                }
-               eastPanelButtons.get( m ).changeOpened();
+               buttons.get( m ).changeOpened();
             }
          } );
       }
@@ -116,17 +133,31 @@ public class GameGUIEastPanel extends JPanel
             parent.app.mainMenu.setVisible( true );
          }
       });
+      
+      // Save Button Listener
+      save.addActionListener( new ActionListener() {
+         @Override
+         public void actionPerformed( ActionEvent evt )
+         {
+            parent.saveGame.setVisible( true );
+         }
+      });
    }
    
-   // returns if the method closed any info panels or not
+   /*
+    * returns if the method closed any info panels or not
+    * @return whether any panels closed or not
+    */
    public boolean closeOpenedWestPanelInfo()
    {
-      for ( int n = 0; n < eastPanelButtons.size(); n++ )
+      for ( int n = 0; n < buttons.size(); n++ )
       {         
-         if ( eastPanelButtons.get( n ).isOpened() )
+         if ( buttons.get( n ).isOpened() )
          {
-            westPanelInfos.get( n ).setVisible( false );
-            eastPanelButtons.get( n ).changeOpened();
+            infos.get( n ).setVisible( false );
+            westPanel.changePlayerInfoVisibility( false );
+            
+            buttons.get( n ).changeOpened();
             return true;
          }
       }
@@ -134,8 +165,13 @@ public class GameGUIEastPanel extends JPanel
       return false;
    }
    
+   /*
+    * learn info of player with given playerNo
+    * @param1 playerNo
+    * @return the info of player( playerNo) 
+    */
    public PlayerInfo getPlayerInfo( int playerNo )
    {
-      return (PlayerInfo) westPanelInfos.get( playerNo );
+      return (PlayerInfo) infos.get( playerNo );
    }
 }

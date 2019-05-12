@@ -8,7 +8,11 @@ import util.*;
 import java.util.Observer;
 import java.util.Observable;
 
-// A Swing GUI application inherits from top-level container javax.swing.JFrame
+/**
+ * A Swing GUI application inherits from top-level container javax.swing.JFrame
+ * @author Ahmet Isik
+ * @version 12.05.2019
+ */
 public class LeadershipTablePanel extends JPanel implements Observer {
    
    // Private instance variables
@@ -33,6 +37,7 @@ public class LeadershipTablePanel extends JPanel implements Observer {
    
    // methods
    
+   //creating the components of Leadership table
    public void createComponents()
    {
       lt = new JLabel();
@@ -48,16 +53,20 @@ public class LeadershipTablePanel extends JPanel implements Observer {
       
       for( int n = 0; n < leadershipTable.size(); n++ )
       {
-         playerInfos[n] = new LT( n + 1, leadershipTable.get(n).getName(), leadershipTable.get( n ).getNumberOfCountries(), leadershipTable.get( n ).getMoney(), leadershipTable.get( n ).getAvatar() );
+         playerInfos[n] = new LT( leadershipTable.get( n ) );
          add( playerInfos[n] );
       }
    }
    
+   // update of LeadershipTable
    public void update( Observable obs, Object obj )
    {
-      for( int n = 0; n < playerInfos.length; n++ )
+      removeAll();
+      
+      for ( int n = 0; n < playerInfos.length; n++ )
       {
-         playerInfos[n].change( n + 1 + "." , "Name: " + leadershipTable.get(n).getName(), "Number of Countries: " + leadershipTable.get( n ).getNumberOfCountries(), "Money: " + leadershipTable.get( n ).getMoney() );
+         playerInfos[ leadershipTable.get( n ).getPlayerNo() ].setRank( n + 1 );
+         add( playerInfos[ leadershipTable.get( n ).getPlayerNo() ] );
       }
    }
 }

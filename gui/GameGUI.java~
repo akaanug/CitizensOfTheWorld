@@ -9,32 +9,40 @@ import util.*;
 import java.util.Observer;
 import java.util.Observable;
 
-// A Swing GUI application inherits from top-level container javax.swing.JFrame
+/**
+ * A Swing GUI application inherits from top-level container javax.swing.JFrame
+ * @author Burak Öçalan
+ * @version 12.05.2019
+ */ 
 public class GameGUI extends JPanel implements Observer {
  
-   // Private instance variables
+   // properties
    Game game;
-   GameGUINorthPanel northPanel; // includes all variables until east panel
-   PlayerInfo currentPlayersInfo; // to change player infos easily.
+   GameGUINorthPanel northPanel; 
+   PlayerInfo currentPlayersInfo; 
+   GameGUIWestPanel westPanel;
    GameGUIEastPanel eastPanel;
-   JPanel southPanel; // includes two hardest button. 
-   JButton rollDice; // rolls dice, moves current player, gets travel money, arranges north panel and player info accordingly, open the country info page
-   JButton nextTurn; // changes the current player, uploads its informations into the related panels.
+   JPanel southPanel;  
+   JButton rollDice; 
+   JButton nextTurn; 
    JPanel centerPanel;
    CountryInfo countryInfo; 
    QuestionPage questionPage;
    YouWinPage youWinPage;
    YouLosePage youLosePage;
+   SaveGame saveGame;
    AccomodationFeePage accomodationFeePage;
+   DicePanel dicePanel;
    Application app;
    int n; // used in for loops
    
-   // Constructor to setup the GUI components and event handlers
+   // constructors
    public GameGUI( Application application, Game game ) 
    {        
       this.game = game;
       this.app = application;
       
+      game.addObserver( this );
       for ( int n = 0; n < game.getNumberOfPlayers(); n++ )
       {
          game.getRoute().getPawn( n ).addObserver( this );
@@ -44,12 +52,13 @@ public class GameGUI extends JPanel implements Observer {
       game.startGame();
       
       handleActionListeners();
-      
-      setVisible( true );
    }
    
-   // Methods
+   //methods
    
+   /*
+    * creation of components of GameGuý page
+    */
    public void createComponents()
    {
       setLayout( new BorderLayout() );
@@ -57,31 +66,42 @@ public class GameGUI extends JPanel implements Observer {
       
       // Center Panel
       centerPanel = new JPanel();
+      centerPanel.setLayout( new GridBagLayout() );
       centerPanel.setOpaque( false );
       add( centerPanel );
+      
+      saveGame = new SaveGame( this);
+      centerPanel.add( saveGame );
       
       countryInfo = new CountryInfo( game ); 
       centerPanel.add( countryInfo );
       
-      youWinPage = new YouWinPage( this );
+      youWinPage = new YouWinPage( game );
       centerPanel.add( youWinPage );
       
-      youLosePage = new YouLosePage( this );
+      youLosePage = new YouLosePage( game );
       centerPanel.add( youLosePage );
       
-      accomodationFeePage = new AccomodationFeePage( this );
+      accomodationFeePage = new AccomodationFeePage( game );
       centerPanel.add( accomodationFeePage );
       
-      questionPage = new QuestionPage( this );
+      questionPage = new QuestionPage( game );
       centerPanel.add( questionPage );
+      
+      dicePanel = new DicePanel( game );
+      centerPanel.add( dicePanel );
       
       // North panel
       northPanel = new GameGUINorthPanel( this );      
       add( northPanel, BorderLayout.NORTH );
       
+      // West Panel -- to be able to make center panels exactly at center.
+      westPanel = new GameGUIWestPanel();
+      add( westPanel, BorderLayout.WEST );
+      
       // East Panel 
-      eastPanel = new GameGUIEastPanel( this );
-      add( eastPanel, BorderLayout.EAST );
+      eastPanel = new GameGUIEastPanel( westPanel, this );
+      add( eastPanel, BorderLayout.EAST );      
       
       // South Panel
       southPanel = new JPanel();
@@ -94,64 +114,74 @@ public class GameGUI extends JPanel implements Observer {
       
       // Next Turn Button
       nextTurn = new JButton( "Next Turn" );
-      nextTurn.setVisible( false );
       southPanel.add( nextTurn );
       
       add( southPanel, BorderLayout.SOUTH );
    }
    
+   /*
+    * adding action listener for rollDice and nextTurn 
+    */
    public void handleActionListeners()
    {
       rollDice.addActionListener( new RollDiceBtnListener() );
       nextTurn.addActionListener( new NextTurnBtnListener() );
    }
    
-   // Roll Dice Button Listener 
+   // Roll Dice Button Listener and what it does 
    public class RollDiceBtnListener implements ActionListener
    {      
       @Override
       public void actionPerformed( ActionEvent evt )
       {                  
          game.rollDice();
-         
-         rollDice.setVisible( false );
       }
    }
    
-   // Next Turn Button Listener 
+   // Next Turn Button Listener and what it does 
    public class NextTurnBtnListener implements ActionListener
    {      
       @Override
       public void actionPerformed( ActionEvent evt )
       {        
          game.nextTurn();
-                 
-         nextTurn.setVisible( false );
-         rollDice.setVisible( true );
       }
    }
    
-   // Adding Background photo
+   // Adding Background photo and image of pawns
    @Override
-   protected void paintComponent(Graphics g) 
+   protected void paintComponent( Graphics g ) 
    {
       super.paintComponent( g );
       
-      Graphics2D g2 = (Graphics2D) g.create();
+      Graphics2D g2 = ( Graphics2D ) g.create();
       
       Image bg = new ImageIcon( getClass().getResource( "..\\pictures\\Background Photos\\Game Table.jpeg" ) ).getImage();
-      g2.drawImage( bg, 0,0,getWidth(),getHeight(), this);
+      g2.drawImage( bg, 0, 0, getWidth(), getHeight(), this );
 
       for ( int n = 0; n < game.getNumberOfPlayers(); n++ )
       {
-         game.getRoute().getPawn( n ).draw( g, this );
+         if ( game.getPlayer( n ).isPlaying() )
+         {
+            game.getRoute().getPawn( n ).draw( g, this );
+         }
       }
       
       g2.dispose();
    }
    
+   /*
+    * updates on game 
+    */
    public void update( Observable obs, Object obj )
    {
       repaint();
+      
+      if ( game.getStage().equals( "game over" ) )
+      {
+         eastPanel.exit.doClick();
+      }       
+      nextTurn.setVisible( game.getStage().equals( "last stage" ) );
+      rollDice.setVisible( game.getStage().equals( "new player" ) );
    }
 }

@@ -14,20 +14,20 @@ import mainCode.pictureClasses.Avatar;
 import util.GameFileReader;
 
 /**
- *
- * @author kaan.uguralp-ug
+ * PlayerMenu GUI
+ * @author Ahmet Isik
+ * @version 12.05.2019
  */
 public class PlayerMenu extends javax.swing.JPanel {
    
+   //properties
    int numberOfPlayers;
    ArrayList<String> listedCountries; // countries that are listed as in the game ( the usage explained above the method )
    String[] alphabeticalCountries; // we need alphabetical list of countries in scroll panes
    Avatar[] avatars;
    Application app; 
    
-   /**
-    * Creates new form PlayerMenu
-    */
+   //constructors
    public PlayerMenu( Application app ) {
       
       this.app = app;
@@ -499,6 +499,7 @@ public class PlayerMenu extends javax.swing.JPanel {
          numberOfPlayers = 3;
    }                                         
    
+   //action performed method for end button
    private void backActionPerformed(java.awt.event.ActionEvent evt) {                                     
       // TODO add your handling code here:
       setVisible( false );
@@ -506,6 +507,7 @@ public class PlayerMenu extends javax.swing.JPanel {
       
    }
    
+   // action performed method for start button
    private void startActionPerformed(java.awt.event.ActionEvent evt) {                                      
       // TODO add your handling code here:
       String[] namesOfPlayers;
@@ -528,6 +530,7 @@ public class PlayerMenu extends javax.swing.JPanel {
       setVisible( false );
    }                                     
    
+   // getting the name of player with given playerNo
    public String getPlayerName( int playerNo ) {
       if( playerNo == 0 ) {
          return p1Name.getText();
@@ -545,6 +548,9 @@ public class PlayerMenu extends javax.swing.JPanel {
          return p4Name.getText();
    }
    
+   /*
+    * return the number of country which player with playerNo selected
+    */
    public int getSelectedCountry( int playerNo ) {
       if( playerNo == 0 ) {
          return listedCountries.indexOf( countryList1.getSelectedValue().toString() );
@@ -562,6 +568,11 @@ public class PlayerMenu extends javax.swing.JPanel {
          return listedCountries.indexOf( countryList4.getSelectedValue().toString() );
    }
    
+   /*
+    * return the avatar character considering given playerNo
+    * @param playerNo
+    * @return Avatar character of given playerNo
+    */
    public Avatar getSelectedAvatar( int playerNo )
    {
       if( playerNo == 0 ) {

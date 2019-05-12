@@ -5,8 +5,12 @@ import java.awt.event.*;
 import javax.swing.*;
 import util.*;
 
-// A GUI program is written as a subclass of Frame - the top-level container
-// This subclass inherits all properties from Frame, e.g., title, icon, buttons, content-pane
+/**
+ * A GUI program is written as a subclass of Frame - the top-level container
+ * This subclass inherits all properties from Frame, e.g., title, icon, buttons, content-pane
+ * @author Batuhan Gelgi
+ * @version 12.05.2019
+ */    
 public class HowToPlay extends JPanel {
 
    // private variables

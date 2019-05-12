@@ -7,7 +7,11 @@ import mainCode.*;
 import util.*;
 import java.util.ArrayList;
 
-// A Swing GUI application inherits from top-level container javax.swing.JFrame
+/**
+ * A Swing GUI application inherits from top-level container javax.swing.JFrame
+ * @author Emin Adem Buran
+ * @version 12.05.2019
+*/ 
 public class Application extends JFrame {
     
     // Private instance variables
@@ -67,9 +71,7 @@ public class Application extends JFrame {
     
     // methods
     
-    /*
-     * main method to start application
-     */
+    // The entry main() method
     public static void main(String[] args) {
         // Run GUI codes in Event-Dispatching thread for thread-safety
         SwingUtilities.invokeLater(new Runnable() {

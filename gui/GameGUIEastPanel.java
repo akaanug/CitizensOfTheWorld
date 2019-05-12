@@ -7,6 +7,11 @@ import mainCode.*;
 import util.*;
 import java.util.ArrayList;
 
+/*
+ * GameGUIEastPanel class creates the components located in the Easthern part of GUIPanel
+ * @author Burak Öçalan
+ * @version 12.05.2019
+ */
 public class GameGUIEastPanel extends JPanel 
 {
    // properties
@@ -32,8 +37,11 @@ public class GameGUIEastPanel extends JPanel
       handleActionListeners();
    }
    
-   // Methods
+   // methods
    
+   /*
+    * creating the components of GameGuýEastPanel
+    */
    public void createComponents()
    {
       setOpaque( false );
@@ -88,6 +96,7 @@ public class GameGUIEastPanel extends JPanel
       add( buttonPanel );
    }
    
+   //adding action listener for probable operations of GameGuýEastPanel
    public void handleActionListeners()
    {
       // Button Listeners for Player Infos and Leadership Table
@@ -135,7 +144,10 @@ public class GameGUIEastPanel extends JPanel
       });
    }
    
-   // returns if the method closed any info panels or not
+   /*
+    * returns if the method closed any info panels or not
+    * @return whether any panels closed or not
+    */
    public boolean closeOpenedWestPanelInfo()
    {
       for ( int n = 0; n < buttons.size(); n++ )
@@ -153,6 +165,11 @@ public class GameGUIEastPanel extends JPanel
       return false;
    }
    
+   /*
+    * learn info of player with given playerNo
+    * @param1 playerNo
+    * @return the info of player( playerNo) 
+    */
    public PlayerInfo getPlayerInfo( int playerNo )
    {
       return (PlayerInfo) infos.get( playerNo );

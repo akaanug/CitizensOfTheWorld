@@ -5,10 +5,14 @@ import java.awt.event.*;
 import javax.swing.*;
 import util.*;
 
-// A GUI program is written as a subclass of Frame - the top-level container
-// This subclass inherits all properties from Frame, e.g., title, icon, buttons, content-pane
+/** 
+ * A GUI program is written as a subclass of Frame - the top-level container
+ * This subclass inherits all properties from Frame, e.g., title, icon, buttons, content-pane
+ * @author Batuhan Gelgi
+ * @version 12.05.2019
+ */
 public class Credits extends JPanel {
-   
+
    // private variables
    JButton back;
    Application app;
@@ -19,7 +23,7 @@ public class Credits extends JPanel {
       setLayout( new BorderLayout() );
       
       this.app = app;
-        
+      
       back = new JButton( "Back" );
       add( back, BorderLayout.SOUTH ); 
       back.addActionListener( new BackBtnListener() );
@@ -40,7 +44,6 @@ public class Credits extends JPanel {
          app.mainMenu.setVisible( true );
       }
    }
-   // Adding Background photo
    @Override
    protected void paintComponent(Graphics g) 
    {

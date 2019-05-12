@@ -7,8 +7,12 @@ import javax.swing.*;
 import java.io.*;
 import java.io.Serializable;
 
-// A GUI program is written as a subclass of Frame - the top-level container
-// This subclass inherits all properties from Frame, e.g., title, icon, buttons, content-pane
+/**
+ * A GUI program is written as a subclass of Frame - the top-level container
+ * This subclass inherits all properties from Frame, e.g., title, icon, buttons, content-pane
+ * @author Emin Adem Buran
+ * @version 12.05.2019
+ */
 public class LoadGame extends JPanel{
    
    // private variables
@@ -110,6 +114,7 @@ public class LoadGame extends JPanel{
       }
    }
    
+   // Saved Game ButtonListener 
    public class SavedGameButtoListener implements ActionListener
    {
       public void actionPerformed( ActionEvent evt)

@@ -7,10 +7,14 @@ import javax.swing.event.*;
 import javax.swing.border.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
 import java.io.File;
 
 
+/*
+ * MainMenu creates components in the main menu.
+ * @author Batuhan Gelgi
+ * @version 12.05.2019
+ */
 public class MainMenu extends JPanel {
 
    // private variables
@@ -43,8 +47,9 @@ public class MainMenu extends JPanel {
       handleActionListeners();
    }
    
-   // Methods
+   // methods
    
+   // creation of components of MainMenuPage
    public void createComponents()
    {
       GridBagConstraints c;
@@ -76,6 +81,9 @@ public class MainMenu extends JPanel {
       buttons.add( exit );
    }
    
+   /*
+    * adding action listeners for MainMenu class
+    */
    public void handleActionListeners()
    {
       // Add listeners to the buttons

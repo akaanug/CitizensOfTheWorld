@@ -4,19 +4,28 @@
  * and open the template in the editor.
  */
 package gui;
+
 import mainCode.pictureClasses.Avatar;
+import util.ResizablePicture;
+import java.util.Observable;
+import java.util.Observer;
+import javax.swing.JPanel;
+import mainCode.Player;
 
 /**
- *
- * @author kaan
+ * LT creates new form LeadershipTablePanel
+ * @author Emin Adem Buran
+ * @version 12.05.2019
  */
-public class LT extends javax.swing.JPanel {
+public class LT extends JPanel implements Observer {
    
-   /**
-    * Creates new form LeadershipTablePanel
-    */
-   public LT( int num, String names, int numOfCountries, int moneys, Avatar avatar ) {
-      initComponents( num, names, numOfCountries, moneys, avatar );
+   //properties
+  
+   //constructors
+   public LT( Player p ) 
+   {
+      p.addObserver( this );
+      initComponents( p.getPlayerNo() + 1, p.getName(), p.getNumberOfCountries(), p.getMoney(), p.getAvatar() );
    }
    
    /**
@@ -35,7 +44,7 @@ public class LT extends javax.swing.JPanel {
       jLabel3 = new javax.swing.JLabel();
       avatarLabel = new javax.swing.JLabel();
       
-      avatarLabel.add( avatar );
+      avatarLabel.add( new Avatar( avatar.getAvatarName() ) );
       
       setBackground(new java.awt.Color(102, 255, 255));
       setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 204)));
@@ -119,12 +128,18 @@ public class LT extends javax.swing.JPanel {
    private javax.swing.JLabel number;
    // End of variables declaration   
    
-   public void change( String num, String names, String numOfCountries, String moneys )
+   // updating the LT 
+   public void update( Observable obs, Object obj )
    {
-      number.setText( num + "" );
-      name.setText( names );
-      noOfCountries.setText( numOfCountries + "" );
-      money.setText( moneys + "" );
+      Player p = (Player)obs;
       
-   }                 
+      money.setText( p.getMoney() + "" );
+      noOfCountries.setText( p.getNumberOfCountries() + "" );
+   }     
+   
+   // updating Rank 
+   public void setRank( int n )
+   {
+      number.setText( n + "" );
+   }
 }
