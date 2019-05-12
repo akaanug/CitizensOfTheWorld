@@ -4,19 +4,26 @@ import java.awt.*;        // Using AWT layouts
 import java.awt.event.*;  // Using AWT event classes and listener interfaces
 import javax.swing.*;     // Using Swing components and containers
 import mainCode.*;
-import mainCode.pictures.Avatar;
+import mainCode.pictureClasses.*;
 import util.*;
 import java.util.Observer;
 import java.util.Observable;
 
-public class GameGUINorthPanel extends JPanel implements Observer
+/*
+ * GameGUINorthPanel
+ * Author
+ * Version
+ */
+public class GameGUINorthPanel extends JPanel implements Observer, ActionListener
 {
    // properties
+   final int MUTE_BTN_SIZE = 30;
    JLabel playerOfTurn; // normally we will put an icon of current player but it is name for now
    Avatar playerAvatar;
    JLabel playersMoney; // current player's money 
    JLabel location; // player's location and the four country after this.  
    JButton leaveGame;
+   JButton muteBtn;
    GameGUI parent;
    Game game;
    
@@ -35,16 +42,22 @@ public class GameGUINorthPanel extends JPanel implements Observer
    }
    
    // methods
-   public class LeaveGameBtnListener implements ActionListener
+   
+   //action performed method
+   @Override
+   public void actionPerformed( ActionEvent evt )
    {
-      @Override
-      public void actionPerformed( ActionEvent evt )
+      if ( evt.getSource() == leaveGame )
       {
          game.leaveGame();
-         parent.nextTurn.doClick(); // Bunu kaldýrmamýz lazým aslýnda bakýcam bi ara 
+      }
+      else if ( evt.getSource() == muteBtn )
+      {        
+         parent.app.musicPlayer.mute();
       }
    }
    
+   //creating the components of GameGuýNorth panel
    public void createComponents()
    {
       Player currentPlayer = game.getCurrentPlayer();
@@ -69,19 +82,41 @@ public class GameGUINorthPanel extends JPanel implements Observer
       
       // Second panel
       JPanel secondPanel = new JPanel();
-      secondPanel.setBackground( Color.yellow );
+      secondPanel.setLayout( new BorderLayout() );
+      
+      
+      // Inside the second panel, center panel
+      JPanel centerPanel = new JPanel();
+      centerPanel.setBackground( Color.yellow );
       
       location = new JLabel( game.getCurrentLocation().getName() );
       location.setFont( new Font( "", Font.BOLD, 32 ) );
-      secondPanel.add( location );
+      centerPanel.add( location );
       
       leaveGame = new JButton( "Leave Game" );
-      leaveGame.addActionListener( new LeaveGameBtnListener() );
-      secondPanel.add( leaveGame );
+      leaveGame.addActionListener( this );
+      centerPanel.add( leaveGame );
       
-      add( secondPanel );
+      // Inside the second panel, east panel
+      JPanel eastPanel = new JPanel();
+      eastPanel.setBackground( Color.yellow );
+      
+      muteBtn = new JButton();
+      muteBtn.add( parent.app.musicPlayer.getIcon() );
+      
+      //button properties
+      muteBtn.setBackground( Color.yellow );
+      muteBtn.setBorderPainted(false);
+      muteBtn.addActionListener( this );
+      eastPanel.add( muteBtn );
+      
+      secondPanel.add( centerPanel, BorderLayout.CENTER );
+      secondPanel.add( eastPanel, BorderLayout.EAST );
+      
+      add(secondPanel);
    }
    
+   //updating the image of GameGuýNorth panel considering new operations
    public void update( Observable obs, Object obj )
    {
       Player currentPlayer = (Player)obs;
