@@ -18,7 +18,7 @@ import java.io.ObjectInputStream;
 
 /** 
  * game class to initialize the game
- * @author Burak Öçalan
+ * @author Burak Ã–Ã§alan
  * @version 12.05.2019
  */
 public class Game extends Observable implements Observer, Serializable
@@ -353,12 +353,7 @@ public class Game extends Observable implements Observer, Serializable
          {
             if ( !currentPlayer.hasMoney() )
             {
-               currentPlayer.leaveGame();
-
-               if ( !isGameOver() )
-               {
-                  youLose();
-               }
+               leaveGame();
             }
          }   
          else if ( s.equals( "you win" ) )
