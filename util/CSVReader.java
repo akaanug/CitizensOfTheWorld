@@ -5,6 +5,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Serializable;
 
+/**
+ * reader class reads essential data for our game from FileReader
+ * @author KerattaKerattalar
+ * @version 12.05.2019
+ */
 public class CSVReader extends BufferedReader implements Serializable
 {
    // properties
@@ -19,6 +24,8 @@ public class CSVReader extends BufferedReader implements Serializable
    }
    
    // methods
+   
+   //read method
    public String next() throws IOException
    {
       String s;
@@ -50,6 +57,7 @@ public class CSVReader extends BufferedReader implements Serializable
       return s;
    }
    
+   //closing the reader
    @Override
    public void close() throws IOException
    {

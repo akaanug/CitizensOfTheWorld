@@ -8,8 +8,12 @@ import java.util.Observer;
 import java.util.Observable;
 import mainCode.*;
 
-// This class has been created to add buttons some functionality 
-// For example: Player info button can close the player info if you click it when player info is open.
+/** 
+ * This class has been created to add buttons some functionality 
+ * For example: Player info button can close the player info if you click it when player info is open.
+ * @author Keratta Kerattalar
+ * @version 12.05.2019
+ */
 public class OpenCloseJButton extends JButton implements Observer
 {
    // properties
@@ -37,25 +41,39 @@ public class OpenCloseJButton extends JButton implements Observer
    }
    
    // methods
+   
+   /*
+    * return whether button is open or not
+    * @return whether button is opened or no
+    */
    public boolean isOpened()
    {
       return opened;
    }
    
+   //changing the current situation of button open - close or close open
    public void changeOpened()
    {
       opened = !opened;
    }
    
+   /*
+    * updating the buttons
+    * @param Observable obs
+    * @param Object obj
+    */
    public void update( Observable obs, Object obj )
    {
-      if ( ( (Player)obs ).hasTurn() )
+      if ( obj == null || ( (String)obj ).equals( "next turn" ) )
       {
-         setBackground( Color.orange );
-      }
-      else
-      {
-         setBackground( Color.cyan );
+         if ( ( (Player)obs ).hasTurn() )
+         {
+            setBackground( Color.orange );
+         }
+         else
+         {
+            setBackground( Color.cyan );
+         }
       }
    }
 }

@@ -8,9 +8,20 @@ import mainCode.*;
 import mainCode.pictureClasses.Avatar;
 import java.io.Serializable;
 
+/**
+ * gamefilereader to create countryList, avatarsList
+ * @author KerattaKerattalar
+ * @version 12.05.2019
+ */
 public class GameFileReader implements Serializable
-{   
+{  
+   //propeties
+   //constructors
+   
+  //methods
+  
    // Used in PlayerMenu, to create country JList.
+   // @return countrylist alpahabetically
    public static String[] getAlphabeticalCountriesArray()
    {
       final int COUNTRY_NUMBER = 60;
@@ -86,6 +97,33 @@ public class GameFileReader implements Serializable
          }
          
          return avatars;
+      }
+      catch (IOException e)
+      {
+         return null;
+      }
+   }
+   
+   //Used in MusicPlayer, to to create the musics String list
+   public static ArrayList<String> getMusics() 
+   {
+      final int MUSIC_NUMBER = 1;
+      
+      try
+      {
+         ArrayList<String> musics;
+         FileReader fr;
+         BufferedReader br;
+         
+         musics = new ArrayList<String>();
+         fr = new FileReader( "Music\\musics.txt" );
+         br = new BufferedReader( fr );
+         for ( int i = 0; i < MUSIC_NUMBER; i++ )
+         {
+            musics.add( br.readLine() );
+         }
+         
+         return musics;
       }
       catch (IOException e)
       {

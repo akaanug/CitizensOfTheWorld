@@ -3,8 +3,14 @@ package util;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.Serializable;
 
-public class CSVReader extends BufferedReader
+/*
+ * reader class reads essential data for our game from FileReader
+ * Author KerattaKerattalar
+ * Version
+ */
+public class CSVReader extends BufferedReader implements Serializable
 {
    // properties
    public static final char QUOTER = '"';
@@ -18,6 +24,8 @@ public class CSVReader extends BufferedReader
    }
    
    // methods
+   
+   //read method
    public String next() throws IOException
    {
       String s;
@@ -49,6 +57,7 @@ public class CSVReader extends BufferedReader
       return s;
    }
    
+   //closing the reader
    @Override
    public void close() throws IOException
    {
