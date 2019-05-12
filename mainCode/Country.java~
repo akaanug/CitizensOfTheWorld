@@ -3,9 +3,14 @@ package mainCode;
 import java.util.Observable;
 import mainCode.pictureClasses.*;
 import java.awt.Point;
+import java.io.Serializable;
 
-// buraya bi comment atýver
-public class Country extends Observable
+/** 
+ * creating country object and its questions
+ * @author Batuhan Gelgi
+ * @version 12.05.2019
+ */
+public class Country extends Observable implements Serializable
 {
    // properties
    public static final int NUMBER_OF_PLAYERS = 4;
@@ -37,62 +42,110 @@ public class Country extends Observable
    
    // methods 
    
+   /*
+    * return accomodation fee of country
+    * @return accomodation fee of this country
+    */
    public int getAccomodationFee()
    {
       return accomodationFee;
    }
    
+   /*
+    * return the name of country
+    * @return the name of country
+    */
    public String getName()
    {
       return name;
    }
    
+   /*
+    * return the tax of country
+    * @return the tax of country
+    */
    public int getTax()
    {
       return tax;
    }
    
+   /*
+    * return the players having citizenship from this country
+    * @return the player list having citizenship
+    */
    public Player[] getCitizens()
    {
       return citizens;
    }
    
+   /*
+    * return the player with given citizenNo
+    * @param citizenNo
+    * @return the player with citizenNo
+    */
    public Player getCitizen( int citizenNo )
    {
       return citizens[ citizenNo ];
    }
    
+   /*
+    * return the number of citizens of country
+    * @return the number of citizens of country
+    */
    public int getNumberOfCitizens()
    {
       return numberOfCitizens;
    }
    
+   /*
+    * return the questions about country
+    * @return the questions of country
+    */
    public Questions getQuestions()
    {
       return questions;
    }
    
+   /*
+    * accessing the flag of country
+    * @return the flag of country
+    */
    public CountryFlag getFlag()
    {
       return flag;
    }
    
+   /*
+    * accessing the picture of country
+    * @return the picture of country
+    */
    public CountryPicture getPicture()
    {
       return picture;
    }
    
+   /*
+    * accesing the location of country
+    * @return the location of country
+    */
    public Point getLocation()
    {
       return location;
    }
    
+   /*
+    * accesing the location of country on gameroute
+    * @return  the location of country on gameroute
+    */
    public int getLocationOnRoute()
    {
       return locationOnRoute;
    }
    
-   // questionlarýn içinden 3 tane random seçip atýyorsun 
+   /*
+    * select three question among ten question of country randomly and return 
+    * @return the selected three questions of country
+    */
    protected Questions determineThreeRandomQuestions()
    {
       Questions randomQuestions;
@@ -112,13 +165,18 @@ public class Country extends Observable
       return randomQuestions;
    }
    
-   // playeri arraya ekliyosun yani ez
+   // adding new player as a citizenship of country
    protected void addToCitizenship( Player p )
    {
       citizens[ numberOfCitizens ] = p;
       numberOfCitizens++;
    }
    
+   /*
+    * return whether given player is citizenship or not
+    * @param Player p
+    * @return whether given player is citizenship or not
+    */
    public boolean isACitizen( Player p )
    {
       boolean isACitizen;
@@ -136,20 +194,30 @@ public class Country extends Observable
       return isACitizen;
    }
    
+   /*
+    * return whether given player is first citizenship or not
+    * @param Player p
+    * @return whether given player is first citizenship or not
+    */
    public boolean isTheFirstCitizen( Player p )
    {
       return p.equals( citizens[ 0 ] );
    }
    
+   /*
+    * return whether country has a citizen or not
+    * @return whether country has a citizen or not
+    */
    public boolean hasACitizen()
    {
       return numberOfCitizens > 0;
    }
    
-   public void notifier()
+   // setting changes and notifying observers
+   public void notifier( String s )
    {
       setChanged();
-      notifyObservers();
+      notifyObservers( s );
    }
 }
    

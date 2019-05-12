@@ -9,12 +9,18 @@ import javax.swing.*;
 import java.util.Observable;
 import java.io.Serializable;
 
+/**
+ * creating pawn object for each player
+ * @author Burak Öçalan
+ * @version 12.05.2019
+ */
 public class Pawn extends Observable implements Serializable
 {
    // properties
    public static final int WIDTH = 20;
    public static final int HEIGHT = 30; 
-   public static final int MOVING_TIME_ONE_PIXEL = 40;
+   public static final int TIMER_CONSTANT = 40;
+   public static final int SPEED = 4;
    String picturePath;
    Player p;
    Country currentCountry;
@@ -33,10 +39,12 @@ public class Pawn extends Observable implements Serializable
       this.p = p;
       setLocation( p.getCurrentCountry() );
          
-      timer = new Timer( MOVING_TIME_ONE_PIXEL, new MovementTimeListener() ); 
+      timer = new Timer( TIMER_CONSTANT, new MovementTimeListener() ); 
    }
    
    // methods
+   
+   // drawing image for pawn object
    public void draw( Graphics g, JPanel panel )
    {
       Image bg = new ImageIcon( getClass().getResource( "..\\pictures\\pawns\\" + p.getPlayerNo() + ".png" ) ).getImage();
@@ -46,16 +54,19 @@ public class Pawn extends Observable implements Serializable
       g2.dispose();
    }
    
+   // get the location of pawn as x and y coordinates
    public Point getLocation()
    {
       return new Point( (int)locX, (int)locY );
    }
    
+   // get the current country of pawn
    public Country getCurrentCountry()
    {
       return currentCountry;
    }
          
+   // setting the location of pawn to given country
    protected void setLocation( Country c )
    {
       currentCountry = c;
@@ -63,6 +74,7 @@ public class Pawn extends Observable implements Serializable
       locY = c.getLocation().getY();
    }
    
+   // setting the location of pawn to given x and y coordinates
    protected void setLocation( double locX, double locY )
    {
       this.locX = locX;
@@ -72,41 +84,47 @@ public class Pawn extends Observable implements Serializable
       notifyObservers();
    }
    
+   // moving the pawn with given x and y values 
    protected void move( double x, double y )
    {
       setLocation( ( locX + x ) % 1920, locY + y );
    }
    
+   // moving the pawn to next country in gameRoute
    protected void moveNextCountry()
    {
-      // Get the location of next country
       p.payTravelFee();
-      currentCountry = Route.COUNTRIES_ON_ROUTE.get( ( currentCountry.getLocationOnRoute() + 1 ) % 60 );
-      
-      Point newLocation = new Point( currentCountry.getLocation() );
-      if ( currentCountry.getLocationOnRoute() == 0 )
+      if ( p.isPlaying() )
       {
-         newLocation.translate( 1920, 0 );
+         // Get the location of next country
+         currentCountry = Route.COUNTRIES_ON_ROUTE.get( ( currentCountry.getLocationOnRoute() + 1 ) % 60 );
+         
+         Point newLocation = new Point( currentCountry.getLocation() );
+         if ( currentCountry.getLocationOnRoute() == 0 )
+         {
+            newLocation.translate( 1920, 0 );
+         }
+         
+         // Find the distance and needed movements
+         double distance = Math.hypot( newLocation.getX() - locX, newLocation.getY() - locY );      
+         neededMovements = (int)( distance / SPEED );
+         remainingTime = neededMovements;
+         
+         // Move the pawn
+         movementOfX = ( newLocation.getX() - locX ) / neededMovements;
+         movementOfY = ( newLocation.getY() - locY ) / neededMovements;
+         timer.start();
       }
-      
-      // Find the distance and needed movements
-      double distance = Math.hypot( newLocation.getX() - locX, newLocation.getY() - locY );      
-      neededMovements = (int)(distance / 2);
-      remainingTime = neededMovements;
-      
-      // Move the pawn
-      movementOfX = ( newLocation.getX() - locX ) / neededMovements;
-      movementOfY = ( newLocation.getY() - locY ) / neededMovements;
-      timer.start();
-      
    }
    
+   // move the pawn from given movement number of time further country from current position
    protected void moveAmongCountries( int movementNumber )
    {
       this.movementNumber = movementNumber;
       moveNextCountry();
    }
    
+   //movement time listener
    public class MovementTimeListener implements ActionListener, Serializable
    {
       @Override
@@ -130,7 +148,7 @@ public class Pawn extends Observable implements Serializable
             }
             else
             {
-               currentCountry.notifier();
+               currentCountry.notifier( "current country" );
             }
          }
       }    

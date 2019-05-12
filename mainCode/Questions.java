@@ -2,7 +2,11 @@ package mainCode;
 
 import java.io.Serializable;
 
-// Represents package of questions.
+/** 
+ * Represents package of questions.
+ * @author Ahmet Kaan Uguralp
+ * @version 12.05.2019
+ */
 public class Questions implements Serializable
 {
    // properties
@@ -29,17 +33,31 @@ public class Questions implements Serializable
    
    // methods  
    
+   /*
+    * return question with given questionNo
+    * @param questionNo
+    * @return the question (questionNo )
+    */
    public Question get( int questionNo )
    {
       return questions[ questionNo ];
    }
    
+   /*
+    * adding new question to question list
+    * @param given question and which is added
+    */
    public void add( Question question )
    {
       questions[ numberOfQuestions ] = question;
       numberOfQuestions++;
    }
    
+   /*
+    * changing given index with given question
+    * @param1 given question
+    * @param2 given index
+    */
    public void putToIndex( Question question, int index )
    {
       questions[ index ] = question;

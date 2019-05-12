@@ -3,6 +3,11 @@ package mainCode;
 import java.util.Observable;
 import java.io.Serializable;
    
+/** 
+ * keeps the informations of Players to sort them as their current money and Citizenship numbers
+ * @author Ahmet Isik
+ * @version 12.05.2019
+ */
 public class LeadershipTable extends Observable implements Serializable
 {
    // properties 
@@ -21,6 +26,8 @@ public class LeadershipTable extends Observable implements Serializable
    }
    
    // methods
+   
+   //update of leadership table considering new points of players
    public void refresh()
    {
       Player temp;
@@ -43,16 +50,23 @@ public class LeadershipTable extends Observable implements Serializable
       notifier();
    }
    
+   //return the size of leadership table
    public int size()
    {
       return leadershipTable.length;
    }
    
+   /**
+    * return the nth player in leadership table
+    * @param n the nth player
+    * @return n'th player's content.
+    */
    public Player get( int n )
    {
       return leadershipTable[ n ];
    }
    
+   // notifier method
    public void notifier()
    {
       setChanged();

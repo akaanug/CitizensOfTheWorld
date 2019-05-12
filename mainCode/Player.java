@@ -4,7 +4,11 @@ import java.util.Observable;
 import mainCode.pictureClasses.*;
 import java.io.Serializable;
 
-// buraya bi comment atýver
+/** 
+ * creating player object for game
+ * @author Ahmet Isik
+ * @version 12.05.2019
+ */
 public class Player extends Observable implements Comparable, Serializable
 {
    // properties
@@ -21,8 +25,6 @@ public class Player extends Observable implements Comparable, Serializable
    Avatar avatar;
    
    // constructors
-   
-   // bu guide biyerde lazým onun içün yazýyorum.
    public Player()
    {
       countries = new Countries( Route.COUNTRY_NUMBER );
@@ -47,79 +49,117 @@ public class Player extends Observable implements Comparable, Serializable
       isPlaying = true;
    }
    
-   // methods ( javadoclarý yazýnýz lütfen )
+   // methods
+   
+   /*
+    * get player no
+    * @return the player no
+    */
    public int getPlayerNo()
    {
       return playerNo;
    }
    
+   /*
+    * get name of player
+    * @return the name of player
+    */
    public String getName()
    {
       return name;
    }
    
+   /*
+    * get number of countries player has citizenship
+    * @return number of countries player has citizenship
+    */
    public int getNumberOfCountries()
    {
       return numberOfCountries;
    }
    
+   /*
+    * return current country of player
+    * @return current country of player
+    */
    public Country getCurrentCountry()
    {
       return currentCountry;
    }
    
+   /*
+    * return the current money of player
+    * @return the current money of player
+    */
    public int getMoney()
    {
       return money;
    }
    
+   /*
+    * return the revenue of player
+    * @return the revenue of player
+    */
    public int getRevenue()
    {
       return revenue;
    }
    
+   //return the avatar character of player
    public Avatar getAvatar()
    {
       return avatar;
    }
    
+   //return the country list player has citizenship
    public Countries getCountries()
    {
       return countries;
    }
    
+   //return the last country player has citizenship
    public Country getLastCountry()
    {
       return countries.get( countries.getNumberOfCountries() - 1 );
    }
    
+   //whether player is currently playing or not
    public boolean isPlaying()
    {
       return isPlaying;
    }
    
+   //whether player has a money or not
+   public boolean hasMoney()
+   {
+      return money > 0;
+   }
+   
+   //whether player has a turn to play
    public boolean hasTurn()
    {
       return hasTurn;
    }
    
+   //updating the playing situation of player currently
    protected void setHasTurn( boolean tf )
    {
       hasTurn = tf;
       
-      notifier();
+      notifier( "next turn" );
    }
    
+   //setting playerNo with given value
    protected void setPlayerNo( int playerNo )
    {
       this.playerNo = playerNo;
    }
    
+   //leave game operations for player
    protected void leaveGame()
    {
       isPlaying = false;
-      
-      notifier();
+      setHasTurn( false );
    }
    
    protected boolean equals( Player p )
@@ -127,26 +167,21 @@ public class Player extends Observable implements Comparable, Serializable
       return this.getPlayerNo() == p.getPlayerNo();
    }
    
-   // zar sallama olayý, locationunu deðiþtiriyosun ( burda geçen yazdýðýmýz dice þeysini kullanabilirsin )
-   protected int rollDice()
+   // throwing dices for turn of player and return sum of the dices
+   protected int rollDice( Dice dice )
    {
-      int dice1;
-      int dice2;
-      
-      dice1 = (int)( Math.random() * 6 ) + 1;
-      dice2 = (int)( Math.random() * 6 ) + 1;     
-      
-      return dice1 + dice2;
+      return dice.rollDice();
    }
    
+   // paying accomodatin fee for player considering the country player enter
    protected void payAccomodationFee( Country c )
    {
       money = money - c.getAccomodationFee();
       
-      notifier();
+      notifier( "money changed" );
    }
    
-   // citizenship kazanýrsa citizen arrayine ekle
+   // adding new country to citizenships of player
    protected void addCitizenship( Country c )
    {
       countries.add( c );
@@ -154,33 +189,39 @@ public class Player extends Observable implements Comparable, Serializable
       
       revenue = revenue + c.getTax();
       
-      notifier();
+      notifier( "money changed" );
    }
    
+   // add revenue for the player's money
    protected void addRevenue()
    {
       money = money + revenue;      
-      notifier();
+      notifier( "money changed" );
    }
    
+   // paying fee for questions
    protected void payQuestionFee()
    {
       money = money - Question.QUESTION_FEE;      
-      notifier();
+      notifier( "money changed" );
    }
    
+   // paying travel fee for player in the turn
    protected void payTravelFee( )
    {
       money = money - Route.TRAVEL_CHARGE;
-      notifier();
+      notifier( "money changed" );
    }
    
+   // setting the location of player
    protected void setLocation( Country c )
    {
       currentCountry = c;      
-      notifier();
+      notifier( "country changed" );
    }
    
+   // comparing the citizenships of player with given object
+   // if there is equality comparison with money of player and given object 
    public int compareTo( Object o )
    {
       Player p = (Player)o;

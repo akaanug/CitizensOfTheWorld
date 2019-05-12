@@ -5,6 +5,11 @@ import java.awt.*;
 import javax.swing.*;
 import java.io.Serializable;
 
+/** 
+ * creating Avatar object
+ * @author Yusuf Ziya Özgül
+ * @version 12.05.2019
+ */
 public class Avatar extends ResizablePicture implements Icon, Serializable
 {
    // properties
@@ -57,6 +62,10 @@ public class Avatar extends ResizablePicture implements Icon, Serializable
       return avatarName;
    }
    
+   /*
+    * resizing the picture with given edge ( edge x edge )
+    * @param edge 
+    */
    public void resizePicture( int edge )
    {
       this.edge = edge;
@@ -64,6 +73,7 @@ public class Avatar extends ResizablePicture implements Icon, Serializable
       super.resizePicture( edge, edge );
    }
    
+   // painting the image
    public void paintIcon( Component c, Graphics g, int x, int y )
    {
       Image bg = new ImageIcon(getClass().getResource( filename ) ).getImage();
@@ -73,11 +83,19 @@ public class Avatar extends ResizablePicture implements Icon, Serializable
       g2.dispose();
    }
    
+   /*
+    * return the width of icon
+    * @return the width of icon
+    */
    public int getIconWidth()
    {
       return edge;
    }
    
+   /*
+    * return the height of icon
+    * @return the height of icon
+    */
    public int getIconHeight()
    {
       return edge;

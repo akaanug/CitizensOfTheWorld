@@ -3,8 +3,14 @@ package mainCode.pictureClasses;
 import util.*;
 import java.awt.*;
 import javax.swing.*;
+import java.io.Serializable;
 
-public class Avatar extends ResizablePicture implements Icon
+/** 
+ * creating Avatar object
+ * @author
+ * @version 12.05.2019
+ */
+public class Avatar extends ResizablePicture implements Icon, Serializable
 {
    // properties
    public static final int STANDART_EDGE = 50;
@@ -56,6 +62,10 @@ public class Avatar extends ResizablePicture implements Icon
       return avatarName;
    }
    
+   /*
+    * resizing the picture with given edge ( edge x edge )
+    * @param edge 
+    */
    public void resizePicture( int edge )
    {
       this.edge = edge;
@@ -63,6 +73,7 @@ public class Avatar extends ResizablePicture implements Icon
       super.resizePicture( edge, edge );
    }
    
+   // painting the image
    public void paintIcon( Component c, Graphics g, int x, int y )
    {
       Image bg = new ImageIcon(getClass().getResource( filename ) ).getImage();
@@ -72,11 +83,19 @@ public class Avatar extends ResizablePicture implements Icon
       g2.dispose();
    }
    
+   /*
+    * return the width of icon
+    * @return the width of icon
+    */
    public int getIconWidth()
    {
       return edge;
    }
    
+   /*
+    * return the height of icon
+    * @return the height of icon
+    */
    public int getIconHeight()
    {
       return edge;
