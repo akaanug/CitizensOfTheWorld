@@ -11,7 +11,7 @@ import java.util.Observable;
 
 /**
  * A Swing GUI application inherits from top-level container javax.swing.JFrame
- * @author Burak Öçalan
+ * @author Burak Ã–Ã§alan
  * @version 12.05.2019
  */ 
 public class GameGUI extends JPanel implements Observer {
@@ -58,7 +58,7 @@ public class GameGUI extends JPanel implements Observer {
    //methods
    
    /*
-    * creation of components of GameGuý page
+    * creation of components of GameGuÃ½ page
     */
    public void createComponents()
    {
@@ -86,8 +86,8 @@ public class GameGUI extends JPanel implements Observer {
       accomodationFeePage = new AccomodationFeePage( game );
       centerPanel.add( accomodationFeePage );
       
-//      playerLeftPage = new PlayerLeftPage( game );
-//      centerPanel.add( playerLeftPage );
+      playerLeftPage = new PlayerLeftPage( game );
+      centerPanel.add( playerLeftPage );
       
       questionPage = new QuestionPage( game );
       centerPanel.add( questionPage );
