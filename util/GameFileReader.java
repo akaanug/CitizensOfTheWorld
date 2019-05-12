@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 /**
  * gamefilereader to create countryList, avatarsList
- * @author KerattaKerattalar
+ * @author Yusuf Ziya Özgül
  * @version 12.05.2019
  */
 public class GameFileReader implements Serializable
@@ -24,7 +24,7 @@ public class GameFileReader implements Serializable
    // @return countrylist alpahabetically
    public static String[] getAlphabeticalCountriesArray()
    {
-      final int COUNTRY_NUMBER = 60;
+      final int COUNTRY_NUMBER = Route.COUNTRY_NUMBER;
       
       try
       {
@@ -51,7 +51,7 @@ public class GameFileReader implements Serializable
    // Used in PlayerMenu, to find the locations of players from their country selections
    public static ArrayList<String> getListedCountries() 
    {
-      final int COUNTRY_NUMBER = 60;
+      final int COUNTRY_NUMBER = Route.COUNTRY_NUMBER;
       
       try
       {
@@ -107,7 +107,7 @@ public class GameFileReader implements Serializable
    //Used in MusicPlayer, to to create the musics String list
    public static ArrayList<String> getMusics() 
    {
-      final int MUSIC_NUMBER = 1;
+      final int MUSIC_NUMBER = 2;
       
       try
       {
@@ -134,9 +134,9 @@ public class GameFileReader implements Serializable
    // Used in Game class, to upload the country informations.
    public static Countries uploadCountryInfo( ) 
    {     
-      final int NUMBER_OF_QUESTIONS = 10;
-      final int NUMBER_OF_COUNTRIES = 60;
-      final int NUMBER_OF_CHOICES = 3;
+      final int QUESTION_NUMBER = Country.QUESTION_NUMBER;
+      final int COUNTRY_NUMBER = Route.COUNTRY_NUMBER;
+      final int CHOICE_NUMBER = Question.CHOICE_NUMBER;
       
       try
       {
@@ -153,24 +153,24 @@ public class GameFileReader implements Serializable
          Countries countries;
          
          answer = 0;
-         questions = new Questions( NUMBER_OF_QUESTIONS );
+         questions = new Questions( QUESTION_NUMBER );
          questionSentence = "";
-         countries = new Countries( NUMBER_OF_COUNTRIES );
-         choices = new String[ NUMBER_OF_CHOICES ];
+         countries = new Countries( COUNTRY_NUMBER );
+         choices = new String[ CHOICE_NUMBER ];
          fr = new FileReader( "Country Info\\countries.txt" );
          cr = new CSVReader( fr );
          infoCount = 0;
          questionCount = 0;
          countryCount = 0;
-         while ( countryCount < NUMBER_OF_COUNTRIES )
+         while ( countryCount < COUNTRY_NUMBER )
          {
-            while ( questionCount < NUMBER_OF_QUESTIONS )
+            while ( questionCount < QUESTION_NUMBER )
             {
                if ( infoCount == 0 )
                {
                   questionSentence = cr.next();
                }
-               else if ( infoCount == NUMBER_OF_CHOICES + 1 )
+               else if ( infoCount == CHOICE_NUMBER + 1 )
                {
                   answer = Integer.parseInt( cr.next() );             
                }
@@ -185,7 +185,7 @@ public class GameFileReader implements Serializable
                   questions.add( new Question( questionSentence, choices, answer ) );
                   questionCount++;
                   
-                  choices = new String[ NUMBER_OF_CHOICES ];
+                  choices = new String[ CHOICE_NUMBER ];
                }
             }
             
@@ -193,7 +193,7 @@ public class GameFileReader implements Serializable
             
             countryCount++;
             
-            questions = new Questions( NUMBER_OF_QUESTIONS );
+            questions = new Questions( QUESTION_NUMBER );
             questionCount = 0;
          }
          

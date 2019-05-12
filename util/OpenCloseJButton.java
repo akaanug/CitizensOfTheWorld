@@ -11,7 +11,7 @@ import mainCode.*;
 /** 
  * This class has been created to add buttons some functionality 
  * For example: Player info button can close the player info if you click it when player info is open.
- * @author Keratta Kerattalar
+ * @author Burak Öçalan
  * @version 12.05.2019
  */
 public class OpenCloseJButton extends JButton implements Observer

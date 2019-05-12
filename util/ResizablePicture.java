@@ -5,7 +5,7 @@ import javax.swing.*;
 
 /**
  * creating picture object which can be resizable
- * @author Keratta Kerattalar
+ * @author Ahmet Kaan Uguralp
  * @version 12.05.2019
  */
 public class ResizablePicture extends JPanel

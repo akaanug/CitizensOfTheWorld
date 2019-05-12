@@ -7,7 +7,7 @@ import javax.sound.sampled.*;
 
 /*
  * music player class and controlling the music playing operations
- * @author Keratta Kerattalar
+ * @author Batuhan Gelgi
  * @version 12.05.2019
  */
 public class MusicPlayer implements Runnable, LineListener 

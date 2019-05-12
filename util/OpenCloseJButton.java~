@@ -8,10 +8,11 @@ import java.util.Observer;
 import java.util.Observable;
 import mainCode.*;
 
-/* This class has been created to add buttons some functionality 
+/** 
+ * This class has been created to add buttons some functionality 
  * For example: Player info button can close the player info if you click it when player info is open.
- * Author Keratta Kerattalar
- * Version
+ * @author Keratta Kerattalar
+ * @version 12.05.2019
  */
 public class OpenCloseJButton extends JButton implements Observer
 {
@@ -57,9 +58,9 @@ public class OpenCloseJButton extends JButton implements Observer
    }
    
    /*
-    * updating the button
-    * @param1 Observable obs
-    * @param2 Object obj
+    * updating the buttons
+    * @param Observable obs
+    * @param Object obj
     */
    public void update( Observable obs, Object obj )
    {

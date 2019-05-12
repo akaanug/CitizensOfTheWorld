@@ -8,10 +8,10 @@ import mainCode.*;
 import mainCode.pictureClasses.Avatar;
 import java.io.Serializable;
 
-/*
+/**
  * gamefilereader to create countryList, avatarsList
- * author KerattaKerattalar
- * Version
+ * @author Yusuf Ziya Özgül
+ * @version 12.05.2019
  */
 public class GameFileReader implements Serializable
 {  
@@ -107,7 +107,7 @@ public class GameFileReader implements Serializable
    //Used in MusicPlayer, to to create the musics String list
    public static ArrayList<String> getMusics() 
    {
-      final int MUSIC_NUMBER = 1;
+      final int MUSIC_NUMBER = 2;
       
       try
       {

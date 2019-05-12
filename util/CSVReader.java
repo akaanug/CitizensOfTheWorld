@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 /**
  * reader class reads essential data for our game from FileReader
- * @author KerattaKerattalar
+ * @author Yusuf Ziya Özgül
  * @version 12.05.2019
  */
 public class CSVReader extends BufferedReader implements Serializable
