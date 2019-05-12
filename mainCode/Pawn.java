@@ -149,7 +149,7 @@ public class Pawn extends Observable implements Serializable
             else
             {
                setChanged();
-               notifyObservers( "country info" );
+               notifyObservers( "current country" );
             }
          }
       }    
