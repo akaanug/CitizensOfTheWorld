@@ -35,7 +35,9 @@ public class PlayerLeftPage extends JPanel implements Observer
 
         exitButton = new JButton();
         congText = new JTextField();
-
+        moneyField = new JTextField();
+        refText = new JTextField();
+        
         setBackground(new Color(153, 255, 153));
 
         exitButton.setFont(new Font("Gisha", 0, 12)); // NOI18N
@@ -49,6 +51,22 @@ public class PlayerLeftPage extends JPanel implements Observer
         congText.setHorizontalAlignment( JTextField.CENTER );
         congText.setText("GAME OVER :(");
         congText.setBorder(null);
+        
+        moneyField.setEditable(false);
+        moneyField.setBackground(new Color(255, 0, 0));
+        moneyField.setFont(new Font("Gisha", 1, 50)); // NOI18N
+        moneyField.setForeground(new Color(255, 255, 0));
+        moneyField.setHorizontalAlignment( JTextField.CENTER );
+        moneyField.setText("money field");
+        moneyField.setBorder(null);
+        
+        refText.setEditable(false);
+        refText.setBackground(new Color(255, 0, 0));
+        refText.setFont(new Font("Gisha", 1, 50)); // NOI18N
+        refText.setForeground(new Color(255, 255, 0));
+        refText.setHorizontalAlignment( JTextField.CENTER );
+        refText.setText("refText");
+        refText.setBorder(null);
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
