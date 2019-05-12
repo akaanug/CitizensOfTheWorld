@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 /**
  * creating pawn object for each player
- * @author Burak Öçalan
+ * @author Burak Ã–Ã§alan
  * @version 12.05.2019
  */
 public class Pawn extends Observable implements Serializable
@@ -139,7 +139,7 @@ public class Pawn extends Observable implements Serializable
             timer.stop();
             movementNumber--;
             
-            setLocation( (int)locX, (int)locY ); // küsüratlarý yok etmek için         
+            setLocation( (int)locX, (int)locY ); // kÃ¼sÃ¼ratlarÃ½ yok etmek iÃ§in         
             p.setLocation( currentCountry );
             
             if ( movementNumber != 0 )
@@ -148,7 +148,8 @@ public class Pawn extends Observable implements Serializable
             }
             else
             {
-               currentCountry.notifier( "current country" );
+               setChanged();
+               notifyObservers( "country info" );
             }
          }
       }    
