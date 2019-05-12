@@ -59,9 +59,9 @@ public class Game extends Observable implements Observer, Serializable
       currentPlayer.setHasTurn( true );
       
       route = new Route( players );
-      for ( int n = 0; n < Route.COUNTRY_NUMBER; n++ )
+      for ( int n = 0; n < numberOfPlayers; n++ )
       {
-         route.getCountry( n ).addObserver( this );
+         route.getPawn( n ).addObserver( this );
       }
       
       leadershipTable = new LeadershipTable( players );
@@ -335,6 +335,13 @@ public class Game extends Observable implements Observer, Serializable
          getPlayer( n ).notifier();
       }      
       leadershipTable.notifier();
+      
+      quiz.addObserver( this );
+      for ( int n = 0; n < numberOfPlayers; n++ )
+      {
+         players[ n ].addObserver( this );
+         route.getPawn( n ).addObserver( this );
+      }
       
       setStage( "new player" );
       
