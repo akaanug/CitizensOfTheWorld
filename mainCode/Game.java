@@ -327,7 +327,7 @@ public class Game extends Observable implements Observer, Serializable
    }
    
    // starting new game
-   public void startGame()
+   public void startGame( Dimension dimension )
    {
       // Initialise all players and leadership table 
       for ( int n = 0; n < numberOfPlayers; n++ )
@@ -343,11 +343,12 @@ public class Game extends Observable implements Observer, Serializable
          route.getPawn( n ).addObserver( this );
       }
       
+      route.setRouteResolution( dimension );
       setStage( "new player" );
       
       setChanged();
       notifyObservers();
-   }   
+   }     
    
    //updating the probable changes like money, win, lose, answer for questions in the game
    public void update( Observable obs, Object obj )
