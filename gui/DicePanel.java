@@ -30,8 +30,7 @@ public class DicePanel extends JPanel implements Observer
       
       add( die1 );
       add( die2 );
-      
-      setPreferredSize( new Dimension( 300, 300 ) );
+
       setOpaque( false );
       setVisible( false );
    }
