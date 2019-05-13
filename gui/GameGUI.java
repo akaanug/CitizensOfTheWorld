@@ -37,7 +37,6 @@ public class GameGUI extends JPanel implements Observer {
    Application app;
    int n; // used in for loops
    
-   // constructors
    public GameGUI( Application application, Game game ) 
    {        
       this.game = game;
@@ -50,7 +49,7 @@ public class GameGUI extends JPanel implements Observer {
       }
       
       createComponents();
-      game.startGame();
+      game.startGame( app.getSize() );
       
       handleActionListeners();
    }
