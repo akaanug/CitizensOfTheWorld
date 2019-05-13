@@ -142,6 +142,11 @@ public class Country extends Observable implements Serializable
       return locationOnRoute;
    }
    
+   public void setLocation( int x, int y )
+   {
+      location = new Point( x, y );
+   }
+   
    /*
     * select three question among ten question of country randomly and return 
     * @return the selected three questions of country
