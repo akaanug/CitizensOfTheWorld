@@ -91,9 +91,6 @@ public class GameGUI extends JPanel implements Observer {
       questionPage = new QuestionPage( game );
       centerPanel.add( questionPage );
       
-      dicePanel = new DicePanel( game );
-      centerPanel.add( dicePanel );
-      
       // North panel
       northPanel = new GameGUINorthPanel( this );      
       add( northPanel, BorderLayout.NORTH );
@@ -118,6 +115,9 @@ public class GameGUI extends JPanel implements Observer {
       // Next Turn Button
       nextTurn = new JButton( "Next Turn" );
       southPanel.add( nextTurn );
+              
+      dicePanel = new DicePanel( game );
+      southPanel.add( dicePanel );
       
       add( southPanel, BorderLayout.SOUTH );
    }
