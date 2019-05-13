@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class Application extends JFrame {
     
     // Private instance variables
+    public static final Dimension NORMAL_RESOLUTION = new Dimension( 1920, 1080 );
     MainMenu mainMenu;
     PlayerMenu playerMenu;
     LoadGame loadGame;
