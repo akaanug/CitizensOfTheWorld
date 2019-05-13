@@ -3,7 +3,9 @@ package mainCode;
 import util.*;
 import javax.swing.Timer;
 import java.io.Serializable;
-import java.
+import java.awt.Dimension;
+import gui.Application;
+   
 /**
  * creating gameRoute players follow
  * @author Burak Öçalan
@@ -66,8 +68,8 @@ public class Route implements Serializable
       for ( int n = 0; n < COUNTRY_NUMBER; n++ )
       {
          temp = getCountry( n );
-         temp.setLocation( (int)( temp.getLocation().getX() * resolution.getX() / Application.NORMAL_RESOLUTION.getX() ),
-                           (int)( temp.getLocation().getY() * resolution.getY() / Application.NORMAL_RESOLUTION.getY() ) );
+         temp.setLocation( (int)( temp.getLocation().getX() * resolution.getWidth() / Application.NORMAL_RESOLUTION.getWidth() ),
+                           (int)( temp.getLocation().getY() * resolution.getHeight() / Application.NORMAL_RESOLUTION.getHeight() ) );
       }
            
       // To refresh the locations of pawns 
