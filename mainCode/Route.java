@@ -3,10 +3,10 @@ package mainCode;
 import util.*;
 import javax.swing.Timer;
 import java.io.Serializable;
-
+import java.
 /**
  * creating gameRoute players follow
- * @author Burak Öçalan
+ * @author Burak Ã–Ã§alan
  * @version 12.05.2019
  */
 public class Route implements Serializable
@@ -59,4 +59,21 @@ public class Route implements Serializable
    {        
       getPawn( p.getPlayerNo() ).moveAmongCountries( movementNumber );    
    }
+   
+   public void setRouteResolution( Dimension resolution )
+   {
+      Country temp;
+      for ( int n = 0; n < COUNTRY_NUMBER; n++ )
+      {
+         temp = getCountry( n );
+         temp.setLocation( (int)( temp.getLocation().getX() * resolution.getX() / Application.NORMAL_RESOLUTION.getX() ),
+                           (int)( temp.getLocation().getY() * resolution.getY() / Application.NORMAL_RESOLUTION.getY() ) );
+      }
+           
+      // To refresh the locations of pawns 
+      for ( int n = 0; n < pawns.length; n++ )
+      {
+         pawns[ n ].setLocation( pawns[ n ].getCurrentCountry() );
+      }
+   } 
 }
