@@ -14,7 +14,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
-
+import java.awt.Dimension;
 
 /** 
  * game class to initialize the game
