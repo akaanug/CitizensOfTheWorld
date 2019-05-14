@@ -11,7 +11,7 @@ import java.util.Observable;
 
 /*
  * GameGUINorthPanel class creates the components located in the Northern part of GUIPanel
- * @author
+ * @author Burak Öçalan
  * @version 12.05.2019
  */
 public class GameGUINorthPanel extends JPanel implements Observer, ActionListener

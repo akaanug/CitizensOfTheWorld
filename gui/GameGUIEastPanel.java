@@ -129,8 +129,17 @@ public class GameGUIEastPanel extends JPanel
          @Override
          public void actionPerformed( ActionEvent evt )
          {
+            int selectedOption = JOptionPane.showConfirmDialog(null, 
+                                                               "Do you want to save the game before you left?", 
+                                                               "Exit", 
+                                                               JOptionPane.YES_NO_CANCEL_OPTION); 
+            if (selectedOption == JOptionPane.YES_OPTION) {
+               parent.saveGame.setVisible( true );
+            }
+            else if (selectedOption == JOptionPane.NO_OPTION) {
             parent.app.gameGui.setVisible( false );
             parent.app.mainMenu.setVisible( true );
+            }
          }
       });
       

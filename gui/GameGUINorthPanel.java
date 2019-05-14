@@ -49,7 +49,13 @@ public class GameGUINorthPanel extends JPanel implements Observer, ActionListene
    {
       if ( evt.getSource() == leaveGame )
       {
-         game.leaveGame();
+         int selectedOption = JOptionPane.showConfirmDialog(null, 
+                                                            "Do you wanna leave the game?", 
+                                                            "Leave the game", 
+                                                            JOptionPane.YES_NO_OPTION); 
+         if (selectedOption == JOptionPane.YES_OPTION) {
+            game.leaveGame();
+         }
       }
       else if ( evt.getSource() == muteBtn )
       {        
