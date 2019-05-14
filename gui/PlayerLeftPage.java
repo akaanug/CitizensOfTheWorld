@@ -57,7 +57,7 @@ public class PlayerLeftPage extends JPanel implements Observer
         moneyField.setFont(new Font("Gisha", 1, 50)); // NOI18N
         moneyField.setForeground(new Color(255, 255, 0));
         moneyField.setHorizontalAlignment( JTextField.CENTER );
-        moneyField.setText("money field");
+        moneyField.setText( game.getCurrentPlayer().getName() );
         moneyField.setBorder(null);
         
         refText.setEditable(false);
@@ -65,7 +65,7 @@ public class PlayerLeftPage extends JPanel implements Observer
         refText.setFont(new Font("Gisha", 1, 50)); // NOI18N
         refText.setForeground(new Color(255, 255, 0));
         refText.setHorizontalAlignment( JTextField.CENTER );
-        refText.setText("refText");
+        refText.setText("GG!");
         refText.setBorder(null);
 
         GroupLayout layout = new GroupLayout(this);
